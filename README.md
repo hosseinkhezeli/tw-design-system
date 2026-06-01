@@ -1,36 +1,64 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Engineering Rules
 
-## Getting Started
+## Rendering
 
-First, run the development server:
+* Server Components by default
+* Client Components only when necessary
+* Keep `use client` as low in the tree as possible
+* Never make route layouts client components without a clear reason
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Performance
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+* Send less JavaScript
+* Dynamic import heavy features
+* Virtualize large lists and grids
+* Optimize images before optimizing CSS
+* Measure before optimizing
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## UI
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+* Keep DOM trees shallow
+* Avoid unnecessary animations
+* Avoid mounting hidden dialogs, sheets, and popovers at scale
+* Mobile-first design
 
-## Learn More
+## Architecture
 
-To learn more about Next.js, take a look at the following resources:
+* Feature-first organization
+* Business logic belongs to features
+* Shared code must be reusable and generic
+* No circular dependencies
+* No duplicated business logic
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## State Management
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+* React Query for server state
+* Zustand for UI state
+* Local state before global state
 
-## Deploy on Vercel
+## Dependencies
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+* Every dependency must justify its existence
+* Prefer platform APIs when possible
+* No giant icon packs
+* No unnecessary libraries
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Imports
+
+* No barrel imports (`index.ts`)
+* Prefer direct imports
+* Avoid importing entire libraries for a single utility
+
+## Localization
+
+* RTL-first
+* Persian-first
+* Self-hosted fonts only
+* Persian dates and numbers by default
+
+## Code Quality
+
+* TypeScript strict mode
+* No `any`
+* Validate external data
+* Keep components small and focused
