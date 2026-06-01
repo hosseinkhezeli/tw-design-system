@@ -6,9 +6,9 @@ export default function MainLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <main>
-      {children}
+    <>
+      <main className='max-w-xl mx-auto w-full'>{children}</main>
       <BottomNavigation />
-    </main>
+    </>
   );
 }
