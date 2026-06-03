@@ -8,6 +8,12 @@
 
 @custom-variant dark (&:is(.dark *));
 
+[lang='fa'],
+[lang='fa-IR'] {
+  font-variant-numeric: proportional-nums;
+  font-feature-settings: 'ss01', 'locl';
+}
+
 
 @layer base {
   body {
