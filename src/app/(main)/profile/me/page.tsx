@@ -1,13 +1,16 @@
-import { Avatar } from '@/shared/ui/avatar';
-import { Text } from '@/shared/ui/text';
-import { Typography } from '@/shared/ui/typography/typography';
-import { UserAvatar } from '@/shared/ui/user-avatar/user-avatar';
+import { BioDescription } from '@/features/profile/ui/bio-description';
+import { InterestTags } from '@/features/profile/ui/interest-tags';
+import { ProfileActions } from '@/features/profile/ui/profile-actions';
+import { ProfileAvatar } from '@/features/profile/ui/profile-avatar';
+import { ProfileStatsList } from '@/features/profile/ui/profile-stats-list';
+import { Text } from '@/shared/components/text';
+import { Typography } from '@/shared/components/ui/typography/typography';
 
 export default function MyProfilePage() {
   return (
-    <div className='flex flex-col w-full'>
+    <div className='flex flex-col w-full pb-[64] gap-4'>
       <div className='flex w-full gap-4'>
-        <UserAvatar />
+        <ProfileAvatar />
         <div className='flex flex-col'>
           <Typography variant={'subtitle'}>روبان شاپ</Typography>
           <Text
@@ -22,6 +25,16 @@ export default function MyProfilePage() {
           />
         </div>
       </div>
+      <BioDescription bio={bio} />
+      <InterestTags />
+      <div className='flex justify-between'>
+        <ProfileStatsList />
+        <ProfileActions />
+      </div>
     </div>
   );
 }
+
+const bio = `👨‍💻👨🏽‍💻👨🏿‍💻🚀🔥✨🎯
+این‌یک‌کلمه‌بسیارطولانی‌است‌که‌نباید‌لی‌اوت‌را‌خراب‌کنداین‌یک‌کلمه‌بسیارطولانی‌است‌که‌نباید‌لی‌اوت‌را‌خراب‌کند
+❤️🧡💛💚💙💜🖤🤍🤎`;

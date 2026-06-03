@@ -1,6 +1,6 @@
 'use client';
 
-import { VirtualList } from '@/shared/ui/virtual-list';
+import { VirtualList } from '@/shared/components/virtual-list';
 
 import { useFeedQuery } from '../queries/use-feed-query';
 import { PostCard } from './post-card';

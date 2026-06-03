@@ -1,6 +1,6 @@
 import { APP_ROUTES } from '@/config/app-routes';
 import { NavigationItemModel } from '../models/navigation-item.model';
-import { Avatar } from '@/shared/ui/avatar';
+import { Avatar } from '@/shared/components/ui/avatar';
 import { BOTTOM_NAV_ICON_CLASS } from '@/config/ui';
 import {
   IconHome,

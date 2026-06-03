@@ -1,5 +1,5 @@
 import { Slot } from '@radix-ui/react-slot';
-import { Typography } from '../typography/typography';
+import { Typography } from '../ui/typography/typography';
 import { TextProps } from './text.types';
 import { textVariants } from './variants';
 import { cn } from '@/shared/utils/cn';

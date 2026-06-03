@@ -3,8 +3,8 @@
 import Link from 'next/link';
 
 import { cn } from '@/shared/utils/cn';
-import { Button } from '@/shared/ui/button';
 import { NavigationItemModel } from '../models/navigation-item.model';
+import { Button } from '@/shared/components/ui/button';
 
 type Props = {
   item: NavigationItemModel['args'];

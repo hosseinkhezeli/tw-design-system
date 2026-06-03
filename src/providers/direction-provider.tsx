@@ -1,4 +1,4 @@
-import { DirectionProvider as ShadcnDirectionProvider } from '@/shared/ui/direction';
+import { DirectionProvider as ShadcnDirectionProvider } from '@/shared/components/ui/direction';
 import { ReactNode } from 'react';
 
 type Props = {
