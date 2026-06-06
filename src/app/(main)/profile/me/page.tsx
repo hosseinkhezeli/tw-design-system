@@ -2,7 +2,9 @@ import { BioDescription } from '@/features/profile/ui/bio-description';
 import { InterestTags } from '@/features/profile/ui/interest-tags';
 import { ProfileActions } from '@/features/profile/ui/profile-actions';
 import { ProfileAvatar } from '@/features/profile/ui/profile-avatar';
+import { ProfileHighlightsList } from '@/features/profile/ui/profile-highlights-list';
 import { ProfileStatsList } from '@/features/profile/ui/profile-stats-list';
+import { QuickLinksList } from '@/features/profile/ui/quick-links-list';
 import { Text } from '@/shared/components/text';
 import { Typography } from '@/shared/components/ui/typography/typography';
 
@@ -31,6 +33,8 @@ export default function MyProfilePage() {
         <ProfileStatsList />
         <ProfileActions />
       </div>
+      <ProfileHighlightsList />
+      <QuickLinksList />
     </div>
   );
 }

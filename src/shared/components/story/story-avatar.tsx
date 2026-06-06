@@ -13,7 +13,7 @@ export function StoryAvatar({ src, fallback, hasStory, seen, onClick }: Props) {
     <button onClick={onClick} className='flex flex-col items-center gap-1'>
       <div
         className={[
-          'p-[2px] rounded-full',
+          'p-0.5 rounded-full',
           hasStory
             ? seen
               ? 'bg-muted'
@@ -21,7 +21,7 @@ export function StoryAvatar({ src, fallback, hasStory, seen, onClick }: Props) {
             : '',
         ].join(' ')}
       >
-        <Avatar>
+        <Avatar className='min-h-15 min-w-15 aspect-square'>
           <AvatarImage src={src} />
           <AvatarFallback>{fallback}</AvatarFallback>
         </Avatar>
