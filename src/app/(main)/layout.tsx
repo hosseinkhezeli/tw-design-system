@@ -7,7 +7,9 @@ export default function MainLayout({
 }>) {
   return (
     <>
-      <main className='max-w-xl mx-auto w-full'>{children}</main>
+      <main className='max-w-xl min-h-svh mx-auto w-full overflow-hidden pb-20'>
+        {children}
+      </main>
       <BottomNavigation />
     </>
   );

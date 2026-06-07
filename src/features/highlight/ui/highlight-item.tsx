@@ -8,9 +8,9 @@ type Props = {
 
 export function HighlightItem({ title, cover, onClick }: Props) {
   return (
-    <div className='flex flex-col items-center gap-1' onClick={onClick}>
+    <li className='flex flex-col items-center gap-1' onClick={onClick}>
       <StoryAvatar src={cover} fallback={title[0]} hasStory />
       <span className='text-xs'>{title}</span>
-    </div>
+    </li>
   );
 }

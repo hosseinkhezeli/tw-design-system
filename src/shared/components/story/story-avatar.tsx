@@ -1,31 +1,26 @@
-import { Avatar, AvatarImage, AvatarFallback } from '../ui/avatar';
+import {
+  Avatar,
+  AvatarImage,
+  AvatarFallback,
+  AvatarProps,
+  AvatarRing,
+} from '../ui/avatar';
 
-type Props = {
-  src?: string;
-  fallback: string;
-  hasStory?: boolean;
-  seen?: boolean;
-  onClick?: () => void;
-};
-
-export function StoryAvatar({ src, fallback, hasStory, seen, onClick }: Props) {
+export function StoryAvatar({
+  src,
+  fallback,
+  hasStory,
+  seen,
+  onClick,
+}: AvatarProps) {
   return (
     <button onClick={onClick} className='flex flex-col items-center gap-1'>
-      <div
-        className={[
-          'p-0.5 rounded-full',
-          hasStory
-            ? seen
-              ? 'bg-muted'
-              : 'bg-gradient-to-tr from-pink-500 to-yellow-400'
-            : '',
-        ].join(' ')}
-      >
+      <AvatarRing active={Boolean(hasStory && !seen)}>
         <Avatar className='min-h-15 min-w-15 aspect-square'>
           <AvatarImage src={src} />
           <AvatarFallback>{fallback}</AvatarFallback>
         </Avatar>
-      </div>
+      </AvatarRing>
     </button>
   );
 }

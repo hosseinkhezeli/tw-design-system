@@ -29,11 +29,11 @@ const mockPosts = [
 const ProfilePosts: React.FC = () => {
   return (
     <div className='p-3'>
-      <div className='grid grid-cols-3 gap-2'>
+      <div className='grid grid-cols-3 '>
         {[...mockPosts, ...mockPosts, ...mockPosts].map((post) => (
           <Card
             key={post.id}
-            className='overflow-hidden border-0 shadow-sm hover:shadow-md transition-all duration-200 cursor-pointer group aspect-[3/4] relative'
+            className='overflow-hidden rounded-none border-0 shadow-sm hover:shadow-md transition-all duration-200 cursor-pointer group aspect-[3/4] relative'
           >
             <div className='relative w-full h-full'>
               <img

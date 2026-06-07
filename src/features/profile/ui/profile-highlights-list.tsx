@@ -1,10 +1,20 @@
 'use client';
 import { CreateHighlightButton } from '@/features/highlight/ui/create-highlight-button';
 import { HighlightList } from '@/features/highlight/ui/highlight-list';
+import { cn } from '@/shared/utils';
+import { ComponentProps } from 'react';
 
-export function ProfileHighlightsList() {
+type Props = ComponentProps<'ul'>;
+
+export function ProfileHighlightsList({ className, ...props }: Props) {
   return (
-    <section className='flex overflow-y-hidden overflow-x-auto w-full max-w-xl no-scrollbar gap-4 snap-x snap-mandatory'>
+    <ul
+      className={cn(
+        'flex overflow-y-hidden overflow-x-auto w-full no-scrollbar gap-4 snap-x snap-mandatory',
+        className,
+      )}
+      {...props}
+    >
       <CreateHighlightButton />
       <HighlightList
         items={[
@@ -52,6 +62,6 @@ export function ProfileHighlightsList() {
           },
         ]}
       />
-    </section>
+    </ul>
   );
 }

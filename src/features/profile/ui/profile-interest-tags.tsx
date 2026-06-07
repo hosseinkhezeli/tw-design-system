@@ -1,6 +1,6 @@
 import { Tag } from '@/shared/components/ui/tag';
 
-export function InterestTags() {
+export function ProfileInterestTags() {
   const intereset = ['🎯برنامه نویسی', 'تکنولوژی', 'AI'];
   return (
     <div className='h-8 flex gap-2 w-full overflow-y-hidden overflow-x-auto no-scrollbar'>

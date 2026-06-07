@@ -1,13 +1,7 @@
-@utility glass {
-  @apply bg-white/70 backdrop-blur-xl border border-white/20 shadow-lg;
-  
-  /* The .dark class selector in Tailwind v4 allows us to handle dark mode context */
-  .dark & {
-    @apply bg-black/40 border-white/10;
-  }
+@utility active_avatar_ring {
+  @apply bg-linear-to-tr from-pink-500 to-yellow-400 dark:from-pink-600 dark:to-yellow-500;
 }
 
-@utility glass-popover {
-  /* Using your variables (popover and border) instead of hardcoded white/black */
-  @apply bg-popover/10! backdrop-blur-xl border border-border/50 shadow-lg;
+@utility inactive_avatar_ring {
+  @apply bg-muted;
 }

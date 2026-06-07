@@ -1,5 +1,7 @@
 'use client';
+import { ComponentProps } from 'react';
 import { QuickLinkButton } from './quick-link-button';
+import { cn } from '@/shared/utils';
 
 const quickLinks = [
   {
@@ -24,12 +26,22 @@ const quickLinks = [
   },
 ];
 
-export function QuickLinksList() {
+type Props = ComponentProps<'ul'>;
+
+export function QuickLinksList({ className, ...props }: Props) {
   return (
-    <div className='flex gap-2 no-scrollbar overflow-x-auto pb-4 px-4 -mx-4 snap-x snap-mandatory'>
+    <ul
+      className={cn(
+        'flex gap-2 no-scrollbar overflow-x-auto snap-x snap-mandatory',
+        className,
+      )}
+      {...props}
+    >
       {quickLinks.map((link) => (
-        <QuickLinkButton key={link.id} link={link} />
+        <li key={link.id}>
+          <QuickLinkButton link={link} />
+        </li>
       ))}
-    </div>
+    </ul>
   );
 }

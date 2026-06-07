@@ -27,7 +27,7 @@ export default function RootLayout({
       dir='rtl'
       className={cn('h-full', 'antialiased', vazirmatn.variable, 'dark')}
     >
-      <body className='min-h-full flex flex-col'>
+      <body className='min-h-svh min-w-svw'>
         <Providers>{children}</Providers>
       </body>
     </html>

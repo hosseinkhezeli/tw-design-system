@@ -1,5 +1,5 @@
-import { BioDescription } from '@/features/profile/ui/bio-description';
-import { InterestTags } from '@/features/profile/ui/interest-tags';
+import { ProfileBio } from '@/features/profile/ui/profile-bio';
+import { ProfileInterestTags } from '@/features/profile/ui/profile-interest-tags';
 import { ProfileActions } from '@/features/profile/ui/profile-actions';
 import { ProfileAvatar } from '@/features/profile/ui/profile-avatar';
 import ProfileContent from '@/features/profile/ui/profile-contents';
@@ -12,7 +12,7 @@ import { Typography } from '@/shared/components/ui/typography/typography';
 export default function MyProfilePage() {
   return (
     <>
-      <div className='flex flex-col w-full pb-[64] gap-4'>
+      <div className='flex flex-col w-full gap-4 pr-4 py-5'>
         <div className='flex w-full gap-4'>
           <ProfileAvatar />
           <div className='flex flex-col'>
@@ -29,16 +29,16 @@ export default function MyProfilePage() {
             />
           </div>
         </div>
-        <BioDescription bio={bio} />
-        <InterestTags />
-        <div className='flex justify-between'>
+        <ProfileBio bio={bio} />
+        <ProfileInterestTags />
+        <div className='flex justify-between pl-4'>
           <ProfileStatsList />
           <ProfileActions />
         </div>
-        <ProfileHighlightsList />
-        <QuickLinksList />
+        <ProfileHighlightsList className='pl-4' />
+        <QuickLinksList className='-mx-4 pr-4 pl-8' />
       </div>
-      <ProfileContent activeTab='posts'/>
+      <ProfileContent />
     </>
   );
 }

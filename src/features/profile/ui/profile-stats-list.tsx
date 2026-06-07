@@ -13,10 +13,12 @@ export function ProfileStatsList() {
     { title: 'دنبال‌شده', value: stats.follows },
   ];
   return (
-    <div className='flex gap-4'>
+    <ul className='flex gap-4'>
       {statsArr.map((stat) => (
-        <ProfileStat key={stat.title} title={stat.title} value={stat.value} />
+        <li key={stat.title}>
+          <ProfileStat title={stat.title} value={stat.value} />
+        </li>
       ))}
-    </div>
+    </ul>
   );
 }

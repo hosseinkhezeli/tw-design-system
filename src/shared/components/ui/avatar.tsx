@@ -3,6 +3,14 @@
 import * as React from 'react';
 import { Avatar as AvatarPrimitive } from 'radix-ui';
 
+export type AvatarProps = {
+  src?: string;
+  fallback: string;
+  hasStory?: boolean;
+  seen?: boolean;
+  onClick?: () => void;
+};
+
 import { cn } from '@/shared/utils/cn';
 
 function Avatar({
@@ -102,6 +110,27 @@ function AvatarGroupCount({
   );
 }
 
+function AvatarRing({
+  className,
+  active,
+  children,
+  ...props
+}: React.ComponentProps<'div'> & { active: boolean }) {
+  return (
+    <div
+      data-slot='avatar-ring'
+      className={cn(
+        'p-0.5 rounded-full',
+        active ? 'active_avatar_ring' : 'inactive_avatar_ring',
+        className,
+      )}
+      {...props}
+    >
+      {children}
+    </div>
+  );
+}
+
 export {
   Avatar,
   AvatarImage,
@@ -109,6 +138,5 @@ export {
   AvatarGroup,
   AvatarGroupCount,
   AvatarBadge,
+  AvatarRing,
 };
-
-

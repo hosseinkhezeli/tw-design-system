@@ -7,24 +7,24 @@ type Props = {
   bio: string;
 };
 
-export function BioDescription({ bio }: Props) {
-  const [expanded, setExpanded] = useState(false);
-  const [contentHeight, setContentHeight] = useState(0);
+export function ProfileBio({ bio }: Props) {
+  const [contentHeight, setContentHeight] = useState(28);
   const contentRef = useRef<HTMLDivElement>(null);
+  const [expanded, setExpanded] = useState(false);
 
   const formattedBio = formatBio(bio);
-  const shouldTruncate = bio.length > MAX_BIO_CHARACTERS_REVEAL;
+  const shouldTruncate = formattedBio.length > MAX_BIO_CHARACTERS_REVEAL;
 
   useEffect(() => {
     if (contentRef.current && expanded) {
       setContentHeight(contentRef.current.scrollHeight);
     }
-  }, [expanded, bio]);
+  }, [expanded, bio, formattedBio]);
 
   if (!bio?.trim()) return null;
 
   return (
-    <div className='text-[15px] leading-7 text-foreground'>
+    <div className='text-[15px] min-h-7 leading-7 text-foreground'>
       <div
         ref={contentRef}
         className='overflow-hidden transition-all duration-300 ease-out'
