@@ -1,4 +1,6 @@
+import { AuthProvider } from './auth-provider';
 import { DirectionProvider } from './direction-provider';
+import { NavigationProvider } from './navigation-provider';
 import { QueryClientProvider } from './query-client-provider';
 
 export default function Providers({
@@ -8,7 +10,11 @@ export default function Providers({
 }>) {
   return (
     <DirectionProvider>
-      <QueryClientProvider>{children}</QueryClientProvider>
+      <AuthProvider>
+        <NavigationProvider>
+          <QueryClientProvider>{children}</QueryClientProvider>
+        </NavigationProvider>
+      </AuthProvider>
     </DirectionProvider>
   );
 }

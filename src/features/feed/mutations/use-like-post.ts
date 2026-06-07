@@ -1,7 +1,7 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-
 import { likePost } from '../api/like-post';
-import type { FeedPage } from '../api/types';
+import { QUERY_KEYS } from '@/config/query-keys';
+import { updateFeedLike } from '../lib/feed-cache';
 
 export function useLikePost() {
   const queryClient = useQueryClient();
@@ -11,38 +11,20 @@ export function useLikePost() {
 
     onMutate: async (postId) => {
       await queryClient.cancelQueries({
-        queryKey: ['feed'],
+        queryKey: QUERY_KEYS.feed.all,
       });
 
-      const previousFeed = queryClient.getQueryData(['feed']);
+      const previousFeed = queryClient.getQueryData(QUERY_KEYS.feed.list());
 
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      queryClient.setQueryData(['feed'], (oldData: any) => {
-        if (!oldData) return oldData;
-
-        return {
-          ...oldData,
-
-          pages: oldData.pages.map((page: FeedPage) => ({
-            ...page,
-
-            items: page.items.map((post) =>
-              post.id === postId
-                ? {
-                    ...post,
-                    likes: post.likes + 1,
-                  }
-                : post,
-            ),
-          })),
-        };
-      });
+      queryClient.setQueryData(QUERY_KEYS.feed.list(), (old) =>
+        updateFeedLike(old, postId),
+      );
 
       return { previousFeed };
     },
 
-    onError: (_error, _postId, context) => {
-      queryClient.setQueryData(['feed'], context?.previousFeed);
+    onError: (_err, _postId, ctx) => {
+      queryClient.setQueryData(QUERY_KEYS.feed.list(), ctx?.previousFeed);
     },
   });
 }

@@ -12,8 +12,8 @@ export const APP_ROUTES = {
   },
 
   profile: {
-    root: '/profile',
-    byUsername: (username: string) => `/profile/${username}`,
+    me: '/profile/me',
+    user: (username: string) => `/profile/${username}`,
   },
 
   product: {
