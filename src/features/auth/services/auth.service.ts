@@ -1,7 +1,7 @@
 // import { routes } from '@/api/authentication/routes';
 
 import { httpClient } from '@/shared/lib/http/http-client';
-import { APP_ROUTES } from '@/config/app-routes';
+import { navigation } from '@/shared/services/navigation';
 
 class AuthService {
   private accessToken: string | null = null;
@@ -28,7 +28,7 @@ class AuthService {
     this.setAccessToken(null);
 
     if (typeof window !== 'undefined') {
-      window.location.href = APP_ROUTES.auth.login;
+      navigation.goToLogin();
     }
   }
 
