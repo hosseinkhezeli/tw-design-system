@@ -1,3 +1,3 @@
 export default function ShopPage() {
-  return 'SHOP PAGE';
+  return <>SHOP PAGE</>;
 }

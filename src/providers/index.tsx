@@ -11,9 +11,9 @@ export default function Providers({
   return (
     <DirectionProvider>
       <AuthProvider>
-        <NavigationProvider>
+        {/* <NavigationProvider> */}
           <QueryClientProvider>{children}</QueryClientProvider>
-        </NavigationProvider>
+        {/* </NavigationProvider> */}
       </AuthProvider>
     </DirectionProvider>
   );

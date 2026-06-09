@@ -17,7 +17,7 @@ export class NavigationService {
     return [
       new NavigationItemModel({
         id: 'profile',
-        href: APP_ROUTES.profile.byUsername('me'),
+        href: APP_ROUTES.profile.user('me'),
         renderIcon: () => <Avatar />,
         label: 'پروفایل',
       }),

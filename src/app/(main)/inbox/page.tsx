@@ -1,3 +1,3 @@
 export default function InboxPage() {
-  return 'INBOX PAGE';
+  return <>INBOX PAGE</>;
 }
