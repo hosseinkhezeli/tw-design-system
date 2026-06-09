@@ -5,6 +5,7 @@ export const APP_ROUTES = {
   shop: '/shop',
   inbox: '/inbox',
   notifications: '/notifications',
+  register: '/register',
 
   auth: {
     login: '/login',

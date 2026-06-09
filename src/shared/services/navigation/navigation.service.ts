@@ -14,6 +14,10 @@ export class NavigationService {
     this.router?.push(APP_ROUTES.feed);
   }
 
+  goToRegister() {
+    this.router?.push(APP_ROUTES.register);
+  }
+
   goToInbox() {
     this.router?.push(APP_ROUTES.inbox);
   }

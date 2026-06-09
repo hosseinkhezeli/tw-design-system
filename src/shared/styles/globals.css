@@ -1,9 +1,9 @@
-@import "tailwindcss";
-@import "tw-animate-css";
-@import "shadcn/tailwind.css";
-@import "./theme.css";
-@import "./tokens.css";
-@import "./utilities.css";
+@import 'tailwindcss';
+@import 'tw-animate-css';
+@import 'shadcn/tailwind.css';
+@import './theme.css';
+@import './tokens.css';
+@import './utilities.css';
 
 @custom-variant dark (&:is(.dark *));
 
@@ -13,12 +13,30 @@
   font-feature-settings: 'ss01', 'locl';
 }
 
-
 @layer base {
   body {
     @apply bg-background text-foreground;
   }
-  button:not(:disabled), [role="button"]:not(:disabled) {
+  button:not(:disabled),
+  [role='button']:not(:disabled) {
     cursor: pointer;
+  }
+
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  input:-webkit-autofill:active,
+  input:-internal-autofill-selected {
+    -webkit-box-shadow: 0 0 0 30px hsl(var(--background)) inset !important;
+    -webkit-text-fill-color: hsl(var(--foreground)) !important;
+    background-color: hsl(var(--background)) !important;
+    color: hsl(var(--foreground)) !important;
+    appearance: menulist-button !important;
+    background-image: none !important;
+  }
+
+  /* Prevent yellow flash on Chrome */
+  input:-webkit-autofill {
+    transition: background-color 5000s ease-in-out 0s !important;
   }
 }
