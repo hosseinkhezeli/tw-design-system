@@ -1,52 +1,73 @@
 'use client';
 
-import { useState } from 'react';
-import { AuthFooterLink } from '../components/auth-footer-link';
-import { AuthHeader } from '../components/auth-header';
-import { LoginCredentialsForm } from '../forms/login-credentials-form';
-import { useLogin } from '../hooks/use-login';
-import { LoginOtpForm } from '../forms/login-otp-form';
+import { StepTransition } from '@/shared/components/ui/transitions/step-transition';
+import { LOGIN_STEPS } from '../constants/auth.constants';
+import { useLoginFlow } from '../hooks/use-login-flow';
+import { AuthFooterLink } from '../ui/components/auth-footer-link';
+import { CaptchaChallenge } from '../ui/components/captcha-challenge';
+import { LoginCredentialsForm } from '../ui/forms/login-credentials-form';
+import { OtpVerificationForm } from '../ui/forms/otp-verification-form';
+import { AuthCardLayout } from '../ui/layouts/auth-card-layout';
+import { AuthHeader } from '../ui/components/auth-header';
 
 export function LoginContainer() {
-  const loginMutation = useLogin();
-
-  const [step, setStep] = useState<'credentials' | 'otp'>('credentials');
-
-  const [phoneNumber, setPhoneNumber] = useState('');
+  const {
+    step,
+    currentHeader,
+    isLoginPending,
+    isOtpLoading,
+    handleCredentialsSubmit,
+    handleCaptchaSuccess,
+    handleOtpComplete,
+    handleResendOtp,
+    phoneNumber,
+    handleStepBack,
+  } = useLoginFlow();
 
   return (
-    <div className='mx-auto flex min-h-svh max-w-md flex-col justify-center gap-8 px-6'>
-      <AuthHeader
-        title='خوش اومدی 👋'
-        description='برای ادامه وارد حساب کاربری خودت شو.'
-      />
-      {step === 'credentials' ? (
-        <LoginCredentialsForm
-          isPending={loginMutation.isPending}
-          onSubmit={(values) => {
-            loginMutation.mutate(values);
-            setStep('otp');
-            setPhoneNumber(values['phone-number']);
-          }}
+    <AuthCardLayout
+      {...(step !== LOGIN_STEPS.CREDENTIALS && {
+        onStepBack: handleStepBack,
+      })}
+    >
+      <StepTransition stepKey={step}>
+        <AuthHeader
+          title={currentHeader.title}
+          subtitle={currentHeader.subtitle}
         />
-      ) : (
-        <LoginOtpForm
-          mobile={phoneNumber}
-          remainingSeconds={90}
-          onSubmit={(code) => {
-            console.log(code);
-          }}
-          onResend={() => {
-            console.log('resend');
-          }}
-        />
-      )}
+        {step === LOGIN_STEPS.CREDENTIALS && (
+          <>
+            <LoginCredentialsForm
+              onSubmit={handleCredentialsSubmit}
+              isPending={isLoginPending}
+            />
+            <AuthFooterLink
+              text='حساب کاربری نداری؟'
+              actionLabel='ثبت‌نام کن!'
+              action='register'
+            />
+            <AuthFooterLink
+              text='گذرواژه‌ات رو یادت رفته؟'
+              actionLabel='بیا اینجا!'
+              action='forgot-password'
+            />
+          </>
+        )}
 
-      <AuthFooterLink
-        text='حساب کاربری نداری؟'
-        actionLabel='ثبت‌نام کن!'
-        action={'sign-up'}
-      />
-    </div>
+        {step === LOGIN_STEPS.CAPTCHA && (
+          <CaptchaChallenge onSuccess={handleCaptchaSuccess} />
+        )}
+
+        {step === LOGIN_STEPS.OTP && (
+          <OtpVerificationForm
+            onSubmit={handleOtpComplete}
+            onResend={handleResendOtp}
+            isPending={isOtpLoading}
+            isResendPending={isOtpLoading}
+            phoneNumber={phoneNumber}
+          />
+        )}
+      </StepTransition>
+    </AuthCardLayout>
   );
 }

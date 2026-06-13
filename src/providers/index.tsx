@@ -9,12 +9,12 @@ export default function Providers({
   children: React.ReactNode;
 }>) {
   return (
-    <DirectionProvider>
-      <AuthProvider>
-        {/* <NavigationProvider> */}
+    <NavigationProvider>
+      <DirectionProvider>
+        <AuthProvider>
           <QueryClientProvider>{children}</QueryClientProvider>
-        {/* </NavigationProvider> */}
-      </AuthProvider>
-    </DirectionProvider>
+        </AuthProvider>
+      </DirectionProvider>
+    </NavigationProvider>
   );
 }

@@ -5,11 +5,11 @@ export const APP_ROUTES = {
   shop: '/shop',
   inbox: '/inbox',
   notifications: '/notifications',
-  register: '/register',
 
   auth: {
     login: '/login',
     register: '/register',
+    forgot_password: '/forgot-password',
   },
 
   profile: {

@@ -1,56 +1,57 @@
 'use client';
-
 import { APP_ROUTES } from '@/config/app-routes';
 import { useRouter } from 'next/navigation';
 
 export class NavigationService {
   private router: ReturnType<typeof useRouter> | null = null;
+  private pendingActions: Array<() => void> = [];
 
   setRouter(router: ReturnType<typeof useRouter>) {
     this.router = router;
+    this.pendingActions.forEach((fn) => fn());
+    this.pendingActions = [];
   }
 
-  goToFeed() {
-    this.router?.push(APP_ROUTES.feed);
-  }
+  private safeNavigate = (action: () => void) => {
+    if (this.router) {
+      action();
+    } else {
+      this.pendingActions.push(action);
+      console.warn('Navigation called before router was set. Queued.');
+    }
+  };
 
-  goToRegister() {
-    this.router?.push(APP_ROUTES.register);
-  }
+  // All public methods as arrow functions
+  goToFeed = () => this.safeNavigate(() => this.router?.push(APP_ROUTES.feed));
 
-  goToInbox() {
-    this.router?.push(APP_ROUTES.inbox);
-  }
+  goToRegister = () =>
+    this.safeNavigate(() => this.router?.push(APP_ROUTES.auth.register));
 
-  goToReels() {
-    this.router?.push(APP_ROUTES.reels);
-  }
+  goToForgotPassword = () =>
+    this.safeNavigate(() => this.router?.push(APP_ROUTES.auth.forgot_password));
 
-  goToShop() {
-    this.router?.push(APP_ROUTES.shop);
-  }
+  goToInbox = () =>
+    this.safeNavigate(() => this.router?.push(APP_ROUTES.inbox));
 
-  goToExplore() {
-    this.router?.push(APP_ROUTES.explore);
-  }
+  goToReels = () =>
+    this.safeNavigate(() => this.router?.push(APP_ROUTES.reels));
 
-  goToProfileMe() {
-    this.router?.push(APP_ROUTES.profile.me);
-  }
+  goToShop = () => this.safeNavigate(() => this.router?.push(APP_ROUTES.shop));
 
-  goToUserProfile(id: string) {
-    this.router?.push(APP_ROUTES.profile.user(id));
-  }
+  goToExplore = () =>
+    this.safeNavigate(() => this.router?.push(APP_ROUTES.explore));
 
-  goToLogin() {
-    this.router?.push(APP_ROUTES.auth.login);
-  }
+  goToProfileMe = () =>
+    this.safeNavigate(() => this.router?.push(APP_ROUTES.profile.me));
 
-  back() {
-    this.router?.back();
-  }
+  goToUserProfile = (id: string) =>
+    this.safeNavigate(() => this.router?.push(APP_ROUTES.profile.user(id)));
 
-  replace(path: string) {
-    this.router?.replace(path);
-  }
+  goToLogin = () =>
+    this.safeNavigate(() => this.router?.push(APP_ROUTES.auth.login));
+
+  back = () => this.safeNavigate(() => this.router?.back());
+
+  replace = (path: string) =>
+    this.safeNavigate(() => this.router?.replace(path));
 }

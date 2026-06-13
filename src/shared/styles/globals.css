@@ -4,7 +4,7 @@
 @import './theme.css';
 @import './tokens.css';
 @import './utilities.css';
-
+@import './animations.css';
 @custom-variant dark (&:is(.dark *));
 
 [lang='fa'],
@@ -25,16 +25,13 @@
   input:-webkit-autofill,
   input:-webkit-autofill:hover,
   input:-webkit-autofill:focus,
-  input:-webkit-autofill:active,
-  input:-internal-autofill-selected {
-    -webkit-box-shadow: 0 0 0 30px hsl(var(--background)) inset !important;
-    -webkit-text-fill-color: hsl(var(--foreground)) !important;
-    background-color: hsl(var(--background)) !important;
-    color: hsl(var(--foreground)) !important;
-    appearance: menulist-button !important;
-    background-image: none !important;
+  input:-webkit-autofill:active {
+    -webkit-text-fill-color: var(--color-foreground) !important;
+    background-color: var(--color-background) !important;
+    font-variant-numeric: proportional-nums;
+    font-feature-settings: 'ss01', 'locl';
+    font-family: var(--font-sans) !important;
   }
-
   /* Prevent yellow flash on Chrome */
   input:-webkit-autofill {
     transition: background-color 5000s ease-in-out 0s !important;

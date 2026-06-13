@@ -1,0 +1,19 @@
+@theme {
+  /* تعریف انیمیشن با سرعت بسیار پایین (۱۵ ثانیه) برای حفظ وقار سازمانی */
+  --animate-blob: blob 15s infinite alternate ease-in-out;
+
+  @keyframes blob {
+    0% {
+      transform: translate(0px, 0px) scale(1);
+    }
+    33% {
+      transform: translate(40px, -60px) scale(1.05);
+    }
+    66% {
+      transform: translate(-30px, 30px) scale(0.95);
+    }
+    100% {
+      transform: translate(0px, 0px) scale(1);
+    }
+  }
+}

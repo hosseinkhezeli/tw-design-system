@@ -3,15 +3,13 @@
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 
-import { loginSchema } from '../schemas/login.schema';
 import { PasswordInput } from '../components/password-input';
 import { Button } from '@/shared/components/ui/button';
-
-import { LoginFormValues } from '../types/auth.types';
+import { LoginSchema, loginSchema } from '../../schemas/login.schema';
 import { PhoneNumberInput } from '../components/phone-number-input';
 
 type Props = {
-  onSubmit: (values: LoginFormValues) => void;
+  onSubmit: (values: LoginSchema) => void;
   isPending: boolean;
 };
 
@@ -19,8 +17,8 @@ export function LoginCredentialsForm({ onSubmit }: Props) {
   const {
     register,
     handleSubmit,
-    formState: { errors, isSubmitting, isValid },
-  } = useForm<LoginFormValues>({
+    formState: { errors, isSubmitting },
+  } = useForm<LoginSchema>({
     resolver: zodResolver(loginSchema),
     defaultValues: {
       'phone-number': '',
@@ -29,7 +27,10 @@ export function LoginCredentialsForm({ onSubmit }: Props) {
   });
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col gap-8'>
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      className='w-full flex flex-col gap-6'
+    >
       <PhoneNumberInput
         name='phone-number'
         register={register}
@@ -42,11 +43,7 @@ export function LoginCredentialsForm({ onSubmit }: Props) {
         error={errors.password?.message}
       />
 
-      <Button
-        type='submit'
-        className='w-full'
-        disabled={isSubmitting || !isValid}
-      >
+      <Button type='submit' className='w-full' isLoading={isSubmitting}>
         {isSubmitting ? 'در حال ورود...' : 'ورود'}
       </Button>
     </form>

@@ -11,6 +11,7 @@ import {
 } from '@/shared/components/ui/input-group';
 import { IconEye, IconEyeOff } from '@tabler/icons-react';
 import { FieldValues, UseFormRegister, Path } from 'react-hook-form';
+import { cn } from '@/shared/utils';
 
 export type PasswordInputProps<T extends FieldValues = FieldValues> = {
   label?: string;
@@ -27,7 +28,7 @@ export function PasswordInput<T extends FieldValues>({
   register,
   name,
   error,
-  className,
+  className = '',
   ...props
 }: PasswordInputProps<T>) {
   const [showPassword, setShowPassword] = React.useState(false);
@@ -35,13 +36,12 @@ export function PasswordInput<T extends FieldValues>({
 
   return (
     <Field>
-      {label && <FieldLabel htmlFor={id}>{label}</FieldLabel>}
       <InputGroup>
         <InputGroupInput
           id={id}
           type={showPassword ? 'text' : 'password'}
-          placeholder={placeholder}
-          className={`${className || ''}`}
+          placeholder={label ?? placeholder}
+          className={cn(className, 'placeholder:text-right placeholder:pr-2')}
           autoComplete='off'
           dir='ltr'
           {...register(name)}

@@ -1,6 +1,6 @@
 'use client';
 import { memo } from 'react';
-
+import Image from 'next/image';
 import type { FeedPost } from '../api/types';
 import { useLikePost } from '../mutations/use-like-post';
 
@@ -12,36 +12,44 @@ export const PostCard = memo(function PostCard({ post }: Props) {
   const likeMutation = useLikePost();
 
   return (
-    <article className='mb-6 overflow-hidden '>
+    // استفاده از article برای هر موجودیت مستقل (پست)
+    <article className='mb-6 overflow-hidden'>
+      {/* هدر پست */}
       <header className='flex items-center gap-3 p-4'>
-        <img
+        <Image
           src={post.avatar}
-          alt={post.username}
-          className='size-10 rounded-full'
+          alt={`تصویر پروفایل ${post.username}`}
+          width={40}
+          height={40}
+          className='size-10 rounded-full object-cover'
         />
-
-        <span className='font-medium'>{post.username}</span>
+        <h2 className='font-medium text-base'>{post.username}</h2>
       </header>
 
-      <img
-        src={post.image}
-        alt=''
-        loading='lazy'
-        decoding='async'
-        className='w-full'
-      />
+      {/* بخش اصلی محتوای بصری */}
+      <figure className='relative w-full aspect-square'>
+        <Image
+          src={post.image}
+          alt={`پست منتشر شده توسط ${post.username}`}
+          fill
+          className='object-cover'
+          sizes='(max-width: 768px) 100vw, 50vw'
+        />
+      </figure>
 
-      <div className='space-y-3 p-4'>
+      {/* فوتر پست */}
+      <footer className='space-y-3 p-4'>
         <button
           type='button'
           onClick={() => likeMutation.mutate(post.id)}
           className='font-medium'
+          aria-label={`لایک کردن پست. تعداد لایک‌های فعلی ${post.likes}`}
         >
           ❤️ {post.likes.toLocaleString()}
         </button>
 
-        <p>{post.caption}</p>
-      </div>
+        <p className='text-sm'>{post.caption}</p>
+      </footer>
     </article>
   );
 });
