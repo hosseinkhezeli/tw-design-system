@@ -9,6 +9,7 @@ import { RouteMatcher } from '../utils/route-matcher';
 export function BottomNavigation() {
   const pathname = usePathname();
   const items = NavigationService.getNavigationItems();
+  
   return (
     <nav className='fixed bottom-0 inset-x-0 z-50 bg-background border-t border-t-accent/50'>
       <div className='mx-auto flex h-16 max-w-lg items-center justify-around'>
@@ -16,7 +17,7 @@ export function BottomNavigation() {
           <NavigationItem
             key={args.id}
             item={args}
-            active={RouteMatcher.isActive(pathname, args.href)}
+            active={RouteMatcher.isActive(pathname, args?.href)}
           />
         ))}
       </div>

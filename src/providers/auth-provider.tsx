@@ -1,17 +1,14 @@
-'use client';
+// import { serverHttpClient } from '@/shared/lib/http/server-http-client';
+import { PropsWithChildren } from 'react';
 
-import { bootstrapSession } from '@/features/auth/services/bootstrap-session';
-import { PropsWithChildren, useEffect, useState } from 'react';
+export async function AuthProvider({ children }: PropsWithChildren) {
+  let initialUser = null;
 
-export function AuthProvider({ children }: PropsWithChildren) {
-  const [ready, setReady] = useState(false);
-
-  useEffect(() => {
-    bootstrapSession().finally(() => setReady(true));
-  }, []);
-
-  if (!ready) {
-    return null;
+  try {
+    // const { data } = await serverHttpClient.get('/users/me');
+    initialUser = {};
+  } catch {
+    // Fails silently if unauthenticated
   }
 
   return children;

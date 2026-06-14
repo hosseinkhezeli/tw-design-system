@@ -39,7 +39,7 @@ export function OtpVerificationForm({
   return (
     <form
       onSubmit={handleSubmit((values) => onSubmit(values))}
-      className='space-y-6'
+      className='space-y-6 w-full overflow-hidden'
     >
       <OtpInput
         name='otp-code'

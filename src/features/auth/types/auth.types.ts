@@ -9,7 +9,7 @@ export interface AuthUser {
   lastName?: string;
   fullName?: string;
   email?: string;
-  mobile?: string;
+  'phone-number'?: string;
 }
 
 export interface AuthSession {

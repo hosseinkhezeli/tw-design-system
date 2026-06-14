@@ -1,59 +1,70 @@
-// import { routes } from '@/api/authentication/routes';
-import { authService } from '@/features/auth/services/auth.service';
-import { httpClient } from '../http-client';
-import { AxiosError } from 'axios';
+import axios, { AxiosInstance, AxiosError } from 'axios';
+import { env } from '@/config/env';
 
-httpClient.interceptors.response.use(
-  (response) => response,
+let refreshPromise: Promise<void> | null = null;
 
-  async (error: AxiosError) => {
-    const originalRequest = error.config!;
+export const setupResponseInterceptor = (instance: AxiosInstance) => {
+  instance.interceptors.response.use(
+    (response) => response,
+    async (error: AxiosError) => {
+      const originalRequest = error.config;
+      if (!originalRequest) return Promise.reject(error);
 
-    const status = error.response?.status;
+      const status = error.response?.status;
+      const isAuthError = status === 401;
+      const isRefreshRequest = originalRequest.url?.includes('/auth/refresh');
 
-    const isAuthError = status === 401;
+      if (
+        error.response?.data instanceof Blob &&
+        originalRequest.responseType === 'blob'
+      ) {
+        try {
+          const text = await error.response.data.text();
+          error.response.data = JSON.parse(text);
+        } catch {}
+      }
 
-    // const isRefreshRequest = originalRequest?.url?.includes(routes.refresh);
-    const isRefreshRequest = originalRequest?.url?.includes('/auth/refresh');
+      if (!isAuthError) {
+        return Promise.reject(error);
+      }
 
-    // blob parsing
-    if (
-      error.response?.data instanceof Blob &&
-      originalRequest?.responseType === 'blob'
-    ) {
+      if (isRefreshRequest) {
+        if (typeof window !== 'undefined') window.location.href = '/login';
+        return Promise.reject(error);
+      }
+
+      if (originalRequest._retry) {
+        return Promise.reject(error);
+      }
+
+      originalRequest._retry = true;
+
+      if (!refreshPromise) {
+        refreshPromise = (async () => {
+          try {
+            await axios.post(
+              '/auth/refresh',
+              {},
+              {
+                baseURL: env.NEXT_PUBLIC_API_URL,
+                withCredentials: true,
+              },
+            );
+          } catch (refreshError) {
+            if (typeof window !== 'undefined') window.location.href = '/login';
+            throw refreshError;
+          } finally {
+            refreshPromise = null;
+          }
+        })();
+      }
+
       try {
-        const text = await error.response.data.text();
-
-        error.response.data = JSON.parse(text);
-      } catch {}
-    }
-
-    if (!isAuthError) {
-      return Promise.reject(error);
-    }
-
-    if (isRefreshRequest) {
-      await authService.logout();
-
-      return Promise.reject(error);
-    }
-
-    if (originalRequest?._retry) {
-      return Promise.reject(error);
-    }
-
-    if (originalRequest) originalRequest._retry = true;
-
-    try {
-      const newAccessToken = await authService.refreshToken();
-
-      originalRequest.headers.set('Authorization', `Bearer ${newAccessToken}`);
-
-      return httpClient(originalRequest);
-    } catch (refreshError) {
-      await authService.logout();
-
-      return Promise.reject(refreshError);
-    }
-  },
-);
+        await refreshPromise;
+        return instance(originalRequest);
+      } catch (retryError) {
+        return Promise.reject(retryError);
+      }
+    },
+  );
+};

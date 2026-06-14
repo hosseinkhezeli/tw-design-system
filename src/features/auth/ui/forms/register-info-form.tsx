@@ -51,23 +51,6 @@ export const RegisterInfoForm = ({ onSubmit, isPending }: Props) => {
         />
       </div>
 
-      <div className='space-y-1'>
-        <PasswordInput
-          name='password'
-          register={register}
-          error={errors['password']?.message}
-        />
-      </div>
-
-      <div className='space-y-1'>
-        <PasswordInput
-          label='تکرار گذرواژه'
-          name='confirmPassword'
-          register={register}
-          error={errors['confirmPassword']?.message}
-        />
-      </div>
-
       <Button type='submit' className='w-full' disabled={isPending}>
         {isPending ? 'در حال ثبت...' : 'ثبت نام'}
       </Button>

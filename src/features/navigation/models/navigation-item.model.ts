@@ -1,12 +1,11 @@
-import { ReactNode } from 'react';
+import { NavigationIds } from '../constants/navigation.constants';
 
 export class NavigationItemModel {
   constructor(
     public readonly args: {
-      id: string;
-      href: string;
-      label: string;
-      renderIcon: (active: boolean) => ReactNode;
+      id: NavigationIds;
+      href: string | null;
+      label: string | null;
     },
   ) {}
 }

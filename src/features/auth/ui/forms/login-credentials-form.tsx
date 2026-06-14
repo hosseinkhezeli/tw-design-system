@@ -22,7 +22,6 @@ export function LoginCredentialsForm({ onSubmit }: Props) {
     resolver: zodResolver(loginSchema),
     defaultValues: {
       'phone-number': '',
-      password: '',
     },
   });
 
@@ -35,12 +34,6 @@ export function LoginCredentialsForm({ onSubmit }: Props) {
         name='phone-number'
         register={register}
         error={errors['phone-number']?.message}
-      />
-
-      <PasswordInput
-        name='password'
-        register={register}
-        error={errors.password?.message}
       />
 
       <Button type='submit' className='w-full' isLoading={isSubmitting}>

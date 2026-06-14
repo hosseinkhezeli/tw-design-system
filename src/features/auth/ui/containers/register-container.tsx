@@ -1,14 +1,14 @@
 'use client';
 
 import { StepTransition } from '@/shared/components/ui/transitions/step-transition';
-import { REGISTER_STEPS } from '../constants/auth.constants';
-import { useRegisterFlow } from '../hooks/use-register-flow';
-import { AuthFooterLink } from '../ui/components/auth-footer-link';
-import { CaptchaChallenge } from '../ui/components/captcha-challenge';
-import { OtpVerificationForm } from '../ui/forms/otp-verification-form';
-import { RegisterInfoForm } from '../ui/forms/register-info-form';
-import { AuthCardLayout } from '../ui/layouts/auth-card-layout';
-import { AuthHeader } from '../ui/components/auth-header';
+import { REGISTER_STEPS } from '../../constants/auth.constants';
+import { useRegisterFlow } from '../../hooks/use-register-flow';
+import { AuthFooterLink } from '../components/auth-footer-link';
+import { CaptchaChallenge } from '../components/captcha-challenge';
+import { OtpVerificationForm } from '../forms/otp-verification-form';
+import { RegisterInfoForm } from '../forms/register-info-form';
+import { AuthCardLayout } from '../layouts/auth-card-layout';
+import { AuthHeader } from '../components/auth-header';
 
 export function RegisterContainer() {
   const {

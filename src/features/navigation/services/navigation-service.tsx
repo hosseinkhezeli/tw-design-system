@@ -1,79 +1,50 @@
 import { APP_ROUTES } from '@/config/app-routes';
+import { NAVIGATION_ITEM_IDS } from '../constants/navigation.constants';
 import { NavigationItemModel } from '../models/navigation-item.model';
-import { Avatar } from '@/shared/components/ui/avatar';
-import { BOTTOM_NAV_ICON_CLASS } from '@/config/ui';
-import {
-  IconHome,
-  IconHomeFilled,
-  IconMovie,
-  IconSearch,
-  IconSend,
-  IconSendFilled,
-  IconShoppingBag,
-} from '@tabler/icons-react';
+import { QUERY_PARAM_KEYS } from '@/config/query-param-keys';
+import { CREATE_POST_STEPS } from '@/features/post/constants/post.constants';
+import { buildUrl } from '@/shared/config/url.config';
 
 export class NavigationService {
   static getNavigationItems(): NavigationItemModel[] {
     return [
       new NavigationItemModel({
-        id: 'profile',
+        id: NAVIGATION_ITEM_IDS.profile,
         href: APP_ROUTES.profile.user('me'),
-        renderIcon: () => <Avatar />,
         label: 'پروفایل',
       }),
       new NavigationItemModel({
-        id: 'explore',
+        id: NAVIGATION_ITEM_IDS.explore,
         href: APP_ROUTES.explore,
-        renderIcon: (active) => (
-          <IconSearch
-            className={BOTTOM_NAV_ICON_CLASS}
-            strokeWidth={active ? 2.25 : 1.25}
-          />
-        ),
         label: 'اکسپلور',
       }),
       new NavigationItemModel({
-        id: 'reels',
+        id: NAVIGATION_ITEM_IDS.reels,
         href: APP_ROUTES.reels,
-        renderIcon: (active) => (
-          <IconMovie
-            className={BOTTOM_NAV_ICON_CLASS}
-            strokeWidth={active ? 2 : 1.25}
-          />
-        ),
         label: 'ریلز',
       }),
       new NavigationItemModel({
-        id: 'inbox',
+        id: NAVIGATION_ITEM_IDS['create-content'],
+        href: buildUrl({
+          [QUERY_PARAM_KEYS.new_content_sheet]: 'true',
+          [QUERY_PARAM_KEYS.new_content_step]:
+            CREATE_POST_STEPS.SOURCE_SELECTION,
+        }),
+        label: null,
+      }),
+      new NavigationItemModel({
+        id: NAVIGATION_ITEM_IDS.inbox,
         href: APP_ROUTES.inbox,
-        renderIcon: (active) =>
-          active ? (
-            <IconSendFilled className={BOTTOM_NAV_ICON_CLASS} />
-          ) : (
-            <IconSend className={BOTTOM_NAV_ICON_CLASS} strokeWidth={1.25} />
-          ),
         label: 'پیام‌ها',
       }),
       new NavigationItemModel({
-        id: 'shop',
+        id: NAVIGATION_ITEM_IDS.shop,
         href: APP_ROUTES.shop,
-        renderIcon: (active) => (
-          <IconShoppingBag
-            strokeWidth={active ? 2.25 : 1.25}
-            className={BOTTOM_NAV_ICON_CLASS}
-          />
-        ),
         label: 'فروشگاه',
       }),
       new NavigationItemModel({
-        id: 'feed',
+        id: NAVIGATION_ITEM_IDS.feed,
         href: APP_ROUTES.feed,
-        renderIcon: (active) =>
-          active ? (
-            <IconHomeFilled className={BOTTOM_NAV_ICON_CLASS} />
-          ) : (
-            <IconHome className={BOTTOM_NAV_ICON_CLASS} strokeWidth={1.25} />
-          ),
         label: 'خانه',
       }),
     ];

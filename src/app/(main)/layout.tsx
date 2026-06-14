@@ -1,4 +1,6 @@
 import { BottomNavigation } from '@/features/navigation/components/bottom-navigation';
+import { CreatePostContainer } from '@/features/post/ui/containers/create-post-container';
+import { Suspense } from 'react';
 
 export default function MainLayout({
   children,
@@ -11,6 +13,9 @@ export default function MainLayout({
         {children}
       </main>
       <BottomNavigation />
+      <Suspense fallback={null}>
+        <CreatePostContainer />
+      </Suspense>
     </>
   );
 }

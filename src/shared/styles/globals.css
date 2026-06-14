@@ -36,4 +36,12 @@
   input:-webkit-autofill {
     transition: background-color 5000s ease-in-out 0s !important;
   }
+
+  .animate-gradient {
+    animation: gradient 1s ease infinite;
+  }
+
+  .animate-shine {
+    animation: shine 6s linear infinite;
+  }
 }

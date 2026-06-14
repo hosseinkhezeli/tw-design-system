@@ -1,14 +1,14 @@
 'use client';
 
 import { StepTransition } from '@/shared/components/ui/transitions/step-transition';
-import { LOGIN_STEPS } from '../constants/auth.constants';
-import { useLoginFlow } from '../hooks/use-login-flow';
-import { AuthFooterLink } from '../ui/components/auth-footer-link';
-import { CaptchaChallenge } from '../ui/components/captcha-challenge';
-import { LoginCredentialsForm } from '../ui/forms/login-credentials-form';
-import { OtpVerificationForm } from '../ui/forms/otp-verification-form';
-import { AuthCardLayout } from '../ui/layouts/auth-card-layout';
-import { AuthHeader } from '../ui/components/auth-header';
+import { LOGIN_STEPS } from '../../constants/auth.constants';
+import { useLoginFlow } from '../../hooks/use-login-flow';
+import { AuthFooterLink } from '../components/auth-footer-link';
+import { CaptchaChallenge } from '../components/captcha-challenge';
+import { LoginCredentialsForm } from '../forms/login-credentials-form';
+import { OtpVerificationForm } from '../forms/otp-verification-form';
+import { AuthCardLayout } from '../layouts/auth-card-layout';
+import { AuthHeader } from '../components/auth-header';
 
 export function LoginContainer() {
   const {
@@ -45,11 +45,6 @@ export function LoginContainer() {
               text='حساب کاربری نداری؟'
               actionLabel='ثبت‌نام کن!'
               action='register'
-            />
-            <AuthFooterLink
-              text='گذرواژه‌ات رو یادت رفته؟'
-              actionLabel='بیا اینجا!'
-              action='forgot-password'
             />
           </>
         )}
