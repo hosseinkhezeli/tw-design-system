@@ -2,7 +2,7 @@ import { APP_ROUTES } from '@/config/app-routes';
 import { NAVIGATION_ITEM_IDS } from '../constants/navigation.constants';
 import { NavigationItemModel } from '../models/navigation-item.model';
 import { QUERY_PARAM_KEYS } from '@/config/query-param-keys';
-import { CREATE_POST_STEPS } from '@/features/post/constants/post.constants';
+import { CREATE_POST_STEPS } from '@/features/post/create/constants/post.constants';
 import { buildUrl } from '@/shared/config/url.config';
 
 export class NavigationService {

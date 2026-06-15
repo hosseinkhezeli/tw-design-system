@@ -2,13 +2,13 @@ import { Metadata } from 'next';
 import { ProfileBio } from '@/features/profile/ui/profile-bio';
 import { ProfileInterestTags } from '@/features/profile/ui/profile-interest-tags';
 import { ProfileActions } from '@/features/profile/ui/profile-actions';
-import { ProfileAvatar } from '@/features/profile/ui/profile-avatar';
 import ProfileContent from '@/features/profile/ui/profile-contents';
 import { ProfileHighlightsList } from '@/features/profile/ui/profile-highlights-list';
 import { ProfileStatsList } from '@/features/profile/ui/profile-stats-list';
 import { QuickLinksList } from '@/features/profile/ui/quick-links-list';
 import { Text } from '@/shared/components/text';
 import { Typography } from '@/shared/components/ui/typography/typography';
+import { UserAvatar } from '@/entities/user';
 
 // سئوی صفحه پروفایل
 export const metadata: Metadata = {
@@ -27,7 +27,7 @@ export default function MyProfilePage() {
       {/* هدر اطلاعات پروفایل */}
       <header className='flex flex-col w-full gap-4 pr-4 py-5'>
         <div className='flex w-full gap-4'>
-          <ProfileAvatar />
+          <UserAvatar />
           <div className='flex flex-col'>
             {/* استفاده از h1 برای عنوان اصلی صفحه */}
             <Typography variant={'subtitle'} as='h1'>

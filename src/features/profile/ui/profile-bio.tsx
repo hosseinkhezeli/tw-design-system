@@ -1,6 +1,6 @@
 'use client';
 import { useEffect, useRef, useState } from 'react';
-import { formatBio } from '../lib/format-bio';
+import { formatBio } from '../../../entities/user/lib/format-bio';
 import { MAX_BIO_CHARACTERS_REVEAL } from '@/config/ui';
 
 type Props = {
@@ -13,7 +13,7 @@ export function ProfileBio({ bio }: Props) {
   const [expanded, setExpanded] = useState(false);
 
   const formattedBio = formatBio(bio);
-  const shouldTruncate = formattedBio.length > MAX_BIO_CHARACTERS_REVEAL;
+  const shouldTruncate = formattedBio?.length > MAX_BIO_CHARACTERS_REVEAL;
 
   useEffect(() => {
     if (contentRef.current && expanded) {

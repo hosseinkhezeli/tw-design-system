@@ -43,7 +43,7 @@ export default function BottomSheet({
           'before:rounded-b-none! before:translate-y-4 before:opacity-75 before:overflow-hidden',
 
           fullScreen && [
-            'h-full max-h-screen min-h-screen rounded-t-none max-w-full border-none',
+            'h-full max-h-screen min-h-screen rounded-t-none border-none',
             '[&>div:first-child]:hidden before:hidden bg-background',
             '[&_.bg-muted]:hidden',
           ],
@@ -61,14 +61,13 @@ export default function BottomSheet({
           <DrawerHeader className='relative'>
             <DrawerTitle className='text-center'>{title}</DrawerTitle>
 
-            {/* 👇 Full Screen Close Button */}
             {fullScreen && (
               <Button
                 onClick={onClose}
                 type='button'
                 variant={'outline'}
                 size={'icon-sm'}
-                className='absolute left-4 top-1/2 -translate-y-1/2 z-30'
+                className='absolute left-4 top-0 z-30'
                 aria-label='Close'
               >
                 <IconX />

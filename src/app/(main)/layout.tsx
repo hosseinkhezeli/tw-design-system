@@ -1,5 +1,5 @@
 import { BottomNavigation } from '@/features/navigation/components/bottom-navigation';
-import { CreatePostContainer } from '@/features/post/ui/containers/create-post-container';
+import { CreatePostContainer } from '@/features/post/create/ui/containers/create-post-container';
 import { Suspense } from 'react';
 
 export default function MainLayout({
