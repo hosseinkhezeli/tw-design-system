@@ -9,7 +9,6 @@ export const APP_ROUTES = {
   auth: {
     login: '/login',
     register: '/register',
-    forgot_password: '/forgot-password',
   },
 
   profile: {

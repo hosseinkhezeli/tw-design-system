@@ -2,7 +2,7 @@ import { z } from 'zod';
 import { phoneRegex } from '../utils/regex.ytils';
 
 export const loginSchema = z.object({
-  'phone-number': z
+  phone_number: z
     .string()
     .min(1, 'شماره تلفن الزامی است')
     .regex(phoneRegex, 'شماره تلفن وارد شده معتبر نیست'),

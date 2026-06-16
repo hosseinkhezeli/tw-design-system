@@ -2,6 +2,7 @@
 import { Button } from '@/shared/components/ui/button';
 import { useEffect, useState } from 'react';
 import { OTP_COOLDOWN_SECONDS } from '../../constants/auth.constants';
+import { Typography } from '@/shared/components/ui/typography/typography';
 
 interface OtpCountdownProps {
   isPending?: boolean;
@@ -50,8 +51,8 @@ export function OtpCountdown({ isPending, onResend }: OtpCountdownProps) {
   }
 
   return (
-    <p className='text-muted-foreground text-sm'>
+    <Typography as='p' className='text-muted-foreground text-sm'>
       ارسال مجدد تا {remainingSeconds} ثانیه دیگر
-    </p>
+    </Typography>
   );
 }

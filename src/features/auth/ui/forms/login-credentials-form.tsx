@@ -2,8 +2,6 @@
 
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-
-import { PasswordInput } from '../components/password-input';
 import { Button } from '@/shared/components/ui/button';
 import { LoginSchema, loginSchema } from '../../schemas/login.schema';
 import { PhoneNumberInput } from '../components/phone-number-input';
@@ -21,7 +19,7 @@ export function LoginCredentialsForm({ onSubmit }: Props) {
   } = useForm<LoginSchema>({
     resolver: zodResolver(loginSchema),
     defaultValues: {
-      'phone-number': '',
+      phone_number: '',
     },
   });
 
@@ -31,9 +29,9 @@ export function LoginCredentialsForm({ onSubmit }: Props) {
       className='w-full flex flex-col gap-6'
     >
       <PhoneNumberInput
-        name='phone-number'
+        name='phone_number'
         register={register}
-        error={errors['phone-number']?.message}
+        error={errors['phone_number']?.message}
       />
 
       <Button type='submit' className='w-full' isLoading={isSubmitting}>

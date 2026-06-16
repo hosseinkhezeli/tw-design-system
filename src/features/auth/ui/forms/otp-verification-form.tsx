@@ -31,8 +31,8 @@ export function OtpVerificationForm({
   } = useForm<OtpSchema>({
     resolver: zodResolver(otpSchema),
     defaultValues: {
-      'otp-code': '',
-      'phone-number': phoneNumber,
+      otp_code: '',
+      phone_number: phoneNumber,
     },
   });
 
@@ -42,9 +42,9 @@ export function OtpVerificationForm({
       className='space-y-6 w-full overflow-hidden'
     >
       <OtpInput
-        name='otp-code'
+        name='otp_code'
         register={register}
-        error={errors?.['otp-code']?.message}
+        error={errors?.['otp_code']?.message}
         maxLength={OTP_LENGTH}
       />
 

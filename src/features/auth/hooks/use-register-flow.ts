@@ -4,7 +4,7 @@ import { REGISTER_STEPS, RegisterStep } from '../constants/auth.constants';
 import { RegisterSchema } from '../schemas/register.schema';
 import { OtpSchema } from '../schemas/otp.schema';
 
-// import { useRegister } from './use-register'; // هوک React Query که بعدا می‌سازیم
+// import { useRegister } from './use_register'; // هوک React Query که بعدا می‌سازیم
 
 const REGISTER_BACK_MAP: Record<RegisterStep, RegisterStep | null> = {
   [REGISTER_STEPS.OTP]: REGISTER_STEPS.USER_INFO,
@@ -25,7 +25,7 @@ export const useRegisterFlow = () => {
       // await registerFn(values);
       const isRateLimited = Math.random() > 0.7;
       setStep(isRateLimited ? REGISTER_STEPS.CAPTCHA : REGISTER_STEPS.OTP);
-      setRegisteredPhoneNumber(values['phone-number']);
+      setRegisteredPhoneNumber(values['phone_number']);
     } catch (error) {
       console.error('Registration error:', error);
     }
@@ -39,8 +39,8 @@ export const useRegisterFlow = () => {
     setTimeout(() => {
       console.log(
         'Registered and verified:',
-        values['phone-number'],
-        values['otp-code'],
+        values['phone_number'],
+        values['otp_code'],
       );
       setIsOtpLoading(false);
     }, 1000);
@@ -55,7 +55,7 @@ export const useRegisterFlow = () => {
         subtitle: 'متن داخل تصویر رو وارد کن',
       },
       [REGISTER_STEPS.USER_INFO]: {
-        title: 'عضویت در روبان شاپ 🌟',
+        title: 'عضویت 🌟',
         subtitle: 'مشخصات خودت رو برای شروع وارد کن.',
       },
       [REGISTER_STEPS.OTP]: {

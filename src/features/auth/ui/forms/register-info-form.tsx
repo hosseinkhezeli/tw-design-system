@@ -5,7 +5,6 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { Button } from '@/shared/components/ui/button';
 import { RegisterSchema, registerSchema } from '../../schemas/register.schema';
 import { PhoneNumberInput } from '../components/phone-number-input';
-import { PasswordInput } from '../components/password-input';
 import { TextInput } from '../components/text-input';
 
 type Props = {
@@ -28,26 +27,18 @@ export const RegisterInfoForm = ({ onSubmit, isPending }: Props) => {
         <div className='space-y-1'>
           <TextInput
             register={register}
-            name='firstName'
-            label='نام'
-            error={errors['firstName']?.message}
-          />
-        </div>
-        <div className='space-y-1'>
-          <TextInput
-            register={register}
-            name='lastName'
+            name='full_name'
             label='نام خانوادگی'
-            error={errors['lastName']?.message}
+            error={errors['full_name']?.message}
           />
         </div>
       </div>
 
       <div className='space-y-1'>
         <PhoneNumberInput
-          name='phone-number'
+          name='phone_number'
           register={register}
-          error={errors['phone-number']?.message}
+          error={errors['phone_number']?.message}
         />
       </div>
 

@@ -1,5 +1,4 @@
 import { ReactNode } from 'react';
-import { AuthHeader } from '../components/auth-header';
 import { cn } from '@/shared/utils';
 import { Button } from '@/shared/components/ui/button';
 import { IconArrowLeft } from '@tabler/icons-react';

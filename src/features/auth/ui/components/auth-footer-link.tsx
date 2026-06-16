@@ -1,6 +1,8 @@
+import { Text } from '@/shared/components/text';
+import { Button } from '@/shared/components/ui/button';
 import { navigation } from '@/shared/services/navigation';
 
-type AuthLinkAction = 'register' | 'login' | 'forgot-password';
+type AuthLinkAction = 'register' | 'login';
 
 interface AuthFooterLinkProps {
   text: string;
@@ -11,7 +13,6 @@ interface AuthFooterLinkProps {
 const navigationBasedOnAction: Record<AuthLinkAction, () => void> = {
   login: navigation.goToLogin,
   register: navigation.goToRegister,
-  'forgot-password': navigation.goToForgotPassword,
 };
 
 export function AuthFooterLink({
@@ -24,14 +25,22 @@ export function AuthFooterLink({
   };
 
   return (
-    <p className='text-muted-foreground font-normal! text-center text-sm'>
-      {text}{' '}
-      <button
-        className='font-medium mx-1 text-primary hover:underline'
-        onClick={handleClick}
-      >
-        {actionLabel}
-      </button>
-    </p>
+    <Text
+      title={text}
+      semicolon={false}
+      text={
+        <Button
+          variant={'ghost'}
+          size={'xs'}
+          className='font-medium mx-1 text-primary hover:underline'
+          onClick={handleClick}
+        >
+          {actionLabel}
+        </Button>
+      }
+      classNames={{
+        container: 'text-muted-foreground font-normal! text-center text-sm',
+      }}
+    />
   );
 }

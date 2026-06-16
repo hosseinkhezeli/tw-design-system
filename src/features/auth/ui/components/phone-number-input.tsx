@@ -1,8 +1,7 @@
 'use client';
 
-import * as React from 'react';
 import { useId } from 'react';
-import { Field, FieldLabel, FieldError } from '@/shared/components/ui/field';
+import { Field, FieldError } from '@/shared/components/ui/field';
 import { Input } from '@/shared/components/ui/input';
 import { FieldValues, UseFormRegister, Path } from 'react-hook-form';
 import { cn } from '@/shared/utils';

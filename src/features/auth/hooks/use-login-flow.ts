@@ -24,7 +24,7 @@ export const useLoginFlow = () => {
           // در دنیای واقعی این فلگ از بک‌اند می‌آید
           const isRateLimited = Math.random() > 0.7;
           setStep(isRateLimited ? LOGIN_STEPS.CAPTCHA : LOGIN_STEPS.OTP);
-          setPhoneNumber(values['phone-number']);
+          setPhoneNumber(values['phone_number']);
         },
       });
     } catch (error) {
@@ -39,8 +39,8 @@ export const useLoginFlow = () => {
     setTimeout(() => {
       console.log(
         'Logged in with:',
-        values['phone-number'],
-        values['otp-code'],
+        values['phone_number'],
+        values['otp_code'],
       );
       setIsOtpLoading(false);
     }, 1000);

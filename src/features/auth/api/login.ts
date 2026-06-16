@@ -2,23 +2,21 @@ import { LoginSchema } from './../schemas/login.schema';
 import type { AuthSession } from '../types/auth.types';
 
 export async function login(payload: LoginSchema): Promise<AuthSession> {
-  const AuthTokens = {
-    accessToken: '',
-    refreshToken: '',
+  const AuthTokens: AuthSession['tokens'] = {
+    access_token: 'Bearer test_access_token',
+    refresh_token: 'Bearer test_refresh_token',
   };
 
-  const AuthUser = {
-    id: '',
-    firstName: '',
-    lastName: '',
-    fullName: '',
-    email: '',
-    mobile: '',
+  const AuthUser: AuthSession['user'] = {
+    id: 'uuid',
+    phone_number: '',
+    full_name: '',
   };
 
-  const AuthSession = {
+  const AuthSession: AuthSession = {
     user: AuthUser,
     tokens: AuthTokens,
+    new_user: true,
   };
   Promise.allSettled([() => setTimeout(() => true, 1500)]);
   return AuthSession;

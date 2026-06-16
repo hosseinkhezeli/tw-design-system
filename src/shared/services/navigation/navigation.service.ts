@@ -27,9 +27,6 @@ export class NavigationService {
   goToRegister = () =>
     this.safeNavigate(() => this.router?.push(APP_ROUTES.auth.register));
 
-  goToForgotPassword = () =>
-    this.safeNavigate(() => this.router?.push(APP_ROUTES.auth.forgot_password));
-
   goToInbox = () =>
     this.safeNavigate(() => this.router?.push(APP_ROUTES.inbox));
 
