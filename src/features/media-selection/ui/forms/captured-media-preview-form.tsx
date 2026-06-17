@@ -1,11 +1,11 @@
 'use client';
 
 import { useForm } from 'react-hook-form';
+import { IconCheck, IconRefresh } from '@tabler/icons-react';
 
 import { Button } from '@/shared/components/ui/button';
-
-import { IconCheck, IconRefresh } from '@tabler/icons-react';
-import { useCreatePostStore } from '../../models/create-post-store';
+import { MediaSelectionResult } from '../../types/media-selection.types';
+import { MediaPreviewThumbnail } from '../components/media-preview-thumbnail';
 
 export type PreviewFormValues = {
   rotation: number;
@@ -13,13 +13,16 @@ export type PreviewFormValues = {
 };
 
 type Props = {
+  media: MediaSelectionResult['media'];
   onConfirm: (values: PreviewFormValues) => void;
   onRetake: () => void;
 };
 
-export const MediaPreviewForm = ({ onConfirm, onRetake }: Props) => {
-  const media = useCreatePostStore((state) => state.formData.media);
-
+export function CapturedMediaPreviewForm({
+  media,
+  onConfirm,
+  onRetake,
+}: Props) {
   const { handleSubmit } = useForm<PreviewFormValues>({
     defaultValues: {
       rotation: 0,
@@ -31,34 +34,24 @@ export const MediaPreviewForm = ({ onConfirm, onRetake }: Props) => {
     onConfirm(values);
   };
 
-  console.log({ media });
+  const latestMedia = media.at(-1);
 
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className='flex h-full w-full flex-col'
+      className='flex w-full flex-col gap-6 py-2'
     >
-      <div className='relative flex-1'>
-        <img
-          src={media?.[0]?.previewUrl}
-          alt='پیش‌نمایش تصویر'
-          className='h-full w-full object-contain'
-        />
+      <MediaPreviewThumbnail
+        handleClearMedia={onRetake}
+        thumbnailSrc={latestMedia?.previewUrl}
+      />
 
-        {/*
-          Future:
-          Cropper
-          Filters
-          Rotation
-          Adjustments
-        */}
-      </div>
-
-      <div className='flex items-center justify-between w-full gap-4'>
-        <Button type='submit' className='flex-2'>
-          تایید و ادامه
+      <div className='flex w-full items-center justify-between gap-4'>
+        <Button className='flex-2' type='submit'>
           <IconCheck className='mr-2 size-4' />
+          تایید و ادامه
         </Button>
+
         <Button
           type='button'
           variant='outline'
@@ -71,4 +64,4 @@ export const MediaPreviewForm = ({ onConfirm, onRetake }: Props) => {
       </div>
     </form>
   );
-};
+}

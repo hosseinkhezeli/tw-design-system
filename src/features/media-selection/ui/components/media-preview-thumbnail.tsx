@@ -18,7 +18,6 @@ export function MediaPreviewThumbnail({
         alt='Preview'
         className='h-full w-full object-contain'
       />
-
       <Button
         type='button'
         size='icon'

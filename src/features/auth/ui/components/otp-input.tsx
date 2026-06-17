@@ -42,16 +42,14 @@ export function OtpInput<T extends FieldValues>({
       {label && <FieldLabel htmlFor={id}>{label}</FieldLabel>}
 
       <InputOTP
-        className={cn(className, 'ltr')}
+        className={cn(className, 'flex justify-center items-center')}
         id={id}
         ref={ref}
         name={fieldName}
         maxLength={maxLength}
         disabled={disabled}
         inputMode='numeric'
-        dir='ltr'
         autoComplete='one-time-code'
-        style={{ direction: 'ltr' }}
         onBlur={onBlur}
         onChange={(value) => {
           onChange({
@@ -64,9 +62,8 @@ export function OtpInput<T extends FieldValues>({
         }}
       >
         <InputOTPGroup
-          className='w-max mx-auto justify-center'
+          className='max-w-64 flex justify-center items-center'
           style={{ direction: 'ltr' }}
-          dir='ltr'
         >
           {Array.from({ length }).map((_, index) => (
             <InputOTPSlot

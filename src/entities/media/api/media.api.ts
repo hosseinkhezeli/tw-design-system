@@ -1,10 +1,10 @@
 import { httpClient } from '@/shared/lib/http/http-client';
 import { routes } from '../configs/api.routes';
 
-import { UploadMediaDto } from '../schemas/media.schema';
+import { UploadMediaDto,UploadMediaOptions  } from '../schemas/media.schema';
 
 export const MediaApi = {
-  upload: async ({ file, onProgress }: UploadMediaDto) => {
+  upload: async ({ file, onProgress }: UploadMediaDto & UploadMediaOptions) => {
     const formData = new FormData();
 
     formData.append('media', file);
@@ -19,3 +19,4 @@ export const MediaApi = {
     });
   },
 } as const;
+

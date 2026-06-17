@@ -1,14 +1,14 @@
 import { IconCamera, IconPhoto } from '@tabler/icons-react';
-import { POST_SOURCE } from '../constants/post.constants';
+import { MEDIA_SOURCE } from '../constants/media-selection.constants';
 
-export const postSourceOptions = [
+export const mediaSourceOptions = [
   {
-    id: POST_SOURCE.CAMERA,
+    id: MEDIA_SOURCE.CAMERA,
     label: 'دوربین',
     icon: <IconCamera className='size-6' />,
   },
   {
-    id: POST_SOURCE.GALLERY,
+    id: MEDIA_SOURCE.GALLERY,
     label: 'گالری',
     icon: <IconPhoto className='size-6' />,
   },

@@ -36,10 +36,11 @@ export default function BottomSheet({
       shouldScaleBackground={!fullScreen}
       preventScrollRestoration
       autoFocus
+      modal
     >
       <DrawerContent
         className={cn(
-          'max-w-xl mx-auto transition-all duration-300',
+          'max-w-xl mx-auto transition-all ',
           'before:rounded-b-none! before:translate-y-4 before:opacity-75 before:overflow-hidden',
 
           fullScreen && [
@@ -52,7 +53,7 @@ export default function BottomSheet({
         <div className='relative'>
           <div
             className={cn(
-              'absolute transition-all duration-500 z-20 bg-linear-to-br from-white from-5% to-transparent to-35%',
+              'absolute transition-all z-20 bg-linear-to-br from-white from-5% to-transparent to-35%',
               open
                 ? 'opacity-20 blur-2xl inset-2'
                 : 'opacity-0 blur-xs -inset-2',
@@ -77,7 +78,7 @@ export default function BottomSheet({
         </div>
         <div
           className={cn(
-            'flex-1 overflow-y-auto px-4 pb-6',
+            'flex-1 overflow-y-auto px-4 pb-6 w-full flex',
             fullScreen && 'h-full',
           )}
         >

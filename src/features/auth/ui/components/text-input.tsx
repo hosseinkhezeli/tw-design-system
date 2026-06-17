@@ -1,18 +1,23 @@
 'use client';
 
 import { useId } from 'react';
-import { Field, FieldError } from '@/shared/components/ui/field';
+import {
+  Field,
+  FieldDescription,
+  FieldError,
+} from '@/shared/components/ui/field';
 import { Input } from '@/shared/components/ui/input';
 import { FieldValues, UseFormRegister, Path } from 'react-hook-form';
 import { cn } from '@/shared/utils';
 
-export type PhoneNumberInputProps<T extends FieldValues = FieldValues> = {
+export type TextInputProps<T extends FieldValues = FieldValues> = {
   label?: string;
   placeholder?: string;
   register: UseFormRegister<T>;
   name: Path<T>;
   error?: string;
   className?: string;
+  helperText?: string;
 } & Omit<React.ComponentProps<typeof Input>, 'name'>;
 
 export function TextInput<T extends FieldValues>({
@@ -22,8 +27,9 @@ export function TextInput<T extends FieldValues>({
   name,
   error,
   className,
+  helperText,
   ...props
-}: PhoneNumberInputProps<T>) {
+}: TextInputProps<T>) {
   const id = useId();
 
   return (
@@ -39,6 +45,7 @@ export function TextInput<T extends FieldValues>({
         {...props}
       />
       {error && <FieldError>{error}</FieldError>}
+      {helperText && <FieldDescription>{helperText}</FieldDescription>}
     </Field>
   );
 }

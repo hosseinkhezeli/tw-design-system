@@ -1,20 +1,18 @@
 'use client';
-
 import { useForm } from 'react-hook-form';
-
+import { zodResolver } from '@hookform/resolvers/zod';
 import { Button } from '@/shared/components/ui/button';
 import { OtpInput } from '../components/otp-input';
 import { OtpCountdown } from '../components/otp-countdown';
 import { OTP_LENGTH } from '../../constants/auth.constants';
-import { OtpSchema, otpSchema } from '../../schemas/otp.schema';
-import { zodResolver } from '@hookform/resolvers/zod';
+import { LoginSchema, loginSchema } from '../../schemas/login.schema';
 
 interface OtpVerificationFormProps {
   isPending?: boolean;
   isResendPending?: boolean;
-  onSubmit: (values: OtpSchema) => void;
+  onSubmit: (values: LoginSchema) => void;
   onResend: () => void;
-  phoneNumber?: string;
+  requestId: string | null;
 }
 
 export function OtpVerificationForm({
@@ -22,37 +20,40 @@ export function OtpVerificationForm({
   isResendPending,
   onSubmit,
   onResend,
-  phoneNumber,
+  requestId,
 }: OtpVerificationFormProps) {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<OtpSchema>({
-    resolver: zodResolver(otpSchema),
+  } = useForm<LoginSchema>({
+    resolver: zodResolver(loginSchema),
     defaultValues: {
-      otp_code: '',
-      phone_number: phoneNumber,
+      otp: '',
+      request_id: requestId ?? '',
     },
   });
 
   return (
     <form
-      onSubmit={handleSubmit((values) => onSubmit(values))}
-      className='space-y-6 w-full overflow-hidden'
+      onSubmit={handleSubmit(onSubmit)}
+      className='flex flex-col px-2 gap-4'
     >
       <OtpInput
-        name='otp_code'
+        name='otp'
         register={register}
-        error={errors?.['otp_code']?.message}
+        error={errors.otp?.message}
         maxLength={OTP_LENGTH}
       />
-
       <div className='flex justify-center'>
         <OtpCountdown isPending={isResendPending} onResend={onResend} />
       </div>
-
-      <Button type='submit' className='w-full' isLoading={isPending}>
+      <Button
+        type='submit'
+        className='w-full'
+        isLoading={isPending}
+        disabled={isPending || isResendPending}
+      >
         {isPending ? 'در حال ورود...' : 'تأیید و ورود'}
       </Button>
     </form>

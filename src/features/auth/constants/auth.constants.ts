@@ -1,4 +1,5 @@
 export const OTP_LENGTH = 6;
+export const CAPTCHA_LENGTH = 6;
 
 export const OTP_COOLDOWN_SECONDS = 90;
 
@@ -13,7 +14,7 @@ export const AUTH_ROUTES = {
 } as const;
 
 export const LOGIN_STEPS = {
-  CREDENTIALS: 'CREDENTIALS',
+  PHONE_NUMBER: 'PHONE_NUMBER',
   CAPTCHA: 'CAPTCHA',
   OTP: 'OTP',
 } as const;
@@ -21,9 +22,9 @@ export const LOGIN_STEPS = {
 export type LoginStep = keyof typeof LOGIN_STEPS;
 
 export const REGISTER_STEPS = {
-  USER_INFO: 'USER_INFO',
-  CAPTCHA: 'CAPTCHA',
   OTP: 'OTP',
+  CAPTCHA: 'CAPTCHA',
+  USER_INFO: 'USER_INFO',
 } as const;
 
 export type RegisterStep = keyof typeof REGISTER_STEPS;
@@ -36,3 +37,15 @@ export const FORGOT_PASSWORD_STEPS = {
 } as const;
 
 export type ForgotPasswordStep = keyof typeof FORGOT_PASSWORD_STEPS;
+
+export const LOGIN_BACK_MAP: Record<LoginStep, LoginStep | null> = {
+  [LOGIN_STEPS.OTP]: LOGIN_STEPS.PHONE_NUMBER,
+  [LOGIN_STEPS.CAPTCHA]: LOGIN_STEPS.PHONE_NUMBER,
+  [LOGIN_STEPS.PHONE_NUMBER]: null,
+};
+
+export const REGISTER_BACK_MAP: Record<RegisterStep, RegisterStep | null> = {
+  [REGISTER_STEPS.OTP]: REGISTER_STEPS.USER_INFO,
+  [REGISTER_STEPS.CAPTCHA]: REGISTER_STEPS.USER_INFO,
+  [REGISTER_STEPS.USER_INFO]: null,
+};

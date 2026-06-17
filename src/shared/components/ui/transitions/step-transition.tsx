@@ -32,6 +32,8 @@ export function StepTransition({
       }, duration);
 
       return () => clearTimeout(timeout);
+    } else {
+      setActiveChildren(children);
     }
   }, [stepKey, activeKey, children, duration]);
 
@@ -44,7 +46,7 @@ export function StepTransition({
         isExiting
           ? 'opacity-0 -translate-y-2 scale-[0.98]'
           : 'opacity-100 translate-y-0 scale-100 animate-in fade-in slide-in-from-bottom-2',
-        'flex relative w-full max-w-md flex-col items-center justify-center gap-8',
+        'flex relative w-full flex-col items-center justify-center gap-8',
         className,
       )}
     >

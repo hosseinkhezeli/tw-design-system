@@ -3,9 +3,9 @@
 import { StepTransition } from '@/shared/components/ui/transitions/step-transition';
 import { LOGIN_STEPS } from '../../constants/auth.constants';
 import { useLoginFlow } from '../../hooks/use-login-flow';
-import { AuthFooterLink } from '../components/auth-footer-link';
-import { CaptchaChallenge } from '../components/captcha-challenge';
-import { LoginCredentialsForm } from '../forms/login-credentials-form';
+// import { AuthFooterLink } from '../components/auth-footer-link';
+// import { CaptchaChallenge } from '../components/captcha-challenge';
+import { PhoneNumberForm } from '../forms/phone-number-form';
 import { OtpVerificationForm } from '../forms/otp-verification-form';
 import { AuthCardLayout } from '../layouts/auth-card-layout';
 import { AuthHeader } from '../components/auth-header';
@@ -14,20 +14,19 @@ export function LoginContainer() {
   const {
     step,
     currentHeader,
-    isLoginPending,
-    isOtpLoading,
-    handleCredentialsSubmit,
-    handleCaptchaSuccess,
-    handleOtpComplete,
     handleResendOtp,
-    phoneNumber,
-    handleStepBack,
+    goToPreviousStep,
+    handleOtpSubmit,
+    handlePhoneSubmit,
+    isRequestingOtp,
+    isVerifyingOtp,
+    otpRequestId,
   } = useLoginFlow();
 
   return (
     <AuthCardLayout
-      {...(step !== LOGIN_STEPS.CREDENTIALS && {
-        onStepBack: handleStepBack,
+      {...(step !== LOGIN_STEPS.PHONE_NUMBER && {
+        onStepBack: goToPreviousStep,
       })}
     >
       <StepTransition stepKey={step}>
@@ -35,31 +34,21 @@ export function LoginContainer() {
           title={currentHeader.title}
           subtitle={currentHeader.subtitle}
         />
-        {step === LOGIN_STEPS.CREDENTIALS && (
+        {step === LOGIN_STEPS.PHONE_NUMBER && (
           <>
-            <LoginCredentialsForm
-              onSubmit={handleCredentialsSubmit}
-              isPending={isLoginPending}
-            />
-            <AuthFooterLink
-              text='حساب کاربری نداری؟'
-              actionLabel='ثبت‌نام کن!'
-              action='register'
+            <PhoneNumberForm
+              onSubmit={handlePhoneSubmit}
+              isPending={isRequestingOtp}
             />
           </>
         )}
-
-        {step === LOGIN_STEPS.CAPTCHA && (
-          <CaptchaChallenge onSuccess={handleCaptchaSuccess} />
-        )}
-
         {step === LOGIN_STEPS.OTP && (
           <OtpVerificationForm
-            onSubmit={handleOtpComplete}
             onResend={handleResendOtp}
-            isPending={isOtpLoading}
-            isResendPending={isOtpLoading}
-            phoneNumber={phoneNumber}
+            onSubmit={handleOtpSubmit}
+            requestId={otpRequestId}
+            isPending={isVerifyingOtp}
+            isResendPending={isRequestingOtp}
           />
         )}
       </StepTransition>

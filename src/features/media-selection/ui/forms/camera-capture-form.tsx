@@ -5,23 +5,26 @@ import { IconCamera, IconX } from '@tabler/icons-react';
 
 import { Button } from '@/shared/components/ui/button';
 import { MediaPreviewThumbnail } from '../components/media-preview-thumbnail';
-import { useMediaSelection } from '../../hooks/use-media-selection';
 import { useCameraCapture } from '@/shared/services/device/camera/hooks/use-camera-capture';
+import { MediaSelectionResult } from '../../types/media-selection.types';
 
 type Props = {
   isOpen: boolean;
-  onMediaSelected?: () => void;
   onConfirm: () => void;
+  media: MediaSelectionResult['media'];
+  error?: string | null;
+  onClear: () => void;
+  handleSelectMedia: (files: File[]) => void;
 };
 
-export const CameraCaptureForm = ({ isOpen, onMediaSelected }: Props) => {
-  const {
-    media,
-    error: mediaError,
-    addMedia,
-    removeMedia,
-  } = useMediaSelection();
-
+export const CameraCaptureForm = ({
+  isOpen,
+  onConfirm,
+  media,
+  onClear,
+  error: mediaError,
+  handleSelectMedia,
+}: Props) => {
   const latestMedia = media.at(-1);
 
   const {
@@ -46,15 +49,15 @@ export const CameraCaptureForm = ({ isOpen, onMediaSelected }: Props) => {
     const file = await capture();
     if (!file) return;
 
-    addMedia(file);
+    handleSelectMedia([file]);
+    onConfirm();
     stopCamera();
-    onMediaSelected?.();
   };
 
   const handleClearLatest = () => {
     if (!latestMedia) return;
 
-    removeMedia(latestMedia.previewUrl);
+    onClear();
     restartCamera();
   };
 

@@ -14,3 +14,13 @@ export interface AuthSession {
   tokens: AuthTokens;
   new_user: boolean;
 }
+
+export interface CaptchaRes {
+  captcha_base64: string;
+  captcha_request_id: string;
+}
+
+export interface RequestOtpRes {
+  expires_in: number;
+  request_id: string;
+}

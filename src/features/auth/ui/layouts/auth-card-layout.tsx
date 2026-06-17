@@ -17,7 +17,7 @@ export const AuthCardLayout = ({
   return (
     <div
       className={cn(
-        'flex relative w-full max-w-md flex-col items-center justify-center gap-8',
+        'flex relative w-full max-w-sm flex-col items-center justify-center gap-8',
         'overflow-y-auto max-h-svh',
         'rounded-3xl',
         'px-8 py-12',

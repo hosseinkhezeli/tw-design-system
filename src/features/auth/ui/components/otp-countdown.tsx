@@ -43,6 +43,7 @@ export function OtpCountdown({ isPending, onResend }: OtpCountdownProps) {
         variant='link'
         className='h-auto p-0'
         disabled={isPending}
+        isLoading={isPending}
         onClick={handleResend}
       >
         ارسال مجدد کد

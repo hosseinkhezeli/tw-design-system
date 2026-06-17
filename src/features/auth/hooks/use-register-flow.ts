@@ -1,16 +1,12 @@
 'use client';
 import { useState, useMemo } from 'react';
-import { REGISTER_STEPS, RegisterStep } from '../constants/auth.constants';
+import {
+  REGISTER_BACK_MAP,
+  REGISTER_STEPS,
+  RegisterStep,
+} from '../constants/auth.constants';
 import { RegisterSchema } from '../schemas/register.schema';
-import { OtpSchema } from '../schemas/otp.schema';
-
-// import { useRegister } from './use_register'; // هوک React Query که بعدا می‌سازیم
-
-const REGISTER_BACK_MAP: Record<RegisterStep, RegisterStep | null> = {
-  [REGISTER_STEPS.OTP]: REGISTER_STEPS.USER_INFO,
-  [REGISTER_STEPS.CAPTCHA]: REGISTER_STEPS.USER_INFO,
-  [REGISTER_STEPS.USER_INFO]: null,
-};
+import { OTPInputProps } from 'input-otp';
 
 export const useRegisterFlow = () => {
   const [step, setStep] = useState<RegisterStep>(REGISTER_STEPS.USER_INFO);
@@ -25,7 +21,7 @@ export const useRegisterFlow = () => {
       // await registerFn(values);
       const isRateLimited = Math.random() > 0.7;
       setStep(isRateLimited ? REGISTER_STEPS.CAPTCHA : REGISTER_STEPS.OTP);
-      setRegisteredPhoneNumber(values['phone_number']);
+      // setRegisteredPhoneNumber(values['phone_number']);
     } catch (error) {
       console.error('Registration error:', error);
     }
@@ -33,14 +29,14 @@ export const useRegisterFlow = () => {
 
   const handleCaptchaSuccess = () => setStep(REGISTER_STEPS.OTP);
 
-  const handleOtpComplete = async (values: OtpSchema) => {
+  const handleOtpComplete = async (values: RegisterSchema) => {
     setIsOtpLoading(true);
     // شبیه‌سازی تایید نهایی اکانت
     setTimeout(() => {
       console.log(
         'Registered and verified:',
-        values['phone_number'],
-        values['otp_code'],
+        // values['phone_number'],
+        // values['otp_code'],
       );
       setIsOtpLoading(false);
     }, 1000);

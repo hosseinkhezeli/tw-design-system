@@ -1,5 +1,5 @@
 //Types
-export { type MediaType } from './types/media.types';
+export type { MediaType, MediaItem } from './types/media.types';
 
 //Contants
 export { MEDIA_TYPE } from './constants/media.constants';

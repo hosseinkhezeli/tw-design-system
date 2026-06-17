@@ -1,11 +1,12 @@
 import { z } from 'zod';
-import { phoneRegex } from '../utils/regex.ytils';
+import { OTP_LENGTH } from '../constants/auth.constants';
 
 export const loginSchema = z.object({
-  phone_number: z
+  otp: z
     .string()
-    .min(1, 'شماره تلفن الزامی است')
-    .regex(phoneRegex, 'شماره تلفن وارد شده معتبر نیست'),
+    .min(1, 'وارد کردن کد ارسالی الزامی است')
+    .min(OTP_LENGTH, 'کد رو به طور کامل وارد کن'),
+  request_id: z.string(),
 });
 
 export type LoginSchema = z.infer<typeof loginSchema>;

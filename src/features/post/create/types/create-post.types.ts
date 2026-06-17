@@ -1,11 +1,7 @@
 import { PostVisibility } from '@/entities/post';
-import { CREATE_POST_STEPS, POST_SOURCE } from '../constants/post.constants';
-
-export interface MediaItem {
-  file: File;
-  type: 'IMAGE' | 'VIDEO';
-  previewUrl: string;
-}
+import { CREATE_POST_STEPS } from '../constants/post.constants';
+import { MediaItem } from '@/entities/media/types/media.types';
+import { MediaSelectionSource } from '@/features/media-selection/types/media-selection.types';
 
 export interface CreatePostFormData {
   readonly caption: string;
@@ -30,6 +26,6 @@ export interface CreatePostState {
   readonly error: string | null;
 }
 
-export type PostSource = (typeof POST_SOURCE)[keyof typeof POST_SOURCE];
+export type PostSource = MediaSelectionSource;
 export type CreatePostStep =
   (typeof CREATE_POST_STEPS)[keyof typeof CREATE_POST_STEPS];

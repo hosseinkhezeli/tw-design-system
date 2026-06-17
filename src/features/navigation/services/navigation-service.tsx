@@ -27,8 +27,7 @@ export class NavigationService {
         id: NAVIGATION_ITEM_IDS['create-content'],
         href: buildUrl({
           [QUERY_PARAM_KEYS.new_content_sheet]: 'true',
-          [QUERY_PARAM_KEYS.new_content_step]:
-            CREATE_POST_STEPS.SOURCE_SELECTION,
+          [QUERY_PARAM_KEYS.new_content_step]: CREATE_POST_STEPS.SOURCE,
         }),
         label: null,
       }),

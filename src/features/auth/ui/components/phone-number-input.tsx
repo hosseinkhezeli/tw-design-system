@@ -27,7 +27,7 @@ export function PhoneNumberInput<T extends FieldValues>({
   const id = useId();
 
   return (
-    <Field>
+    <Field className='py-2'>
       <Input
         id={id}
         type='tel'
