@@ -3,12 +3,15 @@
 import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import type { CreatePostDto } from '@/entities/post';
-import { CreatePostSchema, POST_CONSTANTS } from '@/entities/post';
+import { POST_CONSTANTS } from '@/entities/post';
 import { Button } from '@/shared/components/ui/button';
 import { Textarea } from '@/shared/components/ui/textarea';
 import { useCreatePostStore } from '../../models/create-post-store';
-import { NewPostThumbnail } from '@/entities/post/ui/new-post-thumbnail/new-post-thumbnail';
+import { NewPostThumbnail } from '@/features/post/create/ui/components/new-post-thumbnail/new-post-thumbnail';
+import {
+  CreatePostDto,
+  CreatePostSchema,
+} from '../../schemas/create-post.schema';
 
 type FormValues = Pick<CreatePostDto, 'caption'>;
 
@@ -54,7 +57,7 @@ export const PostDetailsForm = () => {
       {latestMedia && (
         <NewPostThumbnail
           media={latestMedia}
-          upload='ERROR'
+          upload='IN_PROGRESS'
           error={undefined}
         />
       )}

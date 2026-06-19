@@ -1,5 +1,5 @@
 'use client';
-import { APP_ROUTES } from '@/config/app-routes';
+import { APP_ROUTES } from '@/shared/config/app-routes';
 import { useRouter } from 'next/navigation';
 
 export class NavigationService {

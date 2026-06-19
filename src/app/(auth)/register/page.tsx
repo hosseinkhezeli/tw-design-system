@@ -1,5 +1,5 @@
-import { RegisterContainer } from '@/features/auth/ui/containers/register-container';
+import { RegistrationWidget } from '@/widgets/auth/register/ui/registeration-widget';
 
 export default function RegisterPage() {
-  return <RegisterContainer />;
+  return <RegistrationWidget />;
 }

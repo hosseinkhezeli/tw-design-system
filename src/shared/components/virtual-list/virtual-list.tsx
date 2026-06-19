@@ -6,7 +6,7 @@ import { VirtualListProps } from './types';
 import {
   DEFAULT_ESTIMATED_ITEM_SIZE,
   VIRTUAL_LIST_OVERSCAN,
-} from '@/config/ui';
+} from '@/shared/config/ui';
 import { cn } from '@/shared/utils/cn';
 
 export function VirtualList<T>({

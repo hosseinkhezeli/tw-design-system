@@ -19,11 +19,7 @@ export const AuthCardLayout = ({
       className={cn(
         'flex relative w-full max-w-sm flex-col items-center justify-center gap-8',
         'overflow-y-auto max-h-svh',
-        'rounded-3xl',
         'px-8 py-12',
-        'border border-foreground/20',
-        'bg-foreground/10 backdrop-blur-xl',
-        'shadow-[0_8px_32px_0_rgba(0,0,0,0.05)]',
         'transition-all duration-300',
         className,
       )}
@@ -33,7 +29,7 @@ export const AuthCardLayout = ({
           onClick={onStepBack}
           size={'icon-sm'}
           variant={'outline'}
-          className='absolute top-2 left-2'
+          className='absolute top-2 left-2 animate-grow'
         >
           <IconArrowLeft />
         </Button>

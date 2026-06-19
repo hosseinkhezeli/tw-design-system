@@ -76,7 +76,7 @@ export function MediaPickerForm({
           className='flex-1'
         >
           <IconRefresh className='ml-2 size-4' />
-          انتخاب فایل جدید
+          انتخاب مجدد{' '}
         </Button>
       </div>
     </div>

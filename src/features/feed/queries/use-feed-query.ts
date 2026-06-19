@@ -1,6 +1,6 @@
 import { useInfiniteQuery } from '@tanstack/react-query';
 import { getFeed } from '../api/get-feed';
-import { QUERY_KEYS } from '@/config/query-keys';
+import { QUERY_KEYS } from '@/shared/config/query-keys';
 
 export function useFeedQuery() {
   return useInfiniteQuery({

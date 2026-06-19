@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { env } from '@/config/env';
+import { env } from '@/shared/config/env';
 import { setupResponseInterceptor } from './interceptors/server.response.interceptor';
 
 export const serverHttpClient = axios.create({

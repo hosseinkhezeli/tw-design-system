@@ -1,5 +1,5 @@
-import { BottomNavigation } from '@/features/navigation/components/bottom-navigation';
-import { CreatePostContainer } from '@/features/post/create/ui/containers/create-post-container';
+import { BottomNavigation } from '@/widgets/navigation/components/bottom-navigation';
+import { CreatePostWidget } from '@/widgets/post/ui/create-post-widget';
 import { Suspense } from 'react';
 
 export default function MainLayout({
@@ -12,9 +12,11 @@ export default function MainLayout({
       <main className='max-w-xl min-h-svh mx-auto w-full overflow-hidden pb-20'>
         {children}
       </main>
-      <BottomNavigation />
       <Suspense fallback={null}>
-        <CreatePostContainer />
+        <BottomNavigation />
+      </Suspense>
+      <Suspense fallback={null}>
+        <CreatePostWidget />
       </Suspense>
     </>
   );

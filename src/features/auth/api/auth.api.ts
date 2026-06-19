@@ -3,7 +3,7 @@ import { routes } from '../configs/api.routes';
 
 import type { LoginSchema } from '../schemas/login.schema';
 import type { LoginRequestOtpSchema } from '../schemas/login-request-otp.schema';
-import type { RegisterSchema } from '../schemas/register.schema';
+import type { RegisterDto } from '../schemas/register.schema';
 import type { LogoutSchema } from '../schemas/logout.schema';
 import type { ChangePasswordSchema } from '../schemas/change-password.schema';
 import type { RefreshSchema } from '../schemas/refresh.schema';
@@ -14,7 +14,7 @@ import type {
   CaptchaRes,
   RequestOtpRes,
 } from '../types/auth.types';
-import { authMocks } from '@/mock/auth.mock';
+import { authMocks } from '@/features/auth/mock/auth.mock';
 
 const IS_DEV = true;
 
@@ -42,7 +42,7 @@ export const AuthApi = {
     ).data;
   },
 
-  register: async (payload: RegisterSchema): Promise<null> => {
+  register: async (payload: RegisterDto): Promise<null> => {
     if (IS_DEV) {
       await delay();
       return authMocks.register(payload);

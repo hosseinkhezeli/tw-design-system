@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { likePost } from '../api/like-post';
-import { QUERY_KEYS } from '@/config/query-keys';
+import { QUERY_KEYS } from '@/shared/config/query-keys';
 import { updateFeedLike } from '../lib/feed-cache';
 
 export function useLikePost() {

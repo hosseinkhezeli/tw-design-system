@@ -1,7 +1,7 @@
 'use client';
 
 import axios from 'axios';
-import { env } from '@/config/env';
+import { env } from '@/shared/config/env';
 import './interceptors/response.interceptor';
 import { setupResponseInterceptor } from './interceptors/response.interceptor';
 

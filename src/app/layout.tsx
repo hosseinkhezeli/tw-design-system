@@ -1,15 +1,10 @@
 import type { Metadata } from 'next';
-import localFont from 'next/font/local';
-import { cn } from '@/shared/utils/cn';
+
+import { cn } from '@/shared/utils';
 
 import '../shared/styles/globals.css';
-import Providers from '@/providers';
-
-export const vazirmatn = localFont({
-  variable: '--font-vazirmatn',
-  display: 'swap',
-  src: '../../public/vazirmatn/Vazirmatn-VariableFont_wght.ttf',
-});
+import Providers from '@/shared/providers';
+import { vazirmatn } from '@/shared/config/fonts';
 
 export const metadata: Metadata = {
   title: 'Create Next App',

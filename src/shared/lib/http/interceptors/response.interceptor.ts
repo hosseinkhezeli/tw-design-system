@@ -1,5 +1,5 @@
 import axios, { AxiosInstance, AxiosError } from 'axios';
-import { env } from '@/config/env';
+import { env } from '@/shared/config/env';
 
 let refreshPromise: Promise<void> | null = null;
 

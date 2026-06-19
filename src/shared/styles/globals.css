@@ -5,6 +5,7 @@
 @import './tokens.css';
 @import './utilities.css';
 @import './animations.css';
+
 @custom-variant dark (&:is(.dark *));
 
 [lang='fa'],

@@ -3,11 +3,16 @@
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Button } from '@/shared/components/ui/button';
-import { RegisterSchema, registerSchema } from '../../schemas/register.schema';
 import { TextInput } from '../components/text-input';
+import { RegisterAvatarInput } from '../components/register-avatar-input';
+
+import {
+  RegisterFormValues,
+  registerFormSchema,
+} from '../../schemas/register.schema';
 
 type Props = {
-  onSubmit: (values: RegisterSchema) => void;
+  onSubmit: (values: RegisterFormValues) => void;
   isPending?: boolean;
 };
 
@@ -16,15 +21,17 @@ export const RegisterInfoForm = ({ onSubmit, isPending }: Props) => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<RegisterSchema>({
-    resolver: zodResolver(registerSchema),
+  } = useForm<RegisterFormValues>({
+    resolver: zodResolver(registerFormSchema),
   });
 
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className='space-y-4 flex flex-col px-2 gap-4'
+      className='space-y-4 items-center justify-center flex flex-col px-2 gap-4'
     >
+      <RegisterAvatarInput name='avatar' register={register} />
+
       <TextInput
         register={register}
         name='full_name'

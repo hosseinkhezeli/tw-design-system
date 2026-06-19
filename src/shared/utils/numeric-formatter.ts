@@ -1,4 +1,4 @@
-import { EMPTY_STRING_PLACEHOLDER } from '@/config/ui';
+import { EMPTY_STRING_PLACEHOLDER } from '@/shared/config/ui';
 
 class NumericFormatter {
   static formatNumber(value: number | undefined | null): string {

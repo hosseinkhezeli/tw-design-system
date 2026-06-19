@@ -44,7 +44,7 @@ export default function BottomSheet({
           'before:rounded-b-none! before:translate-y-4 before:opacity-75 before:overflow-hidden',
 
           fullScreen && [
-            'h-full max-h-screen min-h-screen rounded-t-none border-none',
+            'h-full max-h-dvh min-h-dvh rounded-t-none border-none',
             '[&>div:first-child]:hidden before:hidden bg-background',
             '[&_.bg-muted]:hidden',
           ],

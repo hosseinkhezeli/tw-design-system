@@ -1,7 +1,7 @@
 'use client';
 import { useEffect, useRef, useState } from 'react';
 import { formatBio } from '../../../entities/user/lib/format-bio';
-import { MAX_BIO_CHARACTERS_REVEAL } from '@/config/ui';
+import { MAX_BIO_CHARACTERS_REVEAL } from '@/shared/config/ui';
 
 type Props = {
   bio: string;

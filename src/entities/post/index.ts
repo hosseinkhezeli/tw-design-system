@@ -8,16 +8,10 @@ export type {
 export { POST_TYPE, POST_VISIBILITY } from './constants/post.constants';
 
 // Schemas & DTOs
-export {
-  PostSchema,
-  CreatePostSchema,
-  type CreatePostDto,
-} from './schemas/post.schema';
+export { PostSchema } from './schemas/post.schema';
 
 // API
 export * from './api/get-post';
-export * from './api/create-post';
-export * from './api/update-post';
 
 // Domain Model
 export { PostModel } from './model/post.model';
