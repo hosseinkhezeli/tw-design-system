@@ -3,7 +3,7 @@
 import * as React from 'react';
 import { useId } from 'react';
 import { Button } from '@/shared/components/ui/button';
-import { Field, FieldLabel, FieldError } from '@/shared/components/ui/field';
+import { Field, FieldError } from '@/shared/components/ui/field';
 import {
   InputGroup,
   InputGroupAddon,

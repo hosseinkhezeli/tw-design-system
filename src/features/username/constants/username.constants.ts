@@ -1,0 +1,2 @@
+export const MIN_USERNAME_CHARACTERS = 6;
+export const CHECK_USERNAME_STALE = 30_000;

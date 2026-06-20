@@ -15,6 +15,7 @@ import type {
   RequestOtpRes,
 } from '../types/auth.types';
 import { authMocks } from '@/features/auth/mock/auth.mock';
+import { authStore } from '../model/auth.store';
 
 const IS_DEV = true;
 
@@ -25,9 +26,15 @@ export const AuthApi = {
   login: async (payload: LoginSchema): Promise<AuthSession> => {
     if (IS_DEV) {
       await delay();
-      return authMocks.login(payload);
+      const response = authMocks.login(payload);
+      authStore.getState().setUser(response.user);
+      return response;
     }
-    return (await httpClient.post<AuthSession>(routes.login, payload)).data;
+
+    const response = (await httpClient.post<AuthSession>(routes.login, payload))
+      .data;
+    authStore.getState().setUser(response.user);
+    return response;
   },
 
   login_request_otp: async (
@@ -55,7 +62,9 @@ export const AuthApi = {
       await delay();
       return authMocks.logout(payload);
     }
-    return (await httpClient.post<null>(routes.logout, payload)).data;
+    const response = (await httpClient.post<null>(routes.logout, payload)).data;
+    authStore.getState().logout();
+    return response;
   },
 
   change_phone_number: async (payload: ChangePasswordSchema): Promise<null> => {

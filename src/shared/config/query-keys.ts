@@ -5,6 +5,11 @@ export const QUERY_KEYS = {
     list: (filters?: any) => ['feed', 'list', filters] as const,
   },
 
+  authentication: {
+    username_availibility: (filters?: any) =>
+      ['username_availibility', filters] as const,
+  },
+
   profile: {
     all: ['profile'] as const,
     me: () => ['profile', 'me'] as const,

@@ -1,10 +1,15 @@
-import { ChangePasswordSchema } from "@/features/auth/schemas/change-password.schema";
-import { LoginRequestOtpSchema } from "@/features/auth/schemas/login-request-otp.schema";
-import { LoginSchema } from "@/features/auth/schemas/login.schema";
-import { LogoutSchema } from "@/features/auth/schemas/logout.schema";
-import { RefreshSchema } from "@/features/auth/schemas/refresh.schema";
-import { RegisterDto } from "@/features/auth/schemas/register.schema";
-import { AuthSession, AuthTokens, RequestOtpRes, CaptchaRes } from "@/features/auth/types/auth.types";
+import { ChangePasswordSchema } from '@/features/auth/schemas/change-password.schema';
+import { LoginRequestOtpSchema } from '@/features/auth/schemas/login-request-otp.schema';
+import { LoginSchema } from '@/features/auth/schemas/login.schema';
+import { LogoutSchema } from '@/features/auth/schemas/logout.schema';
+import { RefreshSchema } from '@/features/auth/schemas/refresh.schema';
+import { RegisterDto } from '@/features/auth/schemas/register.schema';
+import {
+  AuthSession,
+  AuthTokens,
+  RequestOtpRes,
+  CaptchaRes,
+} from '@/features/auth/types/auth.types';
 
 let currentSession: AuthSession | null = null;
 let currentTokens: AuthTokens | null = null;
@@ -17,12 +22,13 @@ export const authMocks = {
         id: 'user_' + Date.now().toString(36),
         full_name: 'أحمد محمد',
         phone_number: '+971501234567',
+        username: 'lk97wu32',
       },
       tokens: {
         access_token: 'mock_access_token_' + Date.now(),
         refresh_token: 'mock_refresh_token_' + Date.now(),
       },
-      new_user: false,
+      new_user: true,
     } as AuthSession;
 
     return currentSession;
@@ -48,12 +54,13 @@ export const authMocks = {
         id: 'user_' + Date.now().toString(36),
         full_name: payload.full_name,
         phone_number: '+971501234567',
+        username: 'lk97wu32',
       },
       tokens: {
         access_token: 'mock_access_token_' + Date.now(),
         refresh_token: 'mock_refresh_token_' + Date.now(),
       },
-      new_user: true,
+      new_user: false,
     } as AuthSession;
 
     return null; // as per your API

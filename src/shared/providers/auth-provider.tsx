@@ -1,15 +1,11 @@
-// import { serverHttpClient } from '@/shared/lib/http/server-http-client';
-import { PropsWithChildren } from 'react';
+'use client';
+import { authStore } from '@/features/auth/model/auth.store';
+import { PropsWithChildren, useEffect } from 'react';
 
-export async function AuthProvider({ children }: PropsWithChildren) {
-  let initialUser = null;
-
-  try {
-    // const { data } = await serverHttpClient.get('/users/me');
-    initialUser = {};
-  } catch {
-    // Fails silently if unauthenticated
-  }
+export function AuthProvider({ children }: PropsWithChildren) {
+  useEffect(() => {
+    authStore.persist.rehydrate();
+  }, []);
 
   return children;
 }

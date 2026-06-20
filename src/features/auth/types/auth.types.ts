@@ -5,6 +5,7 @@ export interface AuthTokens {
 
 export interface AuthUser {
   id: string;
+  username: string;
   full_name?: string;
   phone_number?: string;
 }
@@ -24,3 +25,4 @@ export interface RequestOtpRes {
   expires_in: number;
   request_id: string;
 }
+

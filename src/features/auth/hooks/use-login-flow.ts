@@ -50,7 +50,6 @@ export const useLoginFlow = () => {
 
   const handleResendOtp = useCallback(async () => {
     if (!phoneNumber) return;
-    // The toast notifications inside handlePhoneSubmit will automatically handle UI feedback here
     await handlePhoneSubmit({ phone_number: phoneNumber });
   }, [phoneNumber, handlePhoneSubmit]);
 
@@ -63,9 +62,7 @@ export const useLoginFlow = () => {
 
       toast.success('ورود موفقیت‌آمیز! 🚀', { id: 'login-flow' });
 
-      // Note: Double check this routing logic with your backend response.
-      // Usually `new_user: true` means they need to register.
-      if (!new_user) {
+      if (new_user) {
         navigation.goToRegister();
         return;
       }

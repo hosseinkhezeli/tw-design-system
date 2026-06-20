@@ -3,9 +3,16 @@ import {
   MAX_FILE_SIZE,
   ACCEPTED_IMAGE_TYPES,
 } from '@/entities/media/constants/media.constants';
+import { MIN_FULLNAME_CHARACTERS } from '../constants/auth.constants';
+import { MIN_USERNAME_CHARACTERS } from '@/features/username/constants/username.constants';
 
 export const registerFormSchema = z.object({
-  full_name: z.string().min(2, 'نام و نام خانوادگی باید حداقل ۲ حرف باشد'),
+  full_name: z
+    .string()
+    .min(MIN_FULLNAME_CHARACTERS, 'نام و نام خانوادگی باید حداقل ۲ حرف باشد'),
+  username: z
+    .string()
+    .min(MIN_USERNAME_CHARACTERS, 'نام کاربری باید حداقل ۶ کاراکتر باشد'),
   avatar: z
     .file()
     .optional()
@@ -24,6 +31,7 @@ export type RegisterFormValues = z.infer<typeof registerFormSchema>;
 
 export const registerDtoSchema = z.object({
   full_name: z.string(),
+  username: z.string(),
   avatar_media_id: z.string().nullable().optional(),
 });
 
