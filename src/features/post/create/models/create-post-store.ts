@@ -8,10 +8,10 @@ import type {
 import { POST_VISIBILITY } from '@/entities/post';
 
 const initialFormData: CreatePostFormData = {
+  title: '',
   caption: '',
   media: [],
-  tags: [],
-  location: undefined,
+  hashtags: [],
   visibility: POST_VISIBILITY.PUBLIC,
 };
 

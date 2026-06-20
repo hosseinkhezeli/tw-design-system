@@ -5,6 +5,7 @@ import { Field, FieldError } from '@/shared/components/ui/field';
 import { Input } from '@/shared/components/ui/input';
 import { FieldValues, UseFormRegister, Path } from 'react-hook-form';
 import { cn } from '@/shared/utils';
+import { TextInput } from '@/shared/components/ui/text-input';
 
 export type PhoneNumberInputProps<T extends FieldValues = FieldValues> = {
   label?: string;
@@ -27,19 +28,18 @@ export function PhoneNumberInput<T extends FieldValues>({
   const id = useId();
 
   return (
-    <Field className='py-2'>
-      <Input
-        id={id}
-        type='tel'
-        inputMode='numeric'
-        placeholder={label ?? placeholder}
-        className={cn(className, 'placeholder:text-right')}
-        dir='ltr'
-        autoComplete='off'
-        {...register(name)}
-        {...props}
-      />
-      {error && <FieldError>{error}</FieldError>}
-    </Field>
+    <TextInput
+      register={register}
+      name={name}
+      id={id}
+      type='tel'
+      inputMode='numeric'
+      label={label ?? placeholder}
+      className={cn(className, '')}
+      dir='ltr'
+      autoComplete='off'
+      error={error}
+      {...props}
+    />
   );
 }

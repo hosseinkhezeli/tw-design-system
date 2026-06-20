@@ -1,19 +1,19 @@
 'use client';
 
+import { POST_VISIBILITY, POST_CONSTANTS } from '@/entities/post';
+import { Button } from '@/shared/components/ui/button';
+import { TextInput } from '@/shared/components/ui/text-input';
+import { TextareaInput } from '@/shared/components/ui/textarea-input';
+import { zodResolver } from '@hookform/resolvers/zod';
 import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { POST_CONSTANTS } from '@/entities/post';
-import { Button } from '@/shared/components/ui/button';
-import { Textarea } from '@/shared/components/ui/textarea';
 import { useCreatePostStore } from '../../models/create-post-store';
-import { NewPostThumbnail } from '@/features/post/create/ui/components/new-post-thumbnail/new-post-thumbnail';
 import {
   CreatePostDto,
-  CreatePostSchema,
+  createPostSchema,
 } from '../../schemas/create-post.schema';
-
-type FormValues = Pick<CreatePostDto, 'caption'>;
+import { NewPostThumbnail } from '../components/new-post-thumbnail/new-post-thumbnail';
+import { TagInput } from '@/shared/components/ui/tag-input';
 
 export const PostDetailsForm = () => {
   const caption = useCreatePostStore((state) => state.formData.caption);
@@ -25,14 +25,13 @@ export const PostDetailsForm = () => {
     handleSubmit,
     watch,
     formState: { errors },
-  } = useForm<FormValues>({
-    resolver: zodResolver(
-      CreatePostSchema.pick({
-        caption: true,
-      }),
-    ),
+  } = useForm<CreatePostDto>({
+    resolver: zodResolver(createPostSchema),
     defaultValues: {
       caption,
+      visibility: POST_VISIBILITY.PUBLIC,
+      hashtags: [],
+      title: '',
     },
   });
 
@@ -63,17 +62,27 @@ export const PostDetailsForm = () => {
       )}
 
       <div className='flex-1 space-y-1'>
-        <Textarea
-          placeholder='کپشن پست خود را بنویسید...'
+        <TextInput
+          register={register}
+          name='title'
+          label='عنوان پست'
+          className='bg-transparent! border-0! placeholder:text-base! text-base! ring-0! outline-0!'
+        />
+        <TextareaInput
+          register={register}
+          name='caption'
+          label='کپشن پست خود را بنویسید...'
           disabled={false}
-          className='resize-none min-h-60 border-none! ring-0! outline-0! bg-transparent! max-h-[70svh]'
-          {...register('caption')}
+          className='resize-none min-h-48 border-none! ring-0! outline-0! bg-transparent! max-h-[70svh]'
           maxLength={POST_CONSTANTS.MAX_CAPTION_LENGTH}
         />
 
-        {errors.caption && (
-          <span className='text-xs text-red-500'>{errors.caption.message}</span>
-        )}
+        <TagInput
+          register={register}
+          name='hashtags'
+          placeholder='هشتگ‌ها را وارد کنید'
+          error={errors.hashtags?.message}
+        />
       </div>
 
       <div className='mt-auto '>

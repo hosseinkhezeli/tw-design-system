@@ -1,8 +1,10 @@
 import { useMutation } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
 
-import { CreatePostApi } from '../api/create-post-api';
 import { useCreatePostStore } from '../models/create-post-store';
+import { createPost } from '../api/create-post';
+import { uploadMedia } from '@/entities/media';
+import { POST_VISIBILITY } from '@/entities/post';
 
 export const useCreatePost = () => {
   const {
@@ -36,7 +38,7 @@ export const useCreatePost = () => {
         });
 
         try {
-          const { data } = await CreatePostApi.uploadMedia({
+          const { data } = await uploadMedia({
             file,
             onProgress: (progress) => {
               updateUploadProgress(file.name, {
@@ -62,12 +64,12 @@ export const useCreatePost = () => {
         }
       }
 
-      return CreatePostApi.create({
+      return createPost({
         caption: formData.caption,
         mediaIds,
-        // tags: formData.tags,
-        // location: formData.location,
-        // visibility: formData.visibility,
+        hashtags: formData.hashtags,
+        title: formData.title,
+        visibility: POST_VISIBILITY.PUBLIC,
       });
     },
 

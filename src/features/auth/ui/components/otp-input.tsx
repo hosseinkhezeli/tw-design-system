@@ -75,7 +75,7 @@ export function OtpInput<T extends FieldValues>({
         </InputOTPGroup>
       </InputOTP>
 
-      {error && <FieldError>{error}</FieldError>}
+      {error && <FieldError className='animate-grow '>{error}</FieldError>}
     </Field>
   );
 }

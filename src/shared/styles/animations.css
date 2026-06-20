@@ -1,7 +1,7 @@
 @theme {
   /* تعریف انیمیشن با سرعت بسیار پایین (۱۵ ثانیه) برای حفظ وقار سازمانی */
   --animate-blob: blob 15s infinite alternate ease-in-out;
-  --animate-grow: grow 0.3s ease-in-out;
+  --animate-grow: grow 0.2s ease-in-out;
  
   @keyframes blob {
     0% {

@@ -1,6 +1,10 @@
 import { MEDIA_SELECTION_STEP } from '@/features/media-selection/constants/media-selection.constants';
 import { CreatePostStep } from '../types/create-post.types';
 
+export const MAX_CAPTION_CHARACTERS = 2_200;
+export const MAX_TITLE_CHARACTERS = 1_100;
+export const MAX_HASHTAGS = 30;
+
 export const CREATE_POST_STEPS = {
   ...MEDIA_SELECTION_STEP,
   DETAILS: 'DETAILS',

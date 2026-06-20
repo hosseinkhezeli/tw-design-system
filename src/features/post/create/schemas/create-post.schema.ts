@@ -1,17 +1,25 @@
+import {
+  MAX_HASHTAGS,
+  MAX_TITLE_CHARACTERS,
+} from './../constants/post.constants';
 import { z } from 'zod';
-// import { POST_VISIBILITY } from '@/entities/post';
+import { MAX_CAPTION_CHARACTERS } from '../constants/post.constants';
+import { POST_VISIBILITY } from '@/entities/post';
 
-export const CreatePostSchema = z.object({
-  caption: z.string().max(2200).optional(),
-  // tags: z.array(z.string().min(1).max(30)).max(15).default([]).optional(),
-  // location: z.string().max(100).optional(),
-  // visibility: z.enum(POST_VISIBILITY).default(POST_VISIBILITY.PUBLIC),
+export const createPostSchema = z.object({
+  title: z.string().max(MAX_TITLE_CHARACTERS).optional(),
+  caption: z.string().max(MAX_CAPTION_CHARACTERS).optional(),
+  hashtags: z.array(z.string()).max(MAX_HASHTAGS).default([]).optional(),
+  visibility: z
+    .enum(POST_VISIBILITY)
+    .default(POST_VISIBILITY.PUBLIC)
+    .optional(),
 });
 
-export type CreatePostDto = z.infer<typeof CreatePostSchema>;
+export type CreatePostDto = z.infer<typeof createPostSchema>;
 
-export const CreatePostFormSchema = CreatePostSchema.extend({
+export const createPostFormSchema = createPostSchema.extend({
   mediaFiles: z.array(z.instanceof(File)).min(1).max(10),
 });
 
-export type CreatePostFormDto = z.infer<typeof CreatePostFormSchema>;
+export type CreatePostFormDto = z.infer<typeof createPostFormSchema>;

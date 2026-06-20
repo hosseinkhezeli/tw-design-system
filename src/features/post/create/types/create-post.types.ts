@@ -4,10 +4,10 @@ import { MediaItem } from '@/entities/media/types/media.types';
 import { MediaSelectionSource } from '@/features/media-selection/types/media-selection.types';
 
 export interface CreatePostFormData {
+  readonly title: string;
   readonly caption: string;
-  media: MediaItem[]; // Support multi later
-  readonly tags: string[];
-  readonly location?: string;
+  media: MediaItem[];
+  readonly hashtags: string[];
   readonly visibility: PostVisibility;
 }
 
