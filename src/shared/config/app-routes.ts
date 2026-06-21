@@ -1,4 +1,5 @@
 export const APP_ROUTES = {
+  categories: '/categories',
   feed: '/feed',
   reels: '/reels',
   explore: '/explore',

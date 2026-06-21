@@ -1,14 +1,6 @@
+import { User } from '@/entities/user';
+import { ProfileWidget } from '@/widgets/profile/ui/profile-widget';
 import { Metadata } from 'next';
-// import { ProfileBio } from '@/features/profile/ui/profile-bio';
-// import { ProfileInterestTags } from '@/features/profile/ui/profile-interest-tags';
-// import { ProfileActions } from '@/features/profile/ui/profile-actions';
-// import ProfileContent from '@/widgets/profile/ui/profile-contents';
-// import { ProfileHighlightsList } from '@/features/profile/ui/profile-highlights-list';
-// import { ProfileStatsList } from '@/features/profile/ui/profile-stats-list';
-// import { QuickLinksList } from '@/features/profile/ui/quick-links-list';
-// import { Text } from '@/shared/components/text';
-// import { Typography } from '@/shared/components/ui/typography/typography';
-// import { UserAvatar } from '@/entities/user';
 
 // سئوی صفحه پروفایل
 export const metadata: Metadata = {
@@ -17,55 +9,27 @@ export const metadata: Metadata = {
 };
 
 export default function MyProfilePage() {
-  return (
-    // جایگزینی Fragment با تگ main
-    // <main className='flex flex-col w-full'>
-    //   {/* هدر اطلاعات پروفایل */}
-    //   <header className='flex flex-col w-full gap-4 pr-4 py-5'>
-    //     <div className='flex w-full gap-4'>
-    //       <UserAvatar />
-    //       <div className='flex flex-col'>
-    //         {/* استفاده از h1 برای عنوان اصلی صفحه */}
-    //         <Typography variant={'subtitle'} as='h1'>
-    //           روبان شاپ
-    //         </Typography>
-    //         <Text
-    //           title='شناسه روبان'
-    //           text='231455345'
-    //           classNames={{ title: 'opacity-50' }}
-    //         />
-    //         <Text
-    //           title='شهر'
-    //           text='علی‌آباد کتول'
-    //           classNames={{ title: 'opacity-50' }}
-    //         />
-    //       </div>
-    //     </div>
-
-    //     <ProfileBio bio={bio} />
-    //     <ProfileInterestTags />
-
-    //     {/* بخش آمار و اکشن‌ها */}
-    //     <section
-    //       className='flex justify-between pl-4'
-    //       aria-label='آمار و دکمه‌های تعاملی'
-    //     >
-    //       <ProfileStatsList />
-    //       <ProfileActions />
-    //     </section>
-
-    //     {/* بخش‌های جانبی مثل هایلایت‌ها */}
-    //     <aside aria-label='هایلایت‌ها و لینک‌های سریع'>
-    //       <ProfileHighlightsList className='pl-4' />
-    //       <QuickLinksList className='-mx-4 pr-4 pl-8' />
-    //     </aside>
-    //   </header>
-
-    //   {/* محتوای اصلی پروفایل (فید پست‌ها یا محصولات) */}
-    //   <section aria-label='محتوای کاربر'>
-    //     <ProfileContent />
-    //   </section>
-    // </main>
-    <></>
-  );
+  return <ProfileWidget user={userMock} />;
 }
+
+export const userMock: User = {
+  id: 'user_1',
+  username: 'hossein_dev',
+  fullName: 'حسین رضایی',
+  avatarUrl: 'https://picsum.photos/200',
+  bio: 'علاقه‌مند به فرانت‌اند، طراحی محصول و ساخت تجربه‌های کاربری ساده و سریع.',
+  followersCount: 1248,
+  followingCount: 356,
+  postsCount: 42,
+  isVerified: true,
+  interests: [
+    'برنامه‌نویسی',
+    'فرانت‌اند',
+    'ری‌اکت',
+    'نکست‌جی‌اس',
+    'طراحی رابط کاربری',
+    'استارتاپ',
+  ],
+  createdAt: '2025-01-15T08:30:00Z',
+  updatedAt: '2026-06-21T10:15:00Z',
+};

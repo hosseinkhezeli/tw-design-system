@@ -1,4 +1,5 @@
 export const NAVIGATION_ITEM_IDS = {
+  categories: 'categories',
   profile: 'profile',
   explore: 'explore',
   feed: 'feed',

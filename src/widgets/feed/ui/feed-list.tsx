@@ -13,11 +13,11 @@ export function FeedList() {
     return <FeedSkeleton />;
   }
 
-  const posts = data?.pages.flatMap((p) => p.items) ?? [];
+  const posts = data?.pages?.flatMap((p) => p?.items ?? []) ?? [];
 
   return (
     <VirtualList
-      items={posts}
+      items={[]}
       estimateSize={850}
       scrollContainerClassName='h-svh pb-[65px] overflow-y-auto'
       onEndReached={() => {

@@ -9,19 +9,14 @@ export class NavigationService {
   static getNavigationItems(): NavigationItemModel[] {
     return [
       new NavigationItemModel({
-        id: NAVIGATION_ITEM_IDS.profile,
-        href: APP_ROUTES.profile.user('me'),
-        label: 'پروفایل',
+        id: NAVIGATION_ITEM_IDS.feed,
+        href: APP_ROUTES.feed,
+        label: 'خانه',
       }),
       new NavigationItemModel({
-        id: NAVIGATION_ITEM_IDS.explore,
-        href: APP_ROUTES.explore,
-        label: 'اکسپلور',
-      }),
-      new NavigationItemModel({
-        id: NAVIGATION_ITEM_IDS.reels,
-        href: APP_ROUTES.reels,
-        label: 'ریلز',
+        id: NAVIGATION_ITEM_IDS.categories,
+        href: APP_ROUTES.categories,
+        label: 'دسته‌ها',
       }),
       new NavigationItemModel({
         id: NAVIGATION_ITEM_IDS['create-content'],
@@ -32,19 +27,14 @@ export class NavigationService {
         label: null,
       }),
       new NavigationItemModel({
-        id: NAVIGATION_ITEM_IDS.inbox,
-        href: APP_ROUTES.inbox,
-        label: 'پیام‌ها',
-      }),
-      new NavigationItemModel({
         id: NAVIGATION_ITEM_IDS.shop,
         href: APP_ROUTES.shop,
-        label: 'فروشگاه',
+        label: 'بازار',
       }),
       new NavigationItemModel({
-        id: NAVIGATION_ITEM_IDS.feed,
-        href: APP_ROUTES.feed,
-        label: 'خانه',
+        id: NAVIGATION_ITEM_IDS.profile,
+        href: APP_ROUTES.profile.user('me'),
+        label: 'پروفایل',
       }),
     ];
   }

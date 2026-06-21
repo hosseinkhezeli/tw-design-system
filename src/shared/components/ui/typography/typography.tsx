@@ -1,3 +1,4 @@
+'use client';
 import { Slot } from 'radix-ui';
 import { TypographyProps } from './typography.types';
 import { cn } from '@/shared/utils/cn';

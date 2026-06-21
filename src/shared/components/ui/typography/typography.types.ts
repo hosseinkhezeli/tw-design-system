@@ -7,4 +7,4 @@ export type TypographyProps = {
   as?: ElementType;
   asChild?: boolean;
   className?: string;
-} & VariantProps<typeof typographyVariants>;
+} & VariantProps<typeof typographyVariants> ;

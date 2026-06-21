@@ -1,4 +1,6 @@
 import {
+  IconCategory,
+  IconCategoryFilled,
   IconHome,
   IconHomeFilled,
   IconMovie,
@@ -19,17 +21,17 @@ type NavigationIconProps = {
 };
 
 export const navigationItemMapper: Record<
-  NavigationIds,
+  Partial<NavigationIds>,
   React.ComponentType<NavigationIconProps>
 > = {
   [NAVIGATION_ITEM_IDS.profile]: () => <Avatar />,
 
-  [NAVIGATION_ITEM_IDS.explore]: ({ active }) => (
-    <IconSearch
-      className={BOTTOM_NAV_ICON_CLASS}
-      strokeWidth={active ? 2.25 : 1.25}
-    />
-  ),
+  [NAVIGATION_ITEM_IDS.categories]: ({ active }) =>
+    active ? (
+      <IconCategoryFilled className={BOTTOM_NAV_ICON_CLASS} />
+    ) : (
+      <IconCategory className={BOTTOM_NAV_ICON_CLASS} strokeWidth={1.25} />
+    ),
 
   [NAVIGATION_ITEM_IDS.reels]: ({ active }) => (
     <IconMovie
@@ -61,5 +63,12 @@ export const navigationItemMapper: Record<
 
   [NAVIGATION_ITEM_IDS['create-content']]: () => (
     <IconPlus className='size-6 text-white' strokeWidth={3.5} />
+  ),
+
+  [NAVIGATION_ITEM_IDS.explore]: ({ active }) => (
+    <IconSearch
+      className={BOTTOM_NAV_ICON_CLASS}
+      strokeWidth={active ? 2 : 1.25}
+    />
   ),
 };
