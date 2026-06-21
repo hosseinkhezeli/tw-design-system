@@ -21,7 +21,7 @@ html,
     overscroll-behavior: none;
   }
   body {
-    width: 100%;
+    @apply bg-background text-foreground w-full
   }
   button:not(:disabled),
   [role='button']:not(:disabled) {
@@ -36,7 +36,7 @@ html,
   .vaul-drawer {
     transition: transform 0.2s ease-out;
   }
-  
+
   input:-webkit-autofill,
   input:-webkit-autofill:hover,
   input:-webkit-autofill:focus,
