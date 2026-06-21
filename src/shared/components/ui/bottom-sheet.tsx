@@ -51,7 +51,7 @@ export default function BottomSheet({
 
           fullScreen
             ? [
-                'h-full max-h-dvh min-h-dvh rounded-t-none border-none',
+                'h-full max-h-[calc(100dvh-32px)] min-h-[calc(100dvh-32px)] -translate-y-8 rounded-t-none border-none',
                 '[&>div:first-child]:hidden before:hidden bg-background',
                 '[&_.bg-muted]:hidden',
               ]
@@ -91,7 +91,7 @@ export default function BottomSheet({
           data-bottom-sheet-scroll
           className={cn(
             'overflow-y-auto px-4 pb-6 w-full min-h-0',
-            fullScreen && 'h-full ',
+            fullScreen && 'h-full',
           )}
         >
           {children}
