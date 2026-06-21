@@ -19,6 +19,7 @@ html,
   body {
     height: 100dvh;
     overscroll-behavior: none;
+    position: relative;
   }
   body {
     @apply bg-background text-foreground w-full
@@ -27,7 +28,11 @@ html,
   [role='button']:not(:disabled) {
     cursor: pointer;
   }
-
+input:focus,
+  textarea:focus,
+  select:focus {
+    scroll-margin-bottom: 160px;   /* ← این کمک زیادی می‌کنه */
+  }
   :root {
     --vh: 100dvh;
     --keyboard-height: 0px;

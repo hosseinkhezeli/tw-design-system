@@ -6,6 +6,7 @@ type Props = {
 };
 
 export function DirectionProvider({ children }: Props) {
+  
   return (
     <ShadcnDirectionProvider direction='rtl' dir={'rtl'}>
       {children}

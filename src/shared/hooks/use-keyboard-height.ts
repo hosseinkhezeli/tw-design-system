@@ -6,46 +6,29 @@ export function useKeyboardHeight() {
   useEffect(() => {
     let timeoutId: NodeJS.Timeout;
 
-    const updateKeyboardHeight = () => {
+    const update = () => {
       if (!window.visualViewport) return;
-
-      const viewportHeight = window.visualViewport.height;
-      const windowHeight = window.innerHeight;
-      const currentHeight = Math.max(0, windowHeight - viewportHeight);
-
-      setKeyboardHeight(currentHeight);
-
-      // اعمال به root برای استفاده در CSS
-      document.documentElement.style.setProperty(
-        '--keyboard-height',
-        `${currentHeight}px`,
+      const current = Math.max(
+        0,
+        window.innerHeight - window.visualViewport.height,
       );
+      setKeyboardHeight(current);
     };
 
-    const handleVisualViewportChange = () => {
-      // کمی delay برای جلوگیری از لرزش
+    const handleChange = () => {
       clearTimeout(timeoutId);
-      timeoutId = setTimeout(updateKeyboardHeight, 10);
+      timeoutId = setTimeout(update, 16);
     };
 
-    // Listenerها
-    window.visualViewport?.addEventListener(
-      'resize',
-      handleVisualViewportChange,
-    );
-    window.addEventListener('resize', handleVisualViewportChange);
+    window.visualViewport?.addEventListener('resize', handleChange);
+    window.addEventListener('resize', handleChange);
 
-    // Initial check
-    updateKeyboardHeight();
+    update();
 
     return () => {
       clearTimeout(timeoutId);
-      window.visualViewport?.removeEventListener(
-        'resize',
-        handleVisualViewportChange,
-      );
-      window.removeEventListener('resize', handleVisualViewportChange);
-      document.documentElement.style.setProperty('--keyboard-height', '0px');
+      window.visualViewport?.removeEventListener('resize', handleChange);
+      window.removeEventListener('resize', handleChange);
     };
   }, []);
 
