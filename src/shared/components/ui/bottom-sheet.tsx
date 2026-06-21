@@ -9,7 +9,6 @@ import {
 import { cn } from '@/shared/utils';
 import { IconX } from '@tabler/icons-react';
 import { Button } from './button';
-import { useKeyboardHeight } from '@/shared/hooks/use-keyboard-height';
 
 type Props = PropsWithChildren & {
   title?: ReactNode;
@@ -29,7 +28,6 @@ export default function BottomSheet({
   handleOnly = false,
   children,
 }: Props) {
-  const keyboardHeight = useKeyboardHeight();
   return (
     <Drawer
       open={open}
@@ -92,9 +90,6 @@ export default function BottomSheet({
             'flex-1 overflow-y-auto px-4 pb-6 w-full flex',
             fullScreen && 'h-full ',
           )}
-          style={{
-            paddingBottom: `calc(1.5rem + ${keyboardHeight}px)`,
-          }}
         >
           {children}
         </div>
