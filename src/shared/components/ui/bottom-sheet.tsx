@@ -47,13 +47,15 @@ export default function BottomSheet({
       <DrawerContent
         className={cn(
           'max-w-xl mx-auto transition-all ',
-          'before:rounded-b-none! before:translate-y-4 before:opacity-75 before:overflow-hidden',
+          'before:rounded-b-none! before:translate-y-4 before:opacity-75 before:overflow-hidden  ',
 
-          fullScreen && [
-            'h-full max-h-dvh min-h-dvh rounded-t-none border-none',
-            '[&>div:first-child]:hidden before:hidden bg-background',
-            '[&_.bg-muted]:hidden',
-          ],
+          fullScreen
+            ? [
+                'h-full max-h-dvh min-h-dvh rounded-t-none border-none',
+                '[&>div:first-child]:hidden before:hidden bg-background',
+                '[&_.bg-muted]:hidden',
+              ]
+            : 'max-h-[90dvh]',
         )}
       >
         <div className='relative'>
@@ -86,8 +88,9 @@ export default function BottomSheet({
           </DrawerHeader>
         </div>
         <div
+          data-bottom-sheet-scroll
           className={cn(
-            'flex-1 overflow-y-auto px-4 pb-6 w-full flex',
+            'overflow-y-auto px-4 pb-6 w-full min-h-0',
             fullScreen && 'h-full ',
           )}
         >

@@ -61,7 +61,7 @@ export const PostDetailsForm = () => {
         />
       )}
 
-      <div className='flex-1 space-y-1'>
+      <div className='space-y-1'>
         <TextInput
           register={register}
           name='title'
@@ -73,7 +73,7 @@ export const PostDetailsForm = () => {
           name='caption'
           label='کپشن پست خود را بنویسید...'
           disabled={false}
-          className='resize-none min-h-48 border-none! ring-0! outline-0! bg-transparent! max-h-[70svh]'
+          className='resize-none min-h-48 border-none! ring-0! outline-0! bg-transparent! max-h-60'
           maxLength={POST_CONSTANTS.MAX_CAPTION_LENGTH}
         />
 
@@ -85,11 +85,9 @@ export const PostDetailsForm = () => {
         />
       </div>
 
-      <div className='mt-auto '>
-        <Button type='submit' className='w-full' disabled={false}>
-          {false ? 'در حال انتشار...' : 'انتشار پست'}
-        </Button>
-      </div>
+      <Button type='submit' className='w-full' disabled={false}>
+        {false ? 'در حال انتشار...' : 'انتشار پست'}
+      </Button>
     </form>
   );
 };
