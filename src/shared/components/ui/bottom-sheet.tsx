@@ -1,8 +1,15 @@
 import { PropsWithChildren, ReactNode } from 'react';
-import { Drawer, DrawerContent, DrawerHeader, DrawerTitle } from './drawer';
+import {
+  Drawer,
+  DrawerContent,
+  DrawerDescription,
+  DrawerHeader,
+  DrawerTitle,
+} from './drawer';
 import { cn } from '@/shared/utils';
 import { IconX } from '@tabler/icons-react';
 import { Button } from './button';
+import { useKeyboardHeight } from '@/shared/hooks/use-keyboard-height';
 
 type Props = PropsWithChildren & {
   title?: ReactNode;
@@ -22,6 +29,7 @@ export default function BottomSheet({
   handleOnly = false,
   children,
 }: Props) {
+  const keyboardHeight = useKeyboardHeight();
   return (
     <Drawer
       open={open}
@@ -34,9 +42,9 @@ export default function BottomSheet({
       }}
       handleOnly={fullScreen || handleOnly}
       shouldScaleBackground={!fullScreen}
-      preventScrollRestoration
       autoFocus
       modal
+      repositionInputs
     >
       <DrawerContent
         className={cn(
@@ -61,6 +69,9 @@ export default function BottomSheet({
           />
           <DrawerHeader className='relative'>
             <DrawerTitle className='text-center'>{title}</DrawerTitle>
+            <DrawerDescription className='sr-only'>
+              Bottom sheet content
+            </DrawerDescription>
 
             {fullScreen && (
               <Button
@@ -68,7 +79,7 @@ export default function BottomSheet({
                 type='button'
                 variant={'outline'}
                 size={'icon-sm'}
-                className='absolute left-4 top-0 z-30'
+                className='absolute text-muted-foreground left-4 top-0 z-30'
                 aria-label='Close'
               >
                 <IconX />
@@ -79,8 +90,11 @@ export default function BottomSheet({
         <div
           className={cn(
             'flex-1 overflow-y-auto px-4 pb-6 w-full flex',
-            fullScreen && 'h-full',
+            fullScreen && 'h-full ',
           )}
+          style={{
+            paddingBottom: `calc(1.5rem + ${keyboardHeight}px)`,
+          }}
         >
           {children}
         </div>

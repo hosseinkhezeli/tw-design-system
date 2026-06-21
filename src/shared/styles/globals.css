@@ -15,21 +15,28 @@
 }
 
 @layer base {
-  html,
+html,
   body {
     height: 100dvh;
     overscroll-behavior: none;
   }
   body {
-    position: fixed;
     width: 100%;
-    overflow: hidden;
   }
   button:not(:disabled),
   [role='button']:not(:disabled) {
     cursor: pointer;
   }
 
+  :root {
+    --vh: 100dvh;
+    --keyboard-height: 0px;
+  }
+
+  .vaul-drawer {
+    transition: transform 0.2s ease-out;
+  }
+  
   input:-webkit-autofill,
   input:-webkit-autofill:hover,
   input:-webkit-autofill:focus,

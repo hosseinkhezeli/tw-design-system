@@ -12,7 +12,7 @@ import {
   CreatePostDto,
   createPostSchema,
 } from '../../schemas/create-post.schema';
-import { NewPostThumbnail } from '../components/new-post-thumbnail/new-post-thumbnail';
+import { NewPostThumbnail } from '../components/new-post-thumbnail';
 import { TagInput } from '@/shared/components/ui/tag-input';
 
 export const PostDetailsForm = () => {

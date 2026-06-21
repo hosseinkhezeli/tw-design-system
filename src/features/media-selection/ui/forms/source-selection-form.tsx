@@ -10,7 +10,7 @@ type Props = {
 
 export function SourceSelectionForm({ onSourceSelect }: Props) {
   return (
-    <div className='flex flex-col gap-4 px-4 pb-8 w-full'>
+    <div className='flex flex-col gap-4 px-4 pb-8 pt-2 w-full'>
       {mediaSourceOptions.map((sourceOption) => (
         <Button
           key={sourceOption.id}
