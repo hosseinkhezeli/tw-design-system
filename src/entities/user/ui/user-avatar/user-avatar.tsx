@@ -46,9 +46,8 @@ export function UserAvatar({
       >
         <img
           className='w-full max-w-40 h-auto aspect-square rounded-full animate-in'
-          src={
-            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRKJEFNYx3d2sd1N8QPrARg0F7PvaJYkT_V9g&s'
-          }
+          src={user?.avatarUrl}
+          alt={user?.fullName}
         />
 
         <VisuallyHidden.VisuallyHidden>

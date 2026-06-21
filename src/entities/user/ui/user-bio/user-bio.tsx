@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/set-state-in-effect */
 'use client';
 import { useEffect, useRef, useState } from 'react';
 
@@ -16,7 +17,7 @@ export function UserBio({ bio }: Props) {
   const contentRef = useRef<HTMLDivElement>(null);
   const formattedBio = formatBio(bio);
   const shouldTruncate = formattedBio?.length > MAX_BIO_CHARACTERS_REVEAL;
-  const [expanded, setExpanded] = useState(() => !shouldTruncate);
+  const [expanded, setExpanded] = useState(true);
 
   useEffect(() => {
     if (contentRef.current && expanded) {
@@ -24,6 +25,9 @@ export function UserBio({ bio }: Props) {
     }
   }, [expanded, bio, formattedBio]);
 
+  useEffect(() => {
+    setExpanded(!shouldTruncate);
+  }, [shouldTruncate]);
   return (
     <div className='text-[15px] min-h-7 leading-7 text-foreground'>
       <div

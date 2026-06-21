@@ -6,6 +6,7 @@ import { Button } from '@/shared/components/ui/button';
 import { IconEdit, IconInfoCircle } from '@tabler/icons-react';
 import { VerifiedUserBadge } from '@/entities/user/ui/verified-user-badge';
 import { UserQuickAccessList } from '@/entities/user/ui/user-quick-access/user-quick-access-list';
+import { Suspense } from 'react';
 
 type Props = {
   user: any;
@@ -46,8 +47,9 @@ export function ProfileWidget({ user }: Props) {
             <VerifiedUserBadge />
           </div>
 
-          <UserBio bio={profile.bio} />
-
+          <Suspense fallback={null}>
+            <UserBio bio={profile.bio} />
+          </Suspense>
           {/* بخش آمار و اکشن‌ها */}
           <section
             className='flex flex-col justify-between w-full'
