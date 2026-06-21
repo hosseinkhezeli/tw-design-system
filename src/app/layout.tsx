@@ -20,7 +20,7 @@ export default function RootLayout({
     <html
       lang='fa'
       dir='rtl'
-      className={cn('antialiased', vazirmatn.variable, '')}
+      className={cn('antialiased', vazirmatn.variable, 'dark')}
     >
       <body>
         <Providers>{children}</Providers>
