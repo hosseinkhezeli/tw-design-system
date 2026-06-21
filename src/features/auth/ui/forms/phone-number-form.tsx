@@ -26,7 +26,7 @@ export function PhoneNumberForm({ onSubmit, isPending }: Props) {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className='flex flex-col px-2 gap-4'
+      className='flex flex-col px-2 gap-4 w-full'
     >
       <PhoneNumberInput
         name='phone_number'

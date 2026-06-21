@@ -15,8 +15,15 @@
 }
 
 @layer base {
+  html,
   body {
-    @apply bg-background text-foreground;
+    height: 100dvh;
+    overscroll-behavior: none;
+  }
+  body {
+    position: fixed;
+    width: 100%;
+    overflow: hidden;
   }
   button:not(:disabled),
   [role='button']:not(:disabled) {
@@ -33,16 +40,8 @@
     font-feature-settings: 'ss01', 'locl';
     font-family: var(--font-sans) !important;
   }
-  /* Prevent yellow flash on Chrome */
+  
   input:-webkit-autofill {
     transition: background-color 5000s ease-in-out 0s !important;
-  }
-
-  .animate-gradient {
-    animation: gradient 1s ease infinite;
-  }
-
-  .animate-shine {
-    animation: shine 6s linear infinite;
   }
 }

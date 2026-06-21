@@ -37,7 +37,7 @@ export function OtpVerificationForm({
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className='flex flex-col px-2 gap-4'
+      className='flex flex-col px-2 gap-4 w-full'
     >
       <OtpInput
         name='otp'

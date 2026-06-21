@@ -48,7 +48,7 @@ export const RegisterInfoForm = ({ onSubmit, isPending }: Props) => {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className='flex flex-col items-center justify-center gap-4 px-2'
+      className='flex flex-col items-center justify-center gap-4 px-2 w-full'
     >
       <RegisterAvatarInput name='avatar' register={register} />
 

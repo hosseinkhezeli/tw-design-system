@@ -2,7 +2,9 @@
   /* تعریف انیمیشن با سرعت بسیار پایین (۱۵ ثانیه) برای حفظ وقار سازمانی */
   --animate-blob: blob 15s infinite alternate ease-in-out;
   --animate-grow: grow 0.2s ease-in-out;
- 
+  --animate-gradient: gradient 1s ease infinite;
+  --animate-shine: shine 6s linear infinite;
+
   @keyframes blob {
     0% {
       transform: translate(0px, 0px) scale(1);
@@ -42,7 +44,7 @@
     }
   }
 
-@keyframes grow {
+  @keyframes grow {
     0% {
       transform: scale(0%);
       opacity: 0%;
@@ -52,5 +54,4 @@
       opacity: 100%;
     }
   }
-
 }

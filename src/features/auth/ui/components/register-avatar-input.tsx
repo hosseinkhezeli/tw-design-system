@@ -31,7 +31,7 @@ export function RegisterAvatarInput({
   );
   const [selectedMedia, setSelectedMedia] = useState<MediaItem | null>(null);
 
-  const { onChange } = register(name);
+  const { onChange, onBlur } = register(name);
 
   const handleOpen = () => {
     setCurrentStep(MEDIA_SELECTION_STEP.SOURCE);
@@ -39,7 +39,7 @@ export function RegisterAvatarInput({
   };
 
   const handleConfirmMedia = ({ media }: MediaSelectionResult) => {
-    const selected = media[0];
+    const selected = media[0].file;
     const syntheticEvent = {
       target: {
         name: name,
@@ -49,7 +49,8 @@ export function RegisterAvatarInput({
     };
 
     onChange(syntheticEvent);
-    setSelectedMedia(selected);
+    onBlur(syntheticEvent);
+    setSelectedMedia(media[0]);
     setIsOpen(false);
   };
 
