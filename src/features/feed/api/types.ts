@@ -1,11 +1,6 @@
-export type FeedPost = {
-  id: string;
-  username: string;
-  avatar: string;
-  image: string;
-  caption: string;
-  likes: number;
-};
+import { Post } from '@/entities/post';
+
+export type FeedPost = Post;
 
 export type FeedPage = {
   items: FeedPost[];

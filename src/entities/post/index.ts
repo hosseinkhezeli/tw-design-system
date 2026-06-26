@@ -14,15 +14,10 @@ export { PostSchema } from './schemas/post.schema';
 export * from './api/get-post';
 
 // Domain Model
-export { PostModel } from './model/post.model';
-export { PostSelectors } from './model/post.selectors';
 export { usePostStore } from './model/post.store';
 
 // UI Primitives
-export { PostCard } from './ui/post-card/post-card';
-export { PostCardSkeleton } from './ui/post-card/post-card.skeleton';
-export { PostMedia } from './ui/post-media/post-media';
-export { PostCaption } from './ui/post-caption/post-caption';
+
 
 // Utilities
 export { formatCaption } from './lib/format-caption';

@@ -11,7 +11,13 @@ export type VirtualListProps<T> = {
 
   className?: string;
 
+  itemClassName?: string;
+
   scrollContainerClassName?: string;
 
   onEndReached: () => void;
+
+  fetchNextPage: () => void;
+  hasNextPage: boolean;
+  isFetchingNextPage: boolean;
 };

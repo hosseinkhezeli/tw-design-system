@@ -14,9 +14,10 @@ export function VirtualList<T>({
   renderItem,
   estimateSize = DEFAULT_ESTIMATED_ITEM_SIZE,
   overscan = VIRTUAL_LIST_OVERSCAN,
-  className,
-  scrollContainerClassName,
+  className = '',
+  scrollContainerClassName = '',
   onEndReached,
+  itemClassName = '',
 }: VirtualListProps<T>) {
   const parentRef = useRef<HTMLDivElement>(null);
 
@@ -48,7 +49,7 @@ export function VirtualList<T>({
       ref={parentRef}
       className={cn(scrollContainerClassName, 'no-scrollbar')}
     >
-      <div
+      <ul
         className={className}
         style={{
           height: virtualizer.getTotalSize(),
@@ -56,11 +57,11 @@ export function VirtualList<T>({
           width: '100%',
         }}
       >
-        {virtualizer.getVirtualItems().map((virtualItem) => {
+        {virtualizer.getVirtualItems().map((virtualItem, index) => {
           const item = items[virtualItem.index];
 
           return (
-            <div
+            <li
               key={virtualItem.key}
               data-index={virtualItem.index}
               ref={virtualizer.measureElement}
@@ -71,12 +72,13 @@ export function VirtualList<T>({
                 width: '100%',
                 transform: `translateY(${virtualItem.start}px)`,
               }}
+              className={itemClassName}
             >
-              {renderItem(item, virtualItem.index)}
-            </div>
+              {renderItem(item, index)}
+            </li>
           );
         })}
-      </div>
+      </ul>
     </div>
   );
 }

@@ -9,7 +9,7 @@ export default function MainLayout({
 }>) {
   return (
     <>
-      <main className='max-w-xl min-h-svh mx-auto w-full overflow-hidden pb-20'>
+      <main className='flex flex-col max-w-xl min-h-[calc(100dvh-65px)] mx-auto w-full overflow-hidden'>
         {children}
       </main>
       <Suspense fallback={null}>

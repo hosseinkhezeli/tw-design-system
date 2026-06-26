@@ -1,31 +1,32 @@
 'use client';
 
+import { Post } from '@/entities/post';
+import { mockPosts } from '@/entities/post/mock/post.mock';
 import { useFeedQuery } from '@/features/feed/queries/use-feed-query';
 import { FeedItem } from '@/features/feed/ui/feed-item';
-import { FeedSkeleton } from '@/features/feed/ui/feed-skeleton';
-import { VirtualList } from '@/shared/components/virtual-list';
+import { MasonryFeed } from '@/shared/components/masonry';  
 
 export function FeedList() {
-  const { data, fetchNextPage, hasNextPage, isFetchingNextPage, isLoading } =
+  const { fetchNextPage, hasNextPage, isFetchingNextPage, isLoading } =
     useFeedQuery();
 
-  if (isLoading) {
-    return <FeedSkeleton />;
-  }
-
-  const posts = data?.pages?.flatMap((p) => p?.items ?? []) ?? [];
+  const posts = mockPosts;
 
   return (
-    <VirtualList
-      items={[]}
-      estimateSize={850}
-      scrollContainerClassName='h-svh pb-[65px] overflow-y-auto'
-      onEndReached={() => {
-        if (hasNextPage && !isFetchingNextPage) {
-          fetchNextPage();
-        }
+    <MasonryFeed
+      items={posts}
+      renderItem={({ index, item, measureRef }) => {
+        return <FeedItem post={item} index={index} ref={measureRef} />;
       }}
-      renderItem={(post) => <FeedItem post={post} />}
+      getItemId={(item) => {
+        return item.id;
+      }}
+      getItemAspectRatio={(item: Post) => {
+        return {
+          height: 250,
+          width: 250,
+        };
+      }}
     />
   );
 }
