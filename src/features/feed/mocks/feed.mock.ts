@@ -1,11 +1,11 @@
+import { Post } from './../../../entities/post/types/post.types';
 import type { FeedPage, FeedPost } from '../api/types';
-import { createMockPost } from '../lib/create-mock-post';
 
 const PAGE_SIZE = 20;
 
-const DATABASE: FeedPost[] = Array.from({ length: 1000 }, (_, i) =>
-  createMockPost(i),
-);
+const DATABASE: FeedPost[] = Array.from({ length: 1000 }, (_, i) => {
+  return {} as Post;
+});
 
 export async function getMockFeed(cursor: string | null) {
   await new Promise((res) => setTimeout(res, 1200));
@@ -28,8 +28,4 @@ export async function mockLikePost(postId: string): Promise<void> {
   });
 
   const post = DATABASE.find((post) => post.id === postId);
-
-  if (post) {
-    post.likes += 1;
-  }
 }

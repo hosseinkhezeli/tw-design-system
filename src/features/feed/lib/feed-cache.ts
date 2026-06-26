@@ -12,7 +12,7 @@ export function updateFeedLike(oldData: any, postId: string): any {
         post.id === postId
           ? {
               ...post,
-              likes: post.likes + 1,
+              likes: 1,
               liked: true,
             }
           : post,
