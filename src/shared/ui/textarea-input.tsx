@@ -1,12 +1,8 @@
 'use client';
 
 import { useId } from 'react';
-import {
-  Field,
-  FieldDescription,
-  FieldError,
-} from '@/shared/components/ui/field';
-import { Textarea } from '@/shared/components/ui/textarea';
+import { Field, FieldDescription, FieldError } from '@/shared/ui/field';
+import { Textarea } from '@/shared/ui/textarea';
 import { FieldValues, UseFormRegister, Path } from 'react-hook-form';
 import { cn } from '@/shared/utils';
 

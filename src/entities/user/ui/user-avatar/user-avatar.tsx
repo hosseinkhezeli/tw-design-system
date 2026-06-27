@@ -1,16 +1,12 @@
 'use client';
-import {
-  AvatarImage,
-  AvatarFallback,
-  Avatar,
-} from '@/shared/components/ui/avatar';
+import { AvatarImage, AvatarFallback, Avatar } from '@/shared/ui/avatar';
 import {
   DialogTrigger,
   DialogContent,
   DialogTitle,
   DialogDescription,
   Dialog,
-} from '@/shared/components/ui/dialog';
+} from '@/shared/ui/dialog';
 import { VisuallyHidden } from 'radix-ui';
 import { User } from '../../types/user.types';
 import { cn } from '@/shared/utils';

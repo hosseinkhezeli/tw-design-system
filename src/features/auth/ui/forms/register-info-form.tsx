@@ -2,8 +2,8 @@
 
 import { useUsernameAvailability } from '@/features/username/hooks/use-username-availability';
 import { UsernameInput } from '@/features/username/ui/components/username-input';
-import { Button } from '@/shared/components/ui/button';
-import { TextInput } from '@/shared/components/ui/text-input';
+import { Button } from '@/shared/ui/button';
+import { TextInput } from '@/shared/ui/text-input';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm, useWatch } from 'react-hook-form';
 import { useAuthStore } from '../../model/use-auth.store';

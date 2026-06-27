@@ -3,7 +3,7 @@
 import { useMemo } from 'react';
 import { IconCamera, IconX } from '@tabler/icons-react';
 
-import { Button } from '@/shared/components/ui/button';
+import { Button } from '@/shared/ui/button';
 import { MediaPreviewThumbnail } from '../components/media-preview-thumbnail';
 import { useCameraCapture } from '@/shared/services/device/camera/hooks/use-camera-capture';
 import { MediaSelectionResult } from '../../types/media-selection.types';

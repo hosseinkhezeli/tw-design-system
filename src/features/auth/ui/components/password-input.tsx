@@ -2,13 +2,13 @@
 
 import * as React from 'react';
 import { useId } from 'react';
-import { Button } from '@/shared/components/ui/button';
-import { Field, FieldError } from '@/shared/components/ui/field';
+import { Button } from '@/shared/ui/button';
+import { Field, FieldError } from '@/shared/ui/field';
 import {
   InputGroup,
   InputGroupAddon,
   InputGroupInput,
-} from '@/shared/components/ui/input-group';
+} from '@/shared/ui/input-group';
 import { IconEye, IconEyeOff } from '@tabler/icons-react';
 import { FieldValues, UseFormRegister, Path } from 'react-hook-form';
 import { cn } from '@/shared/utils';

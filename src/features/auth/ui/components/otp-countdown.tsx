@@ -1,8 +1,8 @@
 'use client';
-import { Button } from '@/shared/components/ui/button';
+import { Button } from '@/shared/ui/button';
 import { useEffect, useState } from 'react';
 import { OTP_COOLDOWN_SECONDS } from '../../constants/auth.constants';
-import { Typography } from '@/shared/components/ui/typography/typography';
+import { Typography } from '@/shared/ui/typography';
 
 interface OtpCountdownProps {
   isPending?: boolean;

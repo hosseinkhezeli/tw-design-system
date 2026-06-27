@@ -1,8 +1,4 @@
-import {
-  Avatar,
-  AvatarFallback,
-  AvatarImage,
-} from '@/shared/components/ui/avatar';
+import { Avatar, AvatarFallback, AvatarImage } from '@/shared/ui/avatar';
 import { APP_ROUTES } from '@/shared/config/app-routes';
 import { IconUser } from '@tabler/icons-react';
 import Link from 'next/link';

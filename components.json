@@ -13,9 +13,9 @@
   "iconLibrary": "tabler",
   "rtl": true,
   "aliases": {
-    "components": "@/shared/components",
+    "components": "@/shared/ui/components",
     "utils": "@/shared/utils",
-    "ui": "@/shared/components/ui",
+    "ui": "@/shared/ui",
     "lib": "@/shared/lib",
     "hooks": "@/shared/hooks"
   },

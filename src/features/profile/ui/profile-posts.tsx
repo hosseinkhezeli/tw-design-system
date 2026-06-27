@@ -1,5 +1,5 @@
 // features/profile/ui/ProfilePosts.tsx
-import { Card } from '@/shared/components/ui/card';
+import { Card } from '@/shared/ui/card';
 import React from 'react';
 
 const mockPosts = [

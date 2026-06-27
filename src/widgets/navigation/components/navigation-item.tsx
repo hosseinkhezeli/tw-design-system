@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 import { cn } from '@/shared/utils/cn';
 import { NavigationItemModel } from '../models/navigation-item.model';
-import { Button } from '@/shared/components/ui/button';
+import { Button } from '@/shared/ui/button';
 import { navigationItemMapper } from '../utils/navigation-item-mapper';
 import { NAVIGATION_ITEM_IDS } from '../constants/navigation.constants';
 import { CreateContentButton } from './create-content-button';

@@ -11,7 +11,7 @@ import {
   IconShoppingBag,
 } from '@tabler/icons-react';
 
-import { Avatar } from '@/shared/components/ui/avatar';
+import { Avatar } from '@/shared/ui/avatar';
 import { BOTTOM_NAV_ICON_CLASS } from '@/shared/config/ui';
 import { NAVIGATION_ITEM_IDS } from '../constants/navigation.constants';
 import { NavigationIds } from '../constants/navigation.constants';

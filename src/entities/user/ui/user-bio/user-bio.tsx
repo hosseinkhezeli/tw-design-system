@@ -5,7 +5,7 @@ import { useEffect, useRef, useState } from 'react';
 import { MAX_BIO_CHARACTERS_REVEAL } from '@/shared/config/ui';
 import { formatBio } from '../../lib/format-bio';
 
-import { typographyVariants } from '@/shared/components/ui/typography/variants';
+import { typographyVariants } from '@/shared/ui/typography/variants';
 import { cn } from '@/shared/utils';
 
 type Props = {

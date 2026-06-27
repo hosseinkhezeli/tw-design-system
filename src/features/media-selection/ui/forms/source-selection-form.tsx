@@ -1,6 +1,6 @@
 'use client';
 
-import { Button } from '@/shared/components/ui/button';
+import { Button } from '@/shared/ui/button';
 import { MediaSelectionSource } from '../../types/media-selection.types';
 import { mediaSourceOptions } from '../../config/source-options.config';
 

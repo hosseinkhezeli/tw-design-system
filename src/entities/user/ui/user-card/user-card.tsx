@@ -1,5 +1,5 @@
-import { Typography } from '@/shared/components/ui/typography/typography';
-import { Text } from '@/shared/components/text';
+import { Typography } from '@/shared/ui/typography';
+import { Text } from '@/shared/ui/text';
 import { UserAvatar } from '../user-avatar/user-avatar';
 import { User } from '../../types/user.types';
 import { UserBio } from '../user-bio/user-bio';

@@ -1,4 +1,4 @@
-import { Button } from '@/shared/components/ui/button';
+import { Button } from '@/shared/ui/button';
 import { IconEditCircle, IconSettings } from '@tabler/icons-react';
 
 export function ProfileActions() {

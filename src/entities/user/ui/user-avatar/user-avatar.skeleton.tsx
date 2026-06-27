@@ -1,6 +1,6 @@
 'use client';
 
-import { Avatar, AvatarFallback } from "@/shared/components/ui/avatar";
+import { Avatar, AvatarFallback } from '@/shared/ui/avatar';
 
 export function UserAvatarSkeleton() {
   return (

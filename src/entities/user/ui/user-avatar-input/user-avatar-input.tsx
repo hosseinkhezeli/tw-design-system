@@ -1,10 +1,6 @@
 import { MediaItem } from '@/entities/media';
-import {
-  Avatar,
-  AvatarImage,
-  AvatarFallback,
-} from '@/shared/components/ui/avatar';
-import { Button } from '@/shared/components/ui/button';
+import { Avatar, AvatarImage, AvatarFallback } from '@/shared/ui/avatar';
+import { Button } from '@/shared/ui/button';
 import { cn } from '@/shared/utils';
 import { IconCamera, IconPencil, IconPlus, IconX } from '@tabler/icons-react';
 

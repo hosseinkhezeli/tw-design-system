@@ -5,7 +5,7 @@ import { IconCircleCheckFilled, IconLoader2, IconX } from '@tabler/icons-react';
 import { UseFormRegister } from 'react-hook-form';
 
 import { cn } from '@/shared/utils';
-import { TextInput } from '@/shared/components/ui/text-input';
+import { TextInput } from '@/shared/ui/text-input';
 
 type Props = {
   register: UseFormRegister<any>;

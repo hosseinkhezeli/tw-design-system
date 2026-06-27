@@ -1,5 +1,5 @@
-import { Tabs, TabsList, TabsTrigger } from '@/shared/components/ui/tabs';
-import { Typography } from '@/shared/components/ui/typography/typography';
+import { Tabs, TabsList, TabsTrigger } from '@/shared/ui/tabs';
+import { Typography } from '@/shared/ui/typography';
 import React from 'react';
 
 const tabs = [

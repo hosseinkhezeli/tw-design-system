@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { PostModel } from '../../model/post.model';
-import { Typography } from '@/shared/components/ui/typography/typography';
-import Img from '@/shared/components/ui/img';
+import { Typography } from '@/shared/ui/typography';
+import Img from '@/shared/ui/img';
 import { Ref } from 'react';
 
 type Props = {

@@ -4,7 +4,7 @@ import {
   AvatarFallback,
   AvatarProps,
   AvatarRing,
-} from '../ui/avatar';
+} from '../avatar';
 
 export function StoryAvatar({
   src,

@@ -3,12 +3,8 @@
 import { useId } from 'react';
 import { FieldValues, Path, UseFormRegister } from 'react-hook-form';
 
-import { Field, FieldError, FieldLabel } from '@/shared/components/ui/field';
-import {
-  InputOTP,
-  InputOTPGroup,
-  InputOTPSlot,
-} from '@/shared/components/ui/input-otp';
+import { Field, FieldError, FieldLabel } from '@/shared/ui/field';
+import { InputOTP, InputOTPGroup, InputOTPSlot } from '@/shared/ui/input-otp';
 import { OTP_LENGTH } from '../../constants/auth.constants';
 import { cn } from '@/shared/utils';
 

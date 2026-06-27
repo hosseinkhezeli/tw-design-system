@@ -9,11 +9,7 @@ import {
   type UseFormRegister,
 } from 'react-hook-form';
 
-import {
-  Field,
-  FieldDescription,
-  FieldError,
-} from '@/shared/components/ui/field';
+import { Field, FieldDescription, FieldError } from '@/shared/ui/field';
 
 import { cn } from '@/shared/utils';
 import { InputGroup, InputGroupInput, InputGroupAddon } from '../input-group';

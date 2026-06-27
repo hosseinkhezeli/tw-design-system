@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { UserAvatar, UserBio, UserStatsList } from '@/entities/user';
-import { Typography } from '@/shared/components/ui/typography/typography';
+import { Typography } from '@/shared/ui/typography';
 import { ProfileWidgetModel } from '../model/profile-widget.model';
-import { Button } from '@/shared/components/ui/button';
+import { Button } from '@/shared/ui/button';
 import { IconEdit, IconInfoCircle } from '@tabler/icons-react';
 import { VerifiedUserBadge } from '@/entities/user/ui/verified-user-badge';
 import { UserQuickAccessList } from '@/entities/user/ui/user-quick-access/user-quick-access-list';

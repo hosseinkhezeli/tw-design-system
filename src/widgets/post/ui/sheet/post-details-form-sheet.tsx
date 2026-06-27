@@ -1,5 +1,5 @@
 import { PostDetailsForm } from '@/features/post/create/ui/forms/post-details-form';
-import BottomSheet from '@/shared/components/ui/bottom-sheet';
+import BottomSheet from '@/shared/ui/bottom-sheet';
 
 type Props = {
   isOpen: boolean;

@@ -1,12 +1,8 @@
 'use client';
 
 import { type ReactNode, useId } from 'react';
-import {
-  Field,
-  FieldDescription,
-  FieldError,
-} from '@/shared/components/ui/field';
-import { Input } from '@/shared/components/ui/input';
+import { Field, FieldDescription, FieldError } from '@/shared/ui/field';
+import { Input } from '@/shared/ui/input';
 import {
   type FieldValues,
   type Path,

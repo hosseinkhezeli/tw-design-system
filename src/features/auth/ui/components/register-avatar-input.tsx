@@ -5,7 +5,7 @@ import {
   MediaSelectionStep,
   MediaSelectionResult,
 } from '@/features/media-selection/types/media-selection.types';
-import BottomSheet from '@/shared/components/ui/bottom-sheet';
+import BottomSheet from '@/shared/ui/bottom-sheet';
 import { useState } from 'react';
 import { Path, UseFormRegister } from 'react-hook-form';
 import { RegisterFormValues } from '../../schemas/register.schema';

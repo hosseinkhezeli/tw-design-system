@@ -10,7 +10,7 @@ import { UploadingProcess } from '@/entities/media/types/media.types';
 
 import { cn } from '@/shared/utils';
 
-import { Spinner } from '@/shared/components/ui/spinner';
+import { Spinner } from '@/shared/ui/spinner';
 
 import { THUMBNAIL_STATUS } from '../../constants/post.constants';
 import { PreviewModal } from './preview-modal';

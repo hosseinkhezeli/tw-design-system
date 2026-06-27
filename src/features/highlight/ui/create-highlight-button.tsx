@@ -1,5 +1,5 @@
-import { Button } from '@/shared/components/ui/button';
-import { Typography } from '@/shared/components/ui/typography/typography';
+import { Button } from '@/shared/ui/button';
+import { Typography } from '@/shared/ui/typography';
 import { IconPlus } from '@tabler/icons-react';
 
 export function CreateHighlightButton({ onClick }: any) {

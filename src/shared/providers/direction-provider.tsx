@@ -1,4 +1,4 @@
-import { DirectionProvider as ShadcnDirectionProvider } from '@/shared/components/ui/direction';
+import { DirectionProvider as ShadcnDirectionProvider } from '@/shared/ui/direction';
 import { ReactNode } from 'react';
 
 type Props = {
@@ -6,7 +6,6 @@ type Props = {
 };
 
 export function DirectionProvider({ children }: Props) {
-  
   return (
     <ShadcnDirectionProvider direction='rtl' dir={'rtl'}>
       {children}

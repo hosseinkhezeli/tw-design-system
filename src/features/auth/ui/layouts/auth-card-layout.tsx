@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 import { cn } from '@/shared/utils';
-import { Button } from '@/shared/components/ui/button';
+import { Button } from '@/shared/ui/button';
 import { IconArrowLeft } from '@tabler/icons-react';
 
 type Props = {

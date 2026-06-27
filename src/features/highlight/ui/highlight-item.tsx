@@ -1,4 +1,4 @@
-import { StoryAvatar } from "@/shared/components/story/story-avatar";
+import { StoryAvatar } from '@/shared/ui/story/story-avatar';
 
 type Props = {
   title: string;

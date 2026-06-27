@@ -1,4 +1,4 @@
-import { Button } from '@/shared/components/ui/button';
+import { Button } from '@/shared/ui/button';
 import { cn } from '@/shared/utils';
 import { NavigationItemModel } from '../models/navigation-item.model';
 import Link from 'next/link';

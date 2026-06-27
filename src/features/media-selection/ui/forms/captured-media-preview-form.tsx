@@ -3,7 +3,7 @@
 import { useForm } from 'react-hook-form';
 import { IconCheck, IconRefresh } from '@tabler/icons-react';
 
-import { Button } from '@/shared/components/ui/button';
+import { Button } from '@/shared/ui/button';
 import { MediaSelectionResult } from '../../types/media-selection.types';
 import { MediaPreviewThumbnail } from '../components/media-preview-thumbnail';
 

@@ -1,5 +1,8 @@
-import { MediaSelectionResult, MediaSelectionStep } from '@/features/media-selection/types/media-selection.types';
-import BottomSheet from '@/shared/components/ui/bottom-sheet';
+import {
+  MediaSelectionResult,
+  MediaSelectionStep,
+} from '@/features/media-selection/types/media-selection.types';
+import BottomSheet from '@/shared/ui/bottom-sheet';
 import { MediaSelectorWidget } from '@/widgets/media/ui/media-selector-widget';
 
 type Props = {

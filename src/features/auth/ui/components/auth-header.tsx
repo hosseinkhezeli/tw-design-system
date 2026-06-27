@@ -1,4 +1,4 @@
-import { Typography } from '@/shared/components/ui/typography/typography';
+import { Typography } from '@/shared/ui/typography';
 
 interface AuthHeaderProps {
   title: string;
@@ -12,7 +12,11 @@ export function AuthHeader({ title, subtitle }: AuthHeaderProps) {
         {title}
       </Typography>
 
-      {subtitle && <Typography className='text-muted-foreground text-sm'>{subtitle}</Typography>}
+      {subtitle && (
+        <Typography className='text-muted-foreground text-sm'>
+          {subtitle}
+        </Typography>
+      )}
     </Typography>
   );
 }

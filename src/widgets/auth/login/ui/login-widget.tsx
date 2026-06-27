@@ -1,12 +1,12 @@
 'use client';
 
-import { LOGIN_STEPS } from "@/features/auth/constants/auth.constants";
-import { AuthHeader } from "@/features/auth/ui/components/auth-header";
-import { OtpVerificationForm } from "@/features/auth/ui/forms/otp-verification-form";
-import { PhoneNumberForm } from "@/features/auth/ui/forms/phone-number-form";
-import { AuthCardLayout } from "@/features/auth/ui/layouts/auth-card-layout";
-import { StepTransition } from "@/shared/components/ui/transitions/step-transition";
-import { useLoginFlow } from "../../../../features/auth/hooks/use-login-flow";
+import { LOGIN_STEPS } from '@/features/auth/constants/auth.constants';
+import { AuthHeader } from '@/features/auth/ui/components/auth-header';
+import { OtpVerificationForm } from '@/features/auth/ui/forms/otp-verification-form';
+import { PhoneNumberForm } from '@/features/auth/ui/forms/phone-number-form';
+import { AuthCardLayout } from '@/features/auth/ui/layouts/auth-card-layout';
+import { StepTransition } from '@/shared/ui/transitions/step-transition';
+import { useLoginFlow } from '../../../../features/auth/hooks/use-login-flow';
 
 // import { AuthFooterLink } from '../components/auth-footer-link';
 // import { CaptchaChallenge } from '../components/captcha-challenge';

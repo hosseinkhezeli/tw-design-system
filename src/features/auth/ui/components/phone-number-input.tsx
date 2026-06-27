@@ -1,11 +1,11 @@
 'use client';
 
 import { useId } from 'react';
-import { Field, FieldError } from '@/shared/components/ui/field';
-import { Input } from '@/shared/components/ui/input';
+import { Field, FieldError } from '@/shared/ui/field';
+import { Input } from '@/shared/ui/input';
 import { FieldValues, UseFormRegister, Path } from 'react-hook-form';
 import { cn } from '@/shared/utils';
-import { TextInput } from '@/shared/components/ui/text-input';
+import { TextInput } from '@/shared/ui/text-input';
 
 export type PhoneNumberInputProps<T extends FieldValues = FieldValues> = {
   label?: string;

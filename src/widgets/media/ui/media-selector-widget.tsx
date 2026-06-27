@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect } from 'react';
-import { StepTransition } from '@/shared/components/ui/transitions/step-transition';
+import { StepTransition } from '@/shared/ui/transitions/step-transition';
 import { MEDIA_SELECTION_STEP } from '@/features/media-selection/constants/media-selection.constants';
 import {
   MediaSelectionStep,

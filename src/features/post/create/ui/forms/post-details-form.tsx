@@ -1,9 +1,9 @@
 'use client';
 
 import { POST_VISIBILITY, POST_CONSTANTS } from '@/entities/post';
-import { Button } from '@/shared/components/ui/button';
-import { TextInput } from '@/shared/components/ui/text-input';
-import { TextareaInput } from '@/shared/components/ui/textarea-input';
+import { Button } from '@/shared/ui/button';
+import { TextInput } from '@/shared/ui/text-input';
+import { TextareaInput } from '@/shared/ui/textarea-input';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { useCreatePostStore } from '../../models/create-post-store';
@@ -12,7 +12,7 @@ import {
   createPostSchema,
 } from '../../schemas/create-post.schema';
 import { NewPostThumbnail } from '../components/new-post-thumbnail';
-import { TagInput } from '@/shared/components/ui/tag-input';
+import { TagInput } from '@/shared/ui/tag-input';
 
 export const PostDetailsForm = () => {
   const { caption, title, hashtags, media, visibility } = useCreatePostStore(

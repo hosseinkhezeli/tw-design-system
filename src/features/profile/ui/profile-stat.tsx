@@ -1,4 +1,4 @@
-import { Text } from '@/shared/components/text';
+import { Text } from '@/shared/ui/text';
 
 type Props = {
   title: string;

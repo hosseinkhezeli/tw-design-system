@@ -1,6 +1,6 @@
 'use client';
-import { Button } from '@/shared/components/ui/button';
-import { Typography } from '@/shared/components/ui/typography/typography';
+import { Button } from '@/shared/ui/button';
+import { Typography } from '@/shared/ui/typography';
 import { cn } from '@/shared/utils';
 
 export interface QuickLink {

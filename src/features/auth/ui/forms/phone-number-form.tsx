@@ -1,7 +1,7 @@
 'use client';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Button } from '@/shared/components/ui/button';
+import { Button } from '@/shared/ui/button';
 import {
   loginRequestOtpSchema,
   LoginRequestOtpSchema,

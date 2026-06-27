@@ -1,7 +1,7 @@
 import { IconStarFilled } from '@tabler/icons-react';
-import { Button } from '@/shared/components/ui/button';
+import { Button } from '@/shared/ui/button';
 import { cn } from '@/shared/utils';
-import { Typography } from '@/shared/components/ui/typography/typography';
+import { Typography } from '@/shared/ui/typography';
 
 export function VerifiedUserBadge() {
   return (

@@ -1,5 +1,5 @@
-import { Text } from '@/shared/components/text';
-import { Button } from '@/shared/components/ui/button';
+import { Text } from '@/shared/ui/text';
+import { Button } from '@/shared/ui/button';
 import { navigation } from '@/shared/services/navigation';
 
 type AuthLinkAction = 'register' | 'login';

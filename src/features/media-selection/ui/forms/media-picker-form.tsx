@@ -3,7 +3,7 @@
 import { useEffect, useRef } from 'react';
 import { IconCheck, IconRefresh } from '@tabler/icons-react';
 
-import { Button } from '@/shared/components/ui/button';
+import { Button } from '@/shared/ui/button';
 
 import { ACCEPTED_IMAGE_TYPES } from '@/entities/media/constants/media.constants';
 import { MediaSelectButton } from '../components/media-select-button';

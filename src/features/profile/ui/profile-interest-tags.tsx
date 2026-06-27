@@ -1,4 +1,4 @@
-import { Tag } from '@/shared/components/ui/tag';
+import { Tag } from '@/shared/ui/tag';
 
 export function ProfileInterestTags() {
   const intereset = ['🎯برنامه نویسی', 'تکنولوژی', 'AI'];
