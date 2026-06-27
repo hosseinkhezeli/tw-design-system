@@ -2,22 +2,20 @@
 import { PostModel } from '../../model/post.model';
 import { Typography } from '@/shared/ui/typography';
 import Img from '@/shared/ui/img';
-import { Ref } from 'react';
+import { ReactNode } from 'react';
 
 type Props = {
   post: any;
-  ref: Ref<HTMLElement> | undefined;
   imageAspectRatio: number;
   imageHeight: number;
 
   // Slots for cross-slice composition
-  authorSlot: React.ReactNode;
-  actionSlot: React.ReactNode;
+  authorSlot: ReactNode;
+  actionSlot: ReactNode;
 };
 
 export function PostCardFull({
   post,
-  ref,
   imageAspectRatio,
   imageHeight,
   authorSlot,
@@ -26,10 +24,7 @@ export function PostCardFull({
   const { post: normalizedPost } = new PostModel(post);
 
   return (
-    <article
-      ref={ref}
-      className='flex flex-col w-full h-max rounded-sm overflow-hidden my-1'
-    >
+    <article className='flex flex-col w-full h-max rounded-sm overflow-hidden my-1'>
       <Img
         src={normalizedPost?.media?.[0]?.thumbnailUrl ?? ''}
         alt={normalizedPost?.media?.[0]?.altText ?? ''}

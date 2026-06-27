@@ -3,17 +3,8 @@ import { UserBadge } from '@/entities/user/ui/user-badge/user-badge';
 import { LikePostButton } from '@/features/post/like/ui/like-post-button';
 import { FeedPost } from '../api/types';
 import { PostCardFull } from '@/entities/post/ui/post-card-full/post-card-full';
-import { Ref } from 'react';
 
-export function FeedItem({
-  post,
-  index,
-  ref,
-}: {
-  post: FeedPost;
-  index: number;
-  ref: Ref<HTMLElement> | undefined;
-}) {
+export function FeedItem({ post, index }: { post: FeedPost; index: number }) {
   const isEven = index % 2 === 0;
   const aspectRatio = isEven
     ? MEDIA_ASPECT_RATIO.FRAME
@@ -21,7 +12,6 @@ export function FeedItem({
   const height = isEven ? 333 : 250;
   return (
     <PostCardFull
-      ref={ref}
       key={post.id}
       post={post}
       imageAspectRatio={aspectRatio}
