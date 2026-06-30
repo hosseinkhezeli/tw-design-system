@@ -1,0 +1,5 @@
+export const VIRTUAL_LIST_CONFIG = {
+  OVERSCAN: 5,
+  ESTIMATED_ITEM_SIZE: 300,
+  GAP: 16,
+};

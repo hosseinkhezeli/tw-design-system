@@ -134,6 +134,6 @@ function createPost(index: number): Post {
   };
 }
 
-export const mockPosts: Post[] = Array.from({ length: 120 }, (_, i) =>
+export const mockPosts: Post[] = Array.from({ length: 10000 }, (_, i) =>
   createPost(i + 1),
 );

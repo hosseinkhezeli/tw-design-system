@@ -1,13 +1,9 @@
 import dynamic from 'next/dynamic';
-import { FeedSkeleton } from '@/features/feed/ui/feed-skeleton';
 
-const FeedList = dynamic(
-  () => import('@/widgets/feed/ui/feed-list').then((mod) => mod.FeedList),
-  {
-    loading: () => <FeedSkeleton />,
-  },
+const FeedList = dynamic(() =>
+  import('@/widgets/feed/ui/feed-list').then((mod) => mod.FeedList),
 );
 
 export default function FeedPage() {
-  return <FeedList />;
+  return <FeedList listType='list' />;
 }

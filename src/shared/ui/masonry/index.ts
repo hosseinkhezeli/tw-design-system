@@ -1,1 +1,2 @@
-export { MasonryFeed } from './components/masonry-feed';
+export { MasonryList } from './masonry-list';
+export type { MasonryListProps } from './types';

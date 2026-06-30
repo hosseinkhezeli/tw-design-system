@@ -1,46 +1,45 @@
-import { cn } from '@/shared/utils';
+import { Skeleton } from '@/shared/ui/skeleton';
 
 type Props = {
   index: number;
 };
-
 export function PostCardFullSkeleton({ index }: Props) {
-  const isFrame = index % 2 === 0;
-
+  const isEven = index % 2 === 0;
+  const height = !isEven ? 280 : 360;
+  const baseDelay = index * 80;
   return (
-    <div className='animate-pulse'>
-      {/* Media */}
-      <div
-        className={cn(
-          'w-full bg-gray-200',
-          isFrame ? 'aspect-[3/4]' : 'aspect-square',
-        )}
+    <div
+      className='flex flex-col w-full mb-2 animate-appear opacity-0'
+      style={{ minHeight: height, animationDelay: `${baseDelay}ms` }}
+    >
+      <Skeleton
+        className='w-full rounded-b-none rounded-t-sm '
+        style={{
+          minHeight: Math.round(height * 0.75),
+        }}
       />
-
-      {/* Title */}
-      <div className='mt-2 space-y-2'>
-        <div className='h-4 w-3/4 bg-gray-200 rounded' />
-        <div className='h-4 w-1/2 bg-gray-200 rounded' />
-      </div>
-
-      {/* Caption */}
-      <div className='mt-2 space-y-2'>
-        <div className='h-3 w-full bg-gray-200 rounded' />
-        <div className='h-3 w-2/3 bg-gray-200 rounded' />
-      </div>
-
-      {/* Footer */}
-      <div className='mt-3 flex items-center justify-between'>
-        <div className='flex items-center gap-2'>
-          {/* Avatar */}
-          <div className='h-8 w-8 rounded-full bg-gray-200' />
-
-          {/* Name */}
-          <div className='h-3 w-24 bg-gray-200 rounded' />
+      <div
+        className='p-3 flex flex-col gap-2 animate-appear opacity-0'
+        style={{ animationDelay: `${baseDelay + 60}ms` }}
+      >
+        <Skeleton className='w-3/4 h-6 ' />
+        {isEven && <Skeleton className='w-2/5 h-4 ' />}
+        <div className='flex items-center justify-between  gap-6'>
+          <div
+            className='flex items-center gap-3 animate-appear opacity-0'
+            style={{ animationDelay: `${baseDelay + 120}ms` }}
+          >
+            <Skeleton className='h-6 w-6 rounded-full ' />
+            <Skeleton className='h-3 w-16 ' />
+          </div>
+          <div
+            className='flex items-center gap-3 flex-2 animate-appear opacity-0'
+            style={{ animationDelay: `${baseDelay + 180}ms` }}
+          >
+            <Skeleton className='h-3 flex-1 ' />
+            <Skeleton className='h-6 w-6 rounded-full ' />
+          </div>
         </div>
-
-        {/* Like button */}
-        <div className='h-8 w-8 rounded bg-gray-200' />
       </div>
     </div>
   );

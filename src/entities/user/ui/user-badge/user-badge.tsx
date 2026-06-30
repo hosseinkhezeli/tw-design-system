@@ -1,34 +1,87 @@
-import { Avatar, AvatarFallback, AvatarImage } from '@/shared/ui/avatar';
-import { APP_ROUTES } from '@/shared/config/app-routes';
-import { IconUser } from '@tabler/icons-react';
 import Link from 'next/link';
-import { Post } from '@/entities/post';
+import { IconUser } from '@tabler/icons-react';
+import { cva, type VariantProps } from 'class-variance-authority';
 
-interface UserBadgeProps {
+import type { Post } from '@/entities/post';
+import { APP_ROUTES } from '@/shared/config/app-routes';
+import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+  type AvatarSize,
+} from '@/shared/ui/avatar';
+import { cn } from '@/shared/utils';
+
+const userBadgeVariants = cva(
+  'flex items-center min-w-0 not-italic hover:opacity-80 transition-opacity',
+  {
+    variants: {
+      size: {
+        default: 'gap-1',
+        sm: 'gap-1',
+        lg: 'gap-2',
+        xl: 'gap-2.5',
+      },
+    },
+    defaultVariants: {
+      size: 'default',
+    },
+  },
+);
+
+const userBadgeTextVariants = cva(
+  'min-w-0 truncate font-medium text-muted-foreground',
+  {
+    variants: {
+      size: {
+        default: 'text-xs',
+        sm: 'text-xs',
+        lg: 'text-sm',
+        xl: 'text-base',
+      },
+    },
+    defaultVariants: {
+      size: 'default',
+    },
+  },
+);
+
+const avatarSizeMap: Record<NonNullable<UserBadgeProps['size']>, AvatarSize> = {
+  default: 'sm',
+  sm: 'sm',
+  lg: 'lg',
+  xl: 'xl',
+};
+
+interface UserBadgeProps extends VariantProps<typeof userBadgeVariants> {
   user: Post['author'];
   className?: string;
 }
 
-export const UserBadge = ({ user, className = '' }: UserBadgeProps) => {
+export const UserBadge = ({
+  user,
+  className,
+  size = 'default',
+}: UserBadgeProps) => {
   return (
     <Link
-      href={APP_ROUTES.profile.user(user.id)}
+      href={APP_ROUTES.profile.user(user?.id)}
       prefetch={false}
-      className={`flex items-center gap-1 min-w-0 not-italic hover:opacity-80 transition-opacity ${className}`}
+      className={cn(userBadgeVariants({ size }), className)}
     >
-      <span className='min-w-0 truncate text-xs font-medium text-muted-foreground'>
-        {user.displayName}
-      </span>
-
-      <Avatar size='sm'>
+      <Avatar size={avatarSizeMap[size!]}>
         <AvatarImage
-          src={user.avatarUrl}
-          alt={`${user.displayName}'s avatar`}
+          src={user?.avatarUrl}
+          alt={`${user?.displayName}'s avatar`}
         />
         <AvatarFallback>
           <IconUser />
         </AvatarFallback>
       </Avatar>
+
+      <span className={userBadgeTextVariants({ size })}>
+        {user?.displayName}
+      </span>
     </Link>
   );
 };

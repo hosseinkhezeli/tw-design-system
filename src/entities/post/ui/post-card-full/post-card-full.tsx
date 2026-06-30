@@ -1,57 +1,77 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+'use client';
+
+import { useState, type ReactNode } from 'react';
+
 import { PostModel } from '../../model/post.model';
 import { Typography } from '@/shared/ui/typography';
-import Img from '@/shared/ui/img';
-import { ReactNode } from 'react';
 
 type Props = {
   post: any;
-  imageAspectRatio: number;
-  imageHeight: number;
-
-  // Slots for cross-slice composition
   authorSlot: ReactNode;
   actionSlot: ReactNode;
+  mediaSlot: ReactNode;
 };
+
+const TITLE_PREVIEW_LENGTH = 60;
 
 export function PostCardFull({
   post,
-  imageAspectRatio,
-  imageHeight,
   authorSlot,
   actionSlot,
+  mediaSlot,
 }: Props) {
+  const [expanded, setExpanded] = useState(false);
+
   const { post: normalizedPost } = new PostModel(post);
 
+  const title = normalizedPost?.title?.trim() ?? '';
+  const caption = normalizedPost?.caption?.trim() ?? '';
+
+  const hasTitle = Boolean(title);
+  const hasCaption = Boolean(caption);
+
+  const shouldCollapseTitle = hasTitle && title.length > TITLE_PREVIEW_LENGTH;
+
+  const shouldShowExpandButton = shouldCollapseTitle || hasCaption;
+
+  const visibleTitle =
+    expanded || !shouldCollapseTitle
+      ? title
+      : `${title.slice(0, TITLE_PREVIEW_LENGTH)}...`;
+
   return (
-    <article className='flex flex-col w-full h-max rounded-sm overflow-hidden my-1'>
-      <Img
-        src={normalizedPost?.media?.[0]?.thumbnailUrl ?? ''}
-        alt={normalizedPost?.media?.[0]?.altText ?? ''}
-        style={{ aspectRatio: imageAspectRatio }}
-        width={250}
-        height={imageHeight}
-        className='w-full object-contain bg-accent/50'
-      />
+    <article className='flex flex-col w-full rounded-sm overflow-hidden'>
+      <div className='flex px-2 py-3'>{authorSlot}</div>
 
-      <div className='flex flex-col w-full p-2 '>
-        <header>
-          {normalizedPost?.title && (
-            <Typography as='h2'>{normalizedPost?.title}</Typography>
-          )}
-        </header>
+      {mediaSlot}
 
-        {normalizedPost?.caption && (
-          <Typography>{normalizedPost?.caption}</Typography>
+      <div className='flex flex-col w-full p-2'>
+        <footer className='flex items-center justify-between mb-2 gap-2'>
+          {actionSlot}
+        </footer>
+
+        {(hasTitle || (expanded && hasCaption)) && (
+          <header className='space-y-1'>
+            {hasTitle && <Typography as='h2'>{visibleTitle}</Typography>}
+
+            {expanded && hasCaption && (
+              <Typography variant='caption' className='opacity-75'>
+                {caption}
+              </Typography>
+            )}
+          </header>
         )}
 
-        <footer className='flex items-center justify-between mt-2 gap-2'>
-          {/* Inject the Feature */}
-          {actionSlot}
-
-          {/* Inject the User Entity */}
-          {authorSlot}
-        </footer>
+        {shouldShowExpandButton && (
+          <button
+            type='button'
+            onClick={() => setExpanded((v) => !v)}
+            className='self-start text-xs opacity-70 hover:opacity-100 mt-1'
+          >
+            {expanded ? 'کمتر...' : 'بیشتر...'}
+          </button>
+        )}
       </div>
     </article>
   );

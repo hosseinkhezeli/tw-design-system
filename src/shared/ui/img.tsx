@@ -37,7 +37,7 @@ export default function Img(props: ImgProps) {
     ...rest
   } = props;
 
-  const currentSrc = hasError ? fallbackSrc : src;
+  const currentSrc = hasError || !src ? fallbackSrc : src;
 
   const handleLoad = () => setIsLoading(false);
   const handleError = () => {

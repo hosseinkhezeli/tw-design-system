@@ -1,84 +1,97 @@
 'use client';
-import { useEffect, useRef } from 'react';
-import { useVirtualizer } from '@tanstack/react-virtual';
-
+import { RefCallback, useState } from 'react';
 import { VirtualListProps } from './types';
-import {
-  DEFAULT_ESTIMATED_ITEM_SIZE,
-  VIRTUAL_LIST_OVERSCAN,
-} from '@/shared/config/ui';
 import { cn } from '@/shared/utils/cn';
+import { useInfiniteScroll } from '@/shared/hooks/use-infinite-scroll';
+import { useVirtualizeList } from './use-virtualize-list';
+import { VIRTUAL_LIST_CONFIG } from './list.constant';
+import { Spinner } from '../spinner';
 
 export function VirtualList<T>({
   items,
   renderItem,
-  estimateSize = DEFAULT_ESTIMATED_ITEM_SIZE,
-  overscan = VIRTUAL_LIST_OVERSCAN,
+  estimateSize = () => VIRTUAL_LIST_CONFIG.ESTIMATED_ITEM_SIZE,
+  gap = VIRTUAL_LIST_CONFIG.GAP,
+  overscan = VIRTUAL_LIST_CONFIG.OVERSCAN,
   className = '',
   scrollContainerClassName = '',
-  onEndReached,
   itemClassName = '',
+  totalCount,
+  getItemId,
+  hasMore,
+  isLoadingMore,
+  onLoadMore,
 }: VirtualListProps<T>) {
-  const parentRef = useRef<HTMLDivElement>(null);
+  const [scrollElement, setScrollElement] = useState<HTMLDivElement | null>(
+    null,
+  );
 
-  const virtualizer = useVirtualizer({
-    count: items.length,
+  const { sentinelRef } = useInfiniteScroll({
+    root: scrollElement,
+    hasMore,
+    isLoading: isLoadingMore,
+    onLoadMore: onLoadMore ?? (() => {}),
+    threshold: 1,
+    rootMargin: '400px',
+  });
 
-    getScrollElement: () => parentRef.current,
-
-    estimateSize: () => estimateSize,
-
+  const { totalHeight, virtualItems, measureEl } = useVirtualizeList({
+    totalCount,
+    getScrollElement: () => scrollElement,
+    getItemId,
+    estimateSize,
+    gap,
     overscan,
   });
 
-  const virtualItems = virtualizer.getVirtualItems();
-  const lastItem = virtualItems.at(-1);
-
-  useEffect(() => {
-    if (!lastItem) return;
-
-    const nearEnd = lastItem.index >= items.length - 3;
-
-    if (nearEnd) {
-      onEndReached?.();
-    }
-  }, [lastItem?.index, items.length, onEndReached]);
-
   return (
     <div
-      ref={parentRef}
-      className={cn(scrollContainerClassName, 'no-scrollbar')}
+      ref={setScrollElement}
+      className={cn(
+        scrollContainerClassName,
+        'h-[calc(100dvh-68px)] overflow-y-auto w-full max-w-xl no-scrollbar',
+      )}
     >
       <ul
         className={className}
         style={{
-          height: virtualizer.getTotalSize(),
+          height: totalHeight,
           position: 'relative',
           width: '100%',
         }}
       >
-        {virtualizer.getVirtualItems().map((virtualItem, index) => {
+        {virtualItems?.map((virtualItem, index) => {
           const item = items[virtualItem.index];
 
           return (
             <li
               key={virtualItem.key}
+              ref={measureEl}
               data-index={virtualItem.index}
-              ref={virtualizer.measureElement}
               style={{
                 position: 'absolute',
-                top: 0,
-                left: 0,
                 width: '100%',
+                left: `${(virtualItem.lane * 100) / 2}%`,
                 transform: `translateY(${virtualItem.start}px)`,
               }}
               className={itemClassName}
             >
-              {renderItem(item, index)}
+              {renderItem({ index, item })}
             </li>
           );
         })}
+        {hasMore && (
+          <li
+            ref={sentinelRef as unknown as RefCallback<HTMLLIElement>}
+            className='w-dvw max-w-xl h-6 left-0 bottom-0 absolute'
+          />
+        )}
       </ul>
+      {isLoadingMore && (
+        <div className='flex items-center justify-center py-8 w-dvw max-w-xl h-6'>
+          <Spinner />
+        </div>
+      )}
     </div>
   );
 }

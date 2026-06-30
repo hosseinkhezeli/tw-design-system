@@ -1,23 +1,18 @@
+import { VirtualItem } from '@tanstack/react-virtual';
 import { ReactNode } from 'react';
 
 export type VirtualListProps<T> = {
-  items: T[];
-
-  renderItem: (item: T, index: number) => ReactNode;
-
-  estimateSize?: number;
-
+  estimateSize?: () => number;
   overscan?: number;
-
+  gap?: number;
   className?: string;
-
   itemClassName?: string;
-
   scrollContainerClassName?: string;
-
-  onEndReached: () => void;
-
-  fetchNextPage: () => void;
-  hasNextPage: boolean;
-  isFetchingNextPage: boolean;
+  totalCount: number;
+  items: T[];
+  renderItem: (args: { item: T; index: number }) => ReactNode;
+  getItemId?: (index: number) => VirtualItem['key'];
+  hasMore: boolean;
+  isLoadingMore: boolean;
+  onLoadMore?: () => void | Promise<void>;
 };

@@ -1,0 +1,7 @@
+export const MASONRY_LIST_CONFIG = {
+  ESTIMATED_ITEM_SIZE: 350,
+  COLUMN_COUNT: 2,
+  GAP: 8,
+  OVERSCAN: 6,
+  LINE_ASSIGNMENT_MODE: 'measured',
+} as const;

@@ -3,6 +3,8 @@
 import * as React from 'react';
 import { Avatar as AvatarPrimitive } from 'radix-ui';
 
+export type AvatarSize = 'default' | 'sm' | 'lg' | 'xl'
+
 export type AvatarProps = {
   src?: string;
   fallback: string;

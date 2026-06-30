@@ -1,28 +1,98 @@
 'use client';
+import dynamic from 'next/dynamic';
+import { FC, useCallback, useMemo } from 'react';
 
-import { Post } from '@/entities/post';
-import { mockPosts } from '@/entities/post/mock/post.mock';
-import { useFeedQuery } from '@/features/feed/queries/use-feed-query';
-import { FeedItem } from '@/features/feed/ui/feed-item';
-import { MasonryFeed } from '@/shared/ui/masonry';
-import { MasonryList } from '@/shared/ui/masonry/ui/masonry-list';
+import type { Post } from '@/entities/post';
 
-export function FeedList() {
-  const { fetchNextPage, hasNextPage, isFetchingNextPage, isLoading } =
-    useFeedQuery();
+import { FeedListType } from '../types/feed.types';
+import { useInfiniteHomeFeedQuery } from '@/features/feed/queries/use-infinite-home-feed-query';
+import { MasonryFeedSkeleton } from '@/features/feed/ui/masonry-feed-skeleton';
+import { ListFeedSkeleton } from '@/features/feed/ui/list-feed-skeleton';
+import { VirtualListProps } from '@/shared/ui/virtual-list';
+import { MasonryListProps } from '@/shared/ui/masonry';
 
-  const posts = mockPosts;
+type Props = {
+  listType: FeedListType;
+};
+
+const ListFeedItem = dynamic(() =>
+  import('@/features/feed/ui/list-feed-item').then((mod) => mod.ListFeedItem),
+);
+
+const MasonryFeedItem = dynamic(() =>
+  import('@/features/feed/ui/masonry-feed-item').then(
+    (mod) => mod.MasonryFeedItem,
+  ),
+);
+
+const VirtualList = dynamic(
+  () => import('@/shared/ui/virtual-list').then((mod) => mod.VirtualList),
+  {
+    ssr: false,
+    loading: () => <ListFeedSkeleton />,
+  },
+) as FC<VirtualListProps<Post>>;
+
+const MasonryList = dynamic(
+  () => import('@/shared/ui/masonry').then((mod) => mod.MasonryList),
+  {
+    ssr: false,
+    loading: () => <MasonryFeedSkeleton />,
+  },
+) as FC<MasonryListProps<Post>>;
+
+export function FeedList({ listType }: Props) {
+  const { data, fetchNextPage, hasNextPage, isFetchingNextPage, isLoading } =
+    useInfiniteHomeFeedQuery();
+
+  const posts = useMemo(
+    () => data?.pages.flatMap((page) => page.items) ?? [],
+    [data],
+  );
+
+  const handleLoadMore = useCallback(() => {
+    if (!hasNextPage || isFetchingNextPage) return;
+    void fetchNextPage();
+  }, [fetchNextPage, hasNextPage, isFetchingNextPage]);
+
+  const getItemId = useCallback(
+    (index: number) => posts[index]?.id ?? index,
+    [posts],
+  );
+
+  if (isLoading) {
+    return listType === 'masonry' ? (
+      <MasonryFeedSkeleton />
+    ) : (
+      <ListFeedSkeleton />
+    );
+  }
+
+  if (listType === 'list') {
+    return (
+      <VirtualList
+        items={posts}
+        totalCount={posts.length}
+        getItemId={getItemId}
+        hasMore={hasNextPage}
+        isLoadingMore={isFetchingNextPage}
+        onLoadMore={handleLoadMore}
+        renderItem={({ item }) => <ListFeedItem post={item} />}
+      />
+    );
+  }
 
   return (
     <MasonryList
       items={posts}
-      renderItem={({ index, item }) => {
-        return <FeedItem post={item} index={index} />;
-      }}
-      getItemId={(index) => {
-        return mockPosts[index].id;
-      }}
-      totalCount={mockPosts.length}
+      totalCount={posts.length}
+      getItemId={getItemId}
+      hasMore={hasNextPage}
+      isLoadingMore={isFetchingNextPage}
+      onLoadMore={handleLoadMore}
+      renderItem={({ index, item }) => (
+        <MasonryFeedItem post={item} index={index} />
+      )}
     />
   );
 }
