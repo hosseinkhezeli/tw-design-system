@@ -3,10 +3,11 @@ import { UserAvatar, UserBio, UserStatsList } from '@/entities/user';
 import { Typography } from '@/shared/ui/typography';
 import { ProfileWidgetModel } from '../model/profile-widget.model';
 import { Button } from '@/shared/ui/button';
-import { IconEdit, IconInfoCircle } from '@tabler/icons-react';
+import { IconEdit, IconInfoCircle, IconSettings } from '@tabler/icons-react';
 import { VerifiedUserBadge } from '@/entities/user/ui/verified-user-badge';
 import { UserQuickAccessList } from '@/entities/user/ui/user-quick-access/user-quick-access-list';
 import { Suspense } from 'react';
+import { ProfileMenuSheet } from './profile-menu-sheet';
 
 type Props = {
   user: any;
@@ -17,6 +18,9 @@ export function ProfileWidget({ user }: Props) {
   return (
     <>
       <main className='flex flex-col w-full'>
+        <div className='flex w-full justify-between items-center py-2 px-4'>
+          <ProfileMenuSheet />
+        </div>
         <header className='flex flex-col w-full gap-4 px-4 py-5'>
           <div className='flex w-full gap-4 items-center justify-between'>
             <div className='flex w-full gap-4 items-center'>
