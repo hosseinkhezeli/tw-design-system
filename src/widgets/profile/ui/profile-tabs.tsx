@@ -20,16 +20,16 @@ const ProfileTabs: React.FC<ProfileTabsProps> = ({
     <Tabs value={activeTab} onValueChange={onTabChange} className='w-full'>
       <TabsList
         variant={'line'}
-        className='w-full justify-start min-h-14 border-b border-b-muted-foreground/50 overflow-x-auto no-scrollbar'
+        className='w-full justify-start min-h-14 overflow-x-auto no-scrollbar'
       >
         {tabs.map((tab) => (
           <TabsTrigger
             key={tab.value}
             value={tab.value}
-            className={`max-w-max text-background!`}
+            className={`max-w-max `}
           >
             <Typography
-              className={`text-sm font-light border-b-0 border-b-primary transition-all ${tab.value === activeTab && 'font-medium border-b-2 '}`}
+              className={`text-sm font-light  transition-all ${tab.value === activeTab && ' '}`}
             >
               {tab.label}
             </Typography>
